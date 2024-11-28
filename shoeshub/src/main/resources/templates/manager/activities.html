@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="POS - Bootstrap Admin Template">
+    <meta name="keywords"
+        content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Sneaker Shop - Admin</title>
+
+    <link rel="shortcut icon" type="image/x-icon"   href="/images/img/icon.png">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/animate.css">
+
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+
+    <link rel="stylesheet" href="/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="mini-sidebar">
+    <div id="global-loader">
+        <div class="whirly-loader"></div>
+    </div>
+    <div class="main-wrapper">
+        <div class="header">
+
+            <div class="header-left active">
+                <a href="/manager" class="logo">
+                    <img src="/images/img/logo.png" alt="">
+                </a>
+                <a href="/manager" class="logo-small">
+                    <img src="/images/img/logo-small.png" alt="">
+                </a>
+                <a id="toggle_btn" href="javascript:void(0);">
+                </a>
+            </div>
+
+            <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+                <span class="bar-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </a>
+
+            <ul class="nav user-menu">
+
+                <li class="nav-item dropdown has-arrow flag-nav">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+                        <i class="flag flag-vn"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                        <img src="/images/img/icons/notification-bing.svg" alt="img"> <span class="badge rounded-pill"
+                            ></span>
+                    </a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span class="notification-title">Notifications</span>
+                            <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                        </div>
+                        <div class="noti-content">
+                            <ul class="notification-list">
+<!--                                <th:block th:each="">-->
+<!--                                    <li th:if="" class="notification-message">-->
+<!--                                        <a href="/manager/bill/online">-->
+<!--                                            <div class="media d-flex">-->
+<!--                                                <span class="avatar flex-shrink-0">-->
+<!--                                                    <img alt="" src="/images/img/profiles/avatar-02.jpg">-->
+<!--                                                </span>-->
+<!--                                                <div class="media-body flex-grow-1">-->
+<!--                                                    <p class="noti-details">-->
+<!--                                                        <span class="noti-title"-->
+<!--                                                            th:text=""></span>-->
+<!--                                                        <span th:text=""></span>-->
+<!--                                                        <span class="noti-title" th:text=""></span>-->
+<!--                                                    </p>-->
+<!--                                                    <p class="noti-time">-->
+<!--                                                        <span class="notification-time"-->
+<!--                                                            th:text=""></span>-->
+<!--                                                    </p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                </th:block>-->
+                            </ul>
+                        </div>
+                        <div class="topnav-dropdown-footer">
+                            <a href="activities.html">View all Notifications</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown has-arrow main-drop">
+                    <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+                        <span class="user-img"><img src=""
+                                alt="">
+                            <span class="status online"></span></span>
+                    </a>
+                    <div class="dropdown-menu menu-drop-user">
+                        <div class="profilename">
+                            <div class="profileset">
+                                <span class="user-img"><img
+                                        src="" alt="">
+                                    <span class="status online"></span></span>
+                                <div class="profilesets">
+                                    <h6 ></h6>
+                                    <h5 ></h5>
+                                </div>
+                            </div>
+                            <hr class="m-0">
+                            <a class="dropdown-item" href="/ban-hang/hien-thi">Bán hàng tại quầy</a>
+                            <a class="dropdown-item" href="/order/">Vận chuyển</a>
+                            <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
+                                Profile</a>
+                            <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
+                                    data-feather="settings"></i>Settings</a>
+                            <hr class="m-0">
+                            <a class="dropdown-item logout pb-0" href="/logout"><img src="/images/img/icons/log-out.svg"
+                                    class="me-2" alt="img">Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="dropdown mobile-user-menu">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/ban-hang/hien-thi">Bán hàng tại quầy</a>
+                    <a class="dropdown-item" href="/order/">Vận chuyển</a>
+                    <a class="dropdown-item" href="profile.html">Thông tin cá nhân</a>
+                    <a class="dropdown-item" href="generalsettings.html">Cài đặt</a>
+                    <a class="dropdown-item" href="signin.html">Đăng xuất</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li>
+                            <a href="/manager/" class="active"><img src="/images/iconlogo.png" alt="img"><span>Trang chủ
+                                    nè</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/manager/thongke"><img src="/images/img/icons/dashboard.svg" alt="img"><span> Thống
+                                    Kê</span>
+                            </a>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img src="/images/img/icons/product.svg" alt="img"><span> Quản
+                                    lý Giày</span>
+                                <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="/manager/chat-lieu" class="active">Chất Liệu</a></li>
+                                <li><a href="/manager/giay">Giày</a></li>
+                                <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                                <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
+                                <li><a href="/manager/mau-sac">Màu Sắc</a></li>
+                                <li><a href="/manager/size">Size</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img src="/images/img/icons/expense1.svg" alt="img"><span>
+                                    Quản Lý Hóa Đơn</span>
+                                <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="/manager/bill/offline">Hóa đơn tại quầy</a></li>
+                                <li><a href="/manager/bill/online">Quản lý hóa đơn online</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img src="/images/img/icons/users1.svg" alt="img"><span> Quản
+                                    Lý Khách Hàng</span>
+                                <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="/manager/khach-hang">Khách Hàng</a></li>
+                                <li><a href="/manager/dia-chi">Địa Chỉ </a></li>
+                                <li><a href="/manager/loai-khach-hang">Loại Khách Hàng</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img src="/images/img/icons/purchase1.svg" alt="img"><span>
+                                    Lịch sử thanh toán</span>
+                                <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="/manager/history/delivery">Thanh toán tiền mặt</a></li>
+                                <li><a href="/manager/history/pay">Thanh toán chuyển khoản </a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img src="/images/img/icons/users1.svg" alt="img"><span> Quản
+                                    Lý Nhân Viên</span>
+                                <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="/manager/chuc-vu">Chức Vụ</a></li>
+                                <li><a href="/manager/nhan-vien">Nhân Viên</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);">
+                                <img src="/images/img/icons/transfer1.svg" alt="img" />
+                                <span>Quản lý Khuyến Mãi</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul>
+                                <li><a href="/manager/voucher">Khuyến Mãi Chung</a></li>
+                                <li><a href="/manager/voucher-bill">Khuyến Mãi Hóa Đơn</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/manager/giao-hang"><i data-feather="layers"></i><span> Quản lý giao hàng</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--CODE TỪ DƯỚI NÀY-->
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h4>List Chất Liệu</h4>
+                        <h6>Quản Lý Giày</h6>
+                    </div>
+                    <div class="page-btn">
+                        <button class="btn btn-added" id="show-form-button">
+                            <img src="/images/img/icons/plus.svg" class="me-1" alt="img">Thêm Chất Liệu
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="hidden-form" style="display: none">
+                            <form
+                                  onsubmit="return validateChatLieuForm()" name="chatLieuForm">
+                                <div class="row">
+                                    <div class="col-lg-2 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Mã Chất Liệu</label>
+                                            <input type="text">
+                                            <br><br>
+                                            <strong
+                                                    class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert"></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Tên Chất Liệu</label>
+                                            <input type="text">
+                                            <br><br>
+                                            <strong
+                                                    class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert"></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <button type="submit" class="btn btn-submit me-2">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        <div class="form-hidden-2" style="display: none">
+                            <form action="/manage/chatLieu/import" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label> Upload Excel File</label>
+                                    <input type="file" name="file" onchange="displaySelectedFileName()"/>
+                                </div>
+                                <button type="submit" class="btn btn-submit me-2">Submit</button>
+                            </form>
+                        </div>
+                        <br>
+                        <div class="table-top">
+                            <div class="search-set">
+                                <div class="search-path">
+                                    <a class="btn btn-filter" id="filter_search">
+                                        <img src="/images/img/icons/filter.svg" alt="img">
+                                        <span><img src="/images/img/icons/closes.svg" alt="img"></span>
+                                    </a>
+                                </div>
+                                <div class="search-input">
+                                    <a class="btn btn-searchset"><img
+                                            src="/images/img/icons/search-white.svg"
+                                            alt="img"></a>
+                                </div>
+                            </div>
+                            <div class="wordset">
+                                <ul>
+                                    <li>
+                                        <a class="btn btn-filter" id="import-excel" data-bs-toggle="tooltip"
+                                           data-bs-placement="top" title="Import Excel">
+                                            <img src="/images/img/icons/upload.svg" alt="img">
+                                            <span><img src="/images/img/icons/closes.svg" alt="img"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  data-bs-toggle="tooltip"
+                                           data-bs-placement="top" title="pdf"><img
+                                                src="/images/img/icons/pdf.svg" alt="img"></a>
+                                    </li>
+                                    <li>
+                                        <a  data-bs-toggle="tooltip"
+                                           data-bs-placement="top" title="excel"><img
+                                                src="/images/img/icons/excel.svg" alt="img"></a>
+                                    </li>
+                                    <li>
+                                        <a id="printButton" data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="print"><img
+                                                src="/images/img/icons/printer.svg" alt="img"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--                    <form method="get" th:action="@{/manage/chatLieu/filter}">-->
+                        <!--                        <div class="card" id="filter_inputs">-->
+                        <!--                            <div class="card-body pb-0">-->
+                        <!--                                <div class="row">-->
+                        <!--                                    <div class="col-lg-2 col-sm-6 col-12">-->
+                        <!--                                        <div class="form-group">-->
+                        <!--                                            <select class="select" id="chatLieuFilterMa">-->
+                        <!--                                                <option>Mã Chất Liệu</option>-->
+                        <!--                                                <option th:each="loc : ${chatLieu}" th:value="${loc.maChatLieu}"-->
+                        <!--                                                        th:text="${loc.maChatLieu}"></option>-->
+                        <!--                                            </select>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="col-lg-2 col-sm-6 col-12">-->
+                        <!--                                        <div class="form-group">-->
+                        <!--                                            <select class="select" id="chatLieuFilterTen">-->
+                        <!--                                                <option>Tên Chất Liệu</option>-->
+                        <!--                                                <option th:each="loc : ${chatLieu}" th:value="${loc.tenChatLieu}"-->
+                        <!--                                                        th:text="${loc.tenChatLieu}"></option>-->
+                        <!--                                            </select>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                    &lt;!&ndash;                                <div class="col-lg-2 col-sm-6 col-12">&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                    <div class="form-group">&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                        <select class="select">&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                            <option>Trạng Thái</option>&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                            <option th:each="loc : ${dsTrangThai.entrySet()}" th:value="${loc.key}"&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                                    th:text="${loc.value}"></option>&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                        </select>&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
+                        <!--                                    &lt;!&ndash;                                </div>&ndash;&gt;-->
+                        <!--                                    <div class="col-lg-1 col-sm-6 col-12 ms-auto">-->
+                        <!--                                        <div class="form-group">-->
+                        <!--                                            <button type="submit" class="btn btn-filters ms-auto"><img-->
+                        <!--                                                    src="/resources/static/images/img/icons/search-whites.svg"-->
+                        <!--                                                    alt="img"></button>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                    </form>-->
+
+                        <div class="table-responsive">
+                            <table class="table datanew" id="data-table">
+                                <thead>
+                                <tr>
+                                    <th>Mã Chất Liệu</th>
+                                    <th>Tên Chất Liệu</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Action</th>
+                                    <th>Thời Gian Thêm</th>
+                                    <th>Thời Gian Sửa</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--                            <tr th:each="items : ${chatLieu}">-->
+                                <!--                                <td th:text="${items.macl}"></td>-->
+                                <!--                                <td th:text="${items.tenchatlieu}"></td>-->
+                                <!--                                <td>-->
+                                <!--                                    <span th:if="${items.trangthai == 1}" class="badges bg-lightgreen">Hoạt Động</span>-->
+                                <!--                                    <span th:unless="${items.trangthai == 1}"-->
+                                <!--                                          class="badges bg-lightred">Không Hoạt Động</span>-->
+                                <!--                                </td>-->
+                                <!--                                <td>-->
+                                <!--                                    <a class="me-3" th:href="">-->
+                                <!--                                        <img src="/images/img/icons/edit.svg" alt="img">-->
+                                <!--                                    </a>-->
+                                <!--                                    <a class="me-3 delete-button"-->
+                                <!--                                       th:data-delete-url="">-->
+                                <!--                                        <img src="/images/img/icons/delete.svg" alt="img">-->
+                                <!--                                    </a>-->
+                                <!--                                </td>-->
+                                <!--                            </tr>-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+
+    <script src="/js/feather.min.js"></script>
+
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/plugins/select2/js/select2.min.js"></script>
+
+    <script src="/plugins/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="/plugins/sweetalert/sweetalerts.min.js"></script>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
