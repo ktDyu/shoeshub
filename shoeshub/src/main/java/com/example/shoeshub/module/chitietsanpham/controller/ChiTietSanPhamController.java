@@ -492,8 +492,6 @@ public class ChiTietSanPhamController {
             return "redirect:/manager/san-pham-chi-tiet";
         }
 
-        size.setTrangthai(1);
-        sizeService.add(size);
         redirectAttributes.addFlashAttribute("messageSize", true);
         return "redirect:/manager/san-pham-chi-tiet";
     }
