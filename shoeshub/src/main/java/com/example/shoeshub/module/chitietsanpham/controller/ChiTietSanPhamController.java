@@ -471,4 +471,31 @@ public class ChiTietSanPhamController {
         redirectAttributes.addFlashAttribute("messageHinhAnh", true);
         return "redirect:/manager/san-pham-chi-tiet";
     }
+    //nháp
+    @PostMapping("/san-pham-chi-tiettt/size/add")
+    public String addSizess(@Valid @ModelAttribute("sizeAdd") Size size,
+                          BindingResult bindingResult,
+                          RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            if (bindingResult.hasFieldErrors("kichthuoc")) {
+                redirectAttributes.addFlashAttribute("userInputSize", size);
+                redirectAttributes.addFlashAttribute("error", "soSizeError");
+            }
+            return "redirect:/manager/san-pham-chi-tiet";
+        }
+
+        var existingSize = sizeService.findKichthuoc(size.getKichthuoc());
+        if (existingSize.isPresent()) {
+            redirectAttributes.addFlashAttribute("userInputSize", size);
+            redirectAttributes.addFlashAttribute("ErrormessageSize", true);
+            redirectAttributes.addFlashAttribute("isSizeModalOpen", true);
+            return "redirect:/manager/san-pham-chi-tiet";
+        }
+
+        size.setTrangthai(1);
+        sizeService.add(size);
+        redirectAttributes.addFlashAttribute("messageSize", true);
+        return "redirect:/manager/san-pham-chi-tiet";
+    }
+
 }

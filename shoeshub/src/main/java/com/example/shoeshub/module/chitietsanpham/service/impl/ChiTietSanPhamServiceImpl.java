@@ -23,10 +23,6 @@ import java.util.UUID;
 public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     private final ChiTietSanPhamRepository chiTietSanPhamRepository;
 
-//    public ChiTietSanPhamServiceImpl(ChiTietSanPhamRepository chiTietSanPhamRepository) {
-//        this.chiTietSanPhamRepository = chiTietSanPhamRepository;
-//    }
-
     @Override
     public List<ChiTietSanPham> getAll() {
         return chiTietSanPhamRepository.findAll();
@@ -42,10 +38,6 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
         return chiTietSanPhamRepository.save(chiTietSanPham);
     }
 
-//    @Override
-//    public Optional<ChiTietSanPham> findName(String name) {
-//        return sanPhamRepository.findByTensp(name);
-//    }
 
     @Override
     public Optional<ChiTietSanPham> findId(int id) {
