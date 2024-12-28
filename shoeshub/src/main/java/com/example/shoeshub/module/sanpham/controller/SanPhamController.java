@@ -442,12 +442,13 @@ public class SanPhamController {
         //
         for (int x : listSize) {
 
-            var isDuplicate = chiTietSanPhamService.isDuplicateChiTietGiay(
+            var isDuplicate = chiTietSanPhamService.isDuplicateForAdd(
                     chiTietSanPham.getSanPham().getMasp(),
                     x,
                     chiTietSanPham.getMauSac().getMams(),
                     chiTietSanPham.getChatLieu().getMacl(),
-                    chiTietSanPham.getHinhAnh().getMaanh()
+                    chiTietSanPham.getHinhAnh().getMaanh(),
+                    chiTietSanPham.getDongia()
             );
             if (!isDuplicate.isEmpty()) {
                 for (ChiTietSanPham duplicateChiTietGiay : isDuplicate) {
@@ -456,7 +457,6 @@ public class SanPhamController {
                 }
                 // Xử lý sự trùng lặp, ví dụ: hiển thị thông báo và không thêm mới
                 redirectAttributes.addFlashAttribute("error", "daTonTai");
-                redirectAttributes.addFlashAttribute("updateQuantity", true);
                 return link1;
             }
 
@@ -605,7 +605,5 @@ public class SanPhamController {
         redirectAttributes.addFlashAttribute("messageHinhAnh", true);
         return link;
     }
-
-
 }
 

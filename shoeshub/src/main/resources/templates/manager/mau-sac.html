@@ -281,24 +281,6 @@
 
                                 <div class="col-lg-2 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Mã Màu (RGB)</label>
-                                        <input type="text" id="rgbValue" th:field="*{rgp}" readonly
-                                               class="form-control" style="margin-top: 5px;">
-                                        <strong th:if="${#fields.hasErrors('rgp')}"
-                                                class="alert alert-danger alert-dismissible fade show"
-                                                role="alert" th:errors="*{rgp}"></strong>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Chọn Màu:</label>
-                                        <input type="color" onchange="updateRGBValue(this.value)"
-                                               required class="large-input">
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 col-12">
-                                    <div class="form-group">
                                         <label>Tên Màu</label>
                                         <input type="text" th:field="*{tenmau}" >
                                         <strong th:if="${#fields.hasErrors('tenmau')}"
@@ -375,7 +357,6 @@
                             <thead>
                             <tr>
                                 <th>Mã Màu Sắc</th>
-                                <th>Mã Màu RGP</th>
                                 <th>Tên Màu</th>
                                 <th>Trạng Thái</th>
                                 <th>Action</th>
@@ -385,9 +366,6 @@
                             <tbody>
                             <tr th:each="items : ${mauSac}">
                                 <td th:text="${items.mams}"></td>
-                                <td>
-                                    <span class="color-box" th:style="'background-color: ' + ${items.rgp}"></span>
-                                </td>
                                 <td th:text="${items.tenmau}"></td>
                                 <td>
                                     <span th:if="${items.trangthai == 1}" class="badges bg-lightgreen">Hoạt Động</span>
@@ -418,13 +396,6 @@
         <button type="button" class="toast-close-button" role="button"></button>
         <div class="toast-title">Thành Công</div>
         <div class="toast-message">Dữ liệu của bạn đã được cập nhật</div>
-    </div>
-</div>
-<div th:if="${rgpError}" id="warning2" class="toast-container toast-top-right">
-    <div class="toast toast-error" aria-live="assertive" style="display: block;">
-        <button type="button" class="toast-close-button" role="button"></button>
-        <div class="toast-title">Error!</div>
-        <div class="toast-message">Mã màu không được để trống.</div>
     </div>
 </div>
 <div th:if="${tenMauError}" id="warning3" class="toast-container toast-top-right">
@@ -609,40 +580,16 @@
     });
 </script>
 <script>
-    function updateRGBValue(hexValue) {
-        var rgbValue = hexToRgb(hexValue);
-        document.getElementById('rgbValue').value = 'rgb('+ rgbValue.r +','+ rgbValue.g + ',' + rgbValue.b + ')';
-    }
-
-    function hexToRgb(hex) {
-        // Chuyển đổi mã màu hex thành giá trị RGB
-        var bigint = parseInt(hex.substring(1), 16);
-        var r = (bigint >> 16) & 255;
-        var g = (bigint >> 8) & 255;
-        var b = bigint & 255;
-        return {r: r, g: g, b: b};
-    }
-</script>
-<script>
     function validateMauSacForm() {
-        var maMau = document.forms["mauSacForm"]["rgp"].value;
         var tenMau = document.forms["mauSacForm"]["tenmau"].value;
 
 
-        if (maMau === "") {
-            showAlert("Vui lòng chọn Mã Màu");
-            return false;
-        }
+
 
         if (tenMau === "") {
             showAlert("Vui lòng nhập Tên Màu");
             return false;
         }
-
-        // if (!tenMau.match(/^[a-zA-Z0-9\s]+$/)) {
-        //     showAlert("Tên Màu chỉ được chứa chữ cái, số và khoảng trắng");
-        //     return false;
-        // }
 
         return true;
     }

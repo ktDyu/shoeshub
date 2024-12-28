@@ -41,7 +41,6 @@ public class MauSacController {
     @GetMapping("/mau-sac")
     public ModelAndView dsMauSac(Model model,
                                  @ModelAttribute("message") String message,
-                                 @ModelAttribute("rgpError") String maMauError,
                                  @ModelAttribute("tenMauError") String tenMauError,
                                  @ModelAttribute("error") String error,
                                  @ModelAttribute("userInput") MauSac userInput,
@@ -54,9 +53,6 @@ public class MauSacController {
 //        model.addAttribute("Errormessage", "true".equals(Errormessage));
         if (message == null || !"true".equals(message)) {
             model.addAttribute("message", false);
-        }
-        if (maMauError == null || !"rgpError".equals(error)) {
-            model.addAttribute("rgpError", false);
         }
         if (tenMauError == null || !"tenMauError".equals(error)) {
             model.addAttribute("tenMauError", false);
@@ -76,11 +72,6 @@ public class MauSacController {
     public String addMauSac(@Valid @ModelAttribute("mauSac") MauSac mauSac,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasFieldErrors("rgp")) {
-            redirectAttributes.addFlashAttribute("userInput", mauSac);
-            redirectAttributes.addFlashAttribute("error", "rgpError");
-        }
-
         if (bindingResult.hasErrors()) {
             if (bindingResult.hasFieldErrors("tenmau")) {
                 redirectAttributes.addFlashAttribute("userInput", mauSac);
@@ -151,7 +142,6 @@ public class MauSacController {
         }
 
         mauSacDb.ifPresent(m -> {
-            m.setRgp(mauSac.getRgp());
             m.setTenmau(mauSac.getTenmau());
             m.setTrangthai(mauSac.getTrangthai());
             mauSacService.add(m);

@@ -16,4 +16,5 @@ public interface SizeRepository extends JpaRepository< Size, Integer> {
     Optional<Size> findByMasize(Integer masize);
 
     List<Size> findAllByTrangthai(int trangThai);
+    List<Size> findByTrangthaiOrderByKichthuoc(int trangThai);
 }

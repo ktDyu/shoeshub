@@ -413,15 +413,15 @@
                                     </td>
                                     <td>
                                         <a class="me-2"
-                                           th:href="@{'/manager/chi-tiet-san-pham/detail/' + ${items.mactsp}}">
+                                           th:href="@{'/manager/san-pham-chi-tiet/detail/' + ${items.mactsp}}">
                                             <img src="/images/img/icons/eye.svg" alt="img"/>
                                         </a>
                                         <a class="me-2"
-                                           th:href="@{'/manager/chi-tiet-san-pham/viewUpdate/' + ${items.mactsp}}">
+                                           th:href="@{'/manager/san-pham-chi-tiet/viewUpdate/' + ${items.mactsp}}">
                                             <img src="/images/img/icons/edit.svg" alt="img"/>
                                         </a>
                                         <a class="me-2 delete-button"
-                                           th:data-delete-url="@{'/manager/chi-tiet-san-pham/delete/' + ${items.mactsp}}">
+                                           th:data-delete-url="@{'/manager/san-pham-chi-tiet/delete/' + ${items.mactsp}}">
                                             <img src="/images/img/icons/delete.svg" alt="img"/>
                                         </a>
                                     </td>
@@ -523,7 +523,6 @@
                                             <option th:each="loc : ${mausac}" th:value="${loc.mams}"
                                                     th:text="${loc.tenmau}">
                                             </option>
-                                            <!--                                        <span class="color-box" th:style="'background-color: ' + ${loc.rgp}"></span>-->
                                         </select>
                                     </div>
                                 </div>
@@ -639,19 +638,6 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Mã Màu (RGB)</label>
-                                        <input type="text" id="rgbValue" th:field="*{rgp}" readonly
-                                               class="form-control" style="margin-top: 5px;">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <input type="color" onchange="updateRGBValue(this.value)"
-                                               required class="large-input">
-                                    </div>
-                                </div>
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Tên Màu</label>
@@ -951,13 +937,6 @@
     </div>
 </div>
 
-<div th:if="${maMauError}" id="warning8" class="toast-container toast-top-right">
-    <div class="toast toast-error" aria-live="assertive" style="display: block;">
-        <button type="button" class="toast-close-button" role="button"></button>
-        <div class="toast-title">Error!</div>
-        <div class="toast-message">Mã màu không được để trống.</div>
-    </div>
-</div>
 <div th:if="${tenMauError}" id="warning9" class="toast-container toast-top-right">
     <div class="toast toast-error" aria-live="assertive" style="display: block;">
         <button type="button" class="toast-close-button" role="button"></button>
@@ -1039,6 +1018,14 @@
         <div class="toast-message">Chất Liệu đã tồn tại.</div>
     </div>
 </div>
+<div th:if="${daTonTai}" id="daTonTai" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Giày chi tiết đã tồn tại trong cơ sở dữ liệu.</div>
+    </div>
+</div>
+
 <script src="/js/jquery-3.6.0.min.js"></script>
 
 <script src="/js/feather.min.js"></script>
@@ -1507,14 +1494,8 @@
 </script>
 <script>
     function validateMauSacForm() {
-        var maMau = document.forms["mauSacForm"]["maMau"].value;
         var tenMau = document.forms["mauSacForm"]["tenMau"].value;
 
-
-        if (maMau === "") {
-            showAlert("Vui lòng chọn Mã Màu");
-            return false;
-        }
 
         if (tenMau === "") {
             showAlert("Vui lòng nhập Tên Màu");

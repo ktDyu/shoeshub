@@ -2,20 +2,17 @@ package com.example.shoeshub.module.chitietsanpham.service.impl;
 
 import com.example.shoeshub.module.chitietsanpham.entity.ChiTietSanPham;
 import com.example.shoeshub.module.chitietsanpham.repository.ChiTietSanPhamRepository;
-import com.example.shoeshub.module.chitietsanpham.request.ChiTietSanPhamRequest;
-import com.example.shoeshub.module.chitietsanpham.response.ChiTietSanPhamPageResponse;
 import com.example.shoeshub.module.chitietsanpham.service.ChiTietSanPhamService;
+import com.example.shoeshub.module.hinhanh.entity.HinhAnh;
+import com.example.shoeshub.module.mausac.entity.MauSac;
+import com.example.shoeshub.module.sanpham.entity.SanPham;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -30,30 +27,34 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 
     @Override
     public ChiTietSanPham add(ChiTietSanPham chiTietSanPham) {
-        if (chiTietSanPham.getSoluong() > 0) {
-            chiTietSanPham.setTrangthai(1);
-        } else {
-            chiTietSanPham.setTrangthai(0);
-        }
         return chiTietSanPhamRepository.save(chiTietSanPham);
     }
 
 
     @Override
     public Optional<ChiTietSanPham> findId(int id) {
-        return Optional.empty();
+        return chiTietSanPhamRepository.findById(id);
     }
 
     @Override
     public Optional<String> delete(int id) {
         var y = chiTietSanPhamRepository.findById(id);
-            chiTietSanPhamRepository.delete(y.get());
-            return Optional.of("Xóa thành công");
+        ChiTietSanPham sanPham = y.get();
+        sanPham.setTrangthai(0);
+        chiTietSanPhamRepository.save(sanPham);
+        return Optional.of("Xóa thành công");
     }
 
     @Override
-    public List<ChiTietSanPham> isDuplicateChiTietGiay(int masp, int masize, int mams, int macl, int maanh) {
-        return chiTietSanPhamRepository.findBySanPhamAndSizeAndMauSacAndChatLieuAndHinhAnh(masp, masize,  mams,  macl, maanh);
+    public List<ChiTietSanPham> isDuplicateForUpdate(int mactsp, int masp, int masize, int mams, int macl, int maanh, float dongia) {
+        List<ChiTietSanPham> duplicates = chiTietSanPhamRepository.findDuplicateForUpdate(masp, masize, mams, macl, maanh, dongia, mactsp);
+        return (duplicates == null) ? Collections.emptyList() : duplicates;
+    }
+
+    @Override
+    public List<ChiTietSanPham> isDuplicateForAdd(int masp, int masize, int mams, int macl, int maanh, float dongia) {
+        List<ChiTietSanPham> duplicates = chiTietSanPhamRepository.findDuplicateForAdd(masp, masize, mams, macl, maanh, dongia);
+        return (duplicates == null) ? Collections.emptyList() : duplicates; // Trả về true nếu trùng
     }
 
     @Override
@@ -61,66 +62,29 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 
     }
 
+    @Override
+    public List<ChiTietSanPham> findBySanPhamAndMauSac(SanPham sanPham, MauSac mauSac, int trangThai, int soluong) {
+        return chiTietSanPhamRepository.findBySanPhamAndMauSacAndTrangthaiAndSoluongGreaterThan(sanPham, mauSac, trangThai, soluong);
+    }
+
+    @Override
+    public List<ChiTietSanPham> findBySanPhamAndMauSacSold(SanPham sanPham, MauSac mauSac, int trangThai, int soluong) {
+        return chiTietSanPhamRepository.findBySanPhamAndMauSacAndTrangthaiAndSoluong(sanPham, mauSac, trangThai, soluong);
+    }
 
 
-//    public Optional<String> update(int id, ChiTietSanPhamRequest chiTietSanPhamRequest) {
-//        var u = chiTietSanPhamRepository.findById(id);
-//        if (u.isPresent()) {
-//            ChiTietSanPham chiTietSanPham = u.get();
-//
-//            if (chiTietSanPhamRequest.getSoluong() != null) {
-//                chiTietSanPham.setSoluong(chiTietSanPhamRequest.getSoluong());
-//            }
-//            if (chiTietSanPhamRequest.getDongia() != null) {
-//                chiTietSanPham.setDongia(chiTietSanPhamRequest.getDongia());
-//            }
-//            if (StringUtils.hasText(chiTietSanPhamRequest.getMoTa())) {
-//                chiTietSanPham.setMoTa(chiTietSanPhamRequest.getMoTa());
-//            }
-//            if (StringUtils.hasText(chiTietSanPhamRequest.getImageUrl())) {
-//                chiTietSanPham.setImageUrl(chiTietSanPhamRequest.getImageUrl());
-//            }
-//
-//            if (StringUtils.hasText(chiTietSanPhamRequest.getSanPham().getTensp())) {
-//                chiTietSanPham.setSanPham(chiTietSanPhamRequest.getSanPham());
-//            }
-//            if (StringUtils.hasText(chiTietSanPhamRequest.getImageUrl())) {
-//                chiTietSanPham.setChatLieu(chiTietSanPhamRequest.getChatLieu());
-//            }
-//            if (StringUtils.hasText(chiTietSanPhamRequest.getImageUrl())) {
-//                chiTietSanPham.setSize(chiTietSanPhamRequest.getSize());
-//            }
-//            if (StringUtils.hasText(chiTietSanPhamRequest.getImageUrl())) {
-//                chiTietSanPham.setMauSac(chiTietSanPhamRequest.getMauSac());
-//            }
-//
-//            if (chiTietSanPhamRequest.getSoluong() > 0) {
-//                chiTietSanPham.setTrangthai(1);
-//            } else {
-//                chiTietSanPham.setTrangthai(0);
-//            }
-//
-//            chiTietSanPhamRepository.save(chiTietSanPham);
-//            return Optional.of("Sửa thành công");
-//        }
-//        return Optional.of("Không tìm thấy id chi tiết sản phẩm");
-//    }
-//
-//    public Optional<String> deletee(int id) {
-//        var y = chiTietSanPhamRepository.findById(id);
-//        if (y.isPresent()) {
-//
-//            chiTietSanPhamRepository.delete(y.get());
-//            return Optional.of("Xóa thành công");
-//        }
-//        return Optional.of("Không tìm thấy id chất liệu");
-//    }
-//
-//    public Optional<ChiTietSanPham> detail(int id) {
-//        var u = chiTietSanPhamRepository.findById(id);
-////        if (u.isPresent()) {
-//        return Optional.of(u.get());
-////        }
-//
-//    }
+    @Override
+    public HinhAnh findDistinctHinhAnhByGiayAndMau(SanPham sanPham, MauSac mauSac) {
+        return chiTietSanPhamRepository.findDistinctHinhAnhByGiay(sanPham, mauSac);
+    }
+
+    @Override
+    public List<MauSac> findDistinctMauSacByGiay(SanPham sanPham) {
+        return chiTietSanPhamRepository.findDistinctMauSacByGiayAndTrangThai(sanPham);
+    }
+
+    @Override
+    public List<ChiTietSanPham> findByGiayAndMau(SanPham sanPham, MauSac mauSac) {
+        return chiTietSanPhamRepository.findBySanPhamAndMauSac(sanPham, mauSac);
+    }
 }

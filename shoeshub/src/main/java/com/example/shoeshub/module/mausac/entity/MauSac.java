@@ -24,11 +24,6 @@ public class MauSac {
     @Column(name = "ma_ms")
     private Integer mams;
 
-    @NotBlank
-    @Column(name = "rgp")
-    private String rgp;
-
-    @NotBlank
     @Column(name = "ten_mau")
     private String tenmau;
 

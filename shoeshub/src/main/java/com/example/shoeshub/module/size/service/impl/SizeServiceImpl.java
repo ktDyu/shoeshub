@@ -58,7 +58,7 @@ public class SizeServiceImpl implements SizeService {
 
     @Override
     public List<Size> getAllTrangThai(int trangthai) {
-        return sizeRepository.findAllByTrangthai(trangthai);
+        return sizeRepository.findByTrangthaiOrderByKichthuoc(trangthai);
     }
 
     @Override

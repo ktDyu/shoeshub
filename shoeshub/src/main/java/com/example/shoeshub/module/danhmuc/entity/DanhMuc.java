@@ -22,7 +22,7 @@ public class DanhMuc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_dm")
-    private Long madm;
+    private Integer madm;
 
     @NotBlank
     @Column(name = "ten_danh_muc")

@@ -8,8 +8,6 @@ import lombok.Setter;
 public class MauSacRequest {
     private Integer mams;
 
-    private String rgp;
-
     private String tenmau;
 
     private Integer trangthai;

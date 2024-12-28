@@ -329,8 +329,7 @@
                                     <label>Màu Sắc</label>
                                     <select class="select" name="mauSac">
                                         <option value="">-- Chọn màu sắc --</option>
-                                        <option th:each="loc : ${mausac}" th:value="${loc.mams}" th:text="${loc.tenmau}"
-                                                th:style="'background-color: ' + ${loc.rgp}">
+                                        <option th:each="loc : ${mausac}" th:value="${loc.mams}" th:text="${loc.tenmau}">
                                         </option>
 <!--                                        <span class="color-box" th:style="'background-color: ' + ${loc.rgp}"></span>-->
                                     </select>
@@ -449,19 +448,6 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Mã Màu (RGB)</label>
-                                        <input type="text" id="rgbValue" th:field="*{rgp}" readonly
-                                               class="form-control" style="margin-top: 5px;">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <input type="color" onchange="updateRGBValue(this.value)"
-                                               required class="large-input">
-                                    </div>
-                                </div>
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Tên Màu</label>
@@ -692,13 +678,7 @@
     </div>
 </div>
 
-<div th:if="${maMauError}" id="warning8" class="toast-container toast-top-right">
-    <div class="toast toast-error" aria-live="assertive" style="display: block;">
-        <button type="button" class="toast-close-button" role="button"></button>
-        <div class="toast-title">Error!</div>
-        <div class="toast-message">Mã màu không được để trống.</div>
-    </div>
-</div>
+
 <div th:if="${tenMauError}" id="warning9" class="toast-container toast-top-right">
     <div class="toast toast-error" aria-live="assertive" style="display: block;">
         <button type="button" class="toast-close-button" role="button"></button>
@@ -762,6 +742,13 @@
         <button type="button" class="toast-close-button" role="button"></button>
         <div class="toast-title">Error!</div>
         <div class="toast-message">Chất Liệu đã tồn tại.</div>
+    </div>
+</div>
+<div th:if="${daTonTai}" id="daTonTai" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Giày chi tiết đã tồn tại trong cơ sở dữ liệu.</div>
     </div>
 </div>
 
@@ -1047,7 +1034,7 @@
         if (daTonTai) {
             daTonTai.style.display = 'none';
         }
-    }, 500000);
+    }, 5000);
 </script>
 <script>
     // In your Javascript (external .js resource or <script> tag)
@@ -1081,21 +1068,7 @@
         });
     });
 </script>
-<script>
-    function updateRGBValue(hexValue) {
-        var rgbValue = hexToRgb(hexValue);
-        document.getElementById('rgbValue').value = 'RGB(' + rgbValue.r + ', ' + rgbValue.g + ', ' + rgbValue.b + ')';
-    }
 
-    function hexToRgb(hex) {
-        // Chuyển đổi mã màu hex thành giá trị RGB
-        var bigint = parseInt(hex.substring(1), 16);
-        var r = (bigint >> 16) & 255;
-        var g = (bigint >> 8) & 255;
-        var b = bigint & 255;
-        return {r: r, g: g, b: b};
-    }
-</script>
 <script th:inline="javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var form = document.getElementById("formId");
@@ -1220,14 +1193,7 @@
 </script>
 <script>
     function validateMauSacForm() {
-        var maMau = document.forms["mauSacForm"]["maMau"].value;
         var tenMau = document.forms["mauSacForm"]["tenMau"].value;
-
-
-        if (maMau === "") {
-            showAlert("Vui lòng chọn Mã Màu");
-            return false;
-        }
 
         if (tenMau === "") {
             showAlert("Vui lòng nhập Tên Màu");

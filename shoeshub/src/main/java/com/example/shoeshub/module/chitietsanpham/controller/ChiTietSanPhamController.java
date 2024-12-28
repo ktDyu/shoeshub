@@ -3,11 +3,7 @@ package com.example.shoeshub.module.chitietsanpham.controller;
 import com.example.shoeshub.module.chatlieu.entity.ChatLieu;
 import com.example.shoeshub.module.chatlieu.service.ChatLieuService;
 import com.example.shoeshub.module.chitietsanpham.entity.ChiTietSanPham;
-import com.example.shoeshub.module.chitietsanpham.request.ChiTietSanPhamRequest;
-import com.example.shoeshub.module.chitietsanpham.response.ChiTietSanPhamPageResponse;
 import com.example.shoeshub.module.chitietsanpham.service.ChiTietSanPhamService;
-import com.example.shoeshub.module.chitietsanpham.service.impl.ChiTietSanPhamServiceImpl;
-
 import com.example.shoeshub.module.danhmuc.entity.DanhMuc;
 import com.example.shoeshub.module.danhmuc.service.DanhMucService;
 import com.example.shoeshub.module.hinhanh.entity.HinhAnh;
@@ -21,17 +17,13 @@ import com.example.shoeshub.module.size.service.SizeService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +34,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -59,10 +53,17 @@ public class ChiTietSanPhamController {
     private final MauSacService mauSacService;
     private final HinhAnhService hinhAnhService;
 
+    @ModelAttribute("dsTrangThai")
+    public Map<Integer, String> getDsTrangThai() {
+        Map<Integer, String> dsTrangThai = new HashMap<>();
+        dsTrangThai.put(1, "Hoạt động");
+        dsTrangThai.put(0, "Không hoạt động");
+        return dsTrangThai;
+    }
+
 
     @GetMapping("/san-pham-chi-tiet")
-    public String viewChiTietSanPham( Model model
-
+    public String viewChiTietSanPham(Model model
 
             , @ModelAttribute("messageChiTietSanPham") String messageChiTietSanPham
             , @ModelAttribute("donGiaError") String donGiaError
@@ -86,7 +87,6 @@ public class ChiTietSanPhamController {
             , @ModelAttribute("userInputSize") Size userInputSize
 
             , @ModelAttribute("messageMauSac") String messageMauSac
-            , @ModelAttribute("maMauError") String maMauError
             , @ModelAttribute("tenMauError") String tenMauError
             , @ModelAttribute("userInputMauSac") MauSac userInputMauSac
 
@@ -101,8 +101,7 @@ public class ChiTietSanPhamController {
             , @ModelAttribute("ErrormessageChatLieu") String ErrormessageChatLieu
             , @ModelAttribute("ErrormessageMauSac") String ErrormessageMauSac
             , @ModelAttribute("ErrormessageSize") String ErrormessageSize
-            , @ModelAttribute("ErrormessageHinhAnh") String ErrormessageHinhAnh)
-    {
+            , @ModelAttribute("ErrormessageHinhAnh") String ErrormessageHinhAnh) {
         List<ChiTietSanPham> chiTietSanPham = chiTietSanPhamService.getAll();
         model.addAttribute("chitietsanpham", chiTietSanPham);
 
@@ -192,9 +191,6 @@ public class ChiTietSanPhamController {
         if (tenMauError == null || !"tenMauError".equals(error)) {
             model.addAttribute("tenMauError", false);
         }
-        if (maMauError == null || !"maMauError".equals(error)) {
-            model.addAttribute("maMauError", false);
-        }
         // Kiểm tra xem có dữ liệu người dùng đã nhập không và điền lại vào trường nhập liệu
         if (userInputMauSac != null) {
             model.addAttribute("mauSacAdd", userInputMauSac);
@@ -209,7 +205,7 @@ public class ChiTietSanPhamController {
         }
 
         // chất liệu
-        if (messageChatLieu  == null || !"true".equals(messageChatLieu)) {
+        if (messageChatLieu == null || !"true".equals(messageChatLieu)) {
             model.addAttribute("messageChatLieu", false);
         }
         if (tenChatLieuError == null || !"tenChatLieuError".equals(error)) {
@@ -238,15 +234,11 @@ public class ChiTietSanPhamController {
 
     @PostMapping("/san-pham-chi-tiet/add")
     public String addChiTieSanPham(@Valid @ModelAttribute("chiTietSanPham") ChiTietSanPham chiTietSanPham,
-                                    @RequestParam("listSize") List<Integer> listSize,
-                                    BindingResult bindingResult,
-                                    RedirectAttributes redirectAttributes
+                                   @RequestParam("listSize") List<Integer> listSize,
+                                   BindingResult bindingResult,
+                                   RedirectAttributes redirectAttributes
     ) {
 
-//        int idGiay = chiTietGiay.getGiay().getIdGiay();
-//        //
-//        var sanPham = sanPhamService.findId(idGiay);
-        //
         if (bindingResult.hasErrors()) {
 
             if (bindingResult.hasFieldErrors("dongia")) {
@@ -281,23 +273,24 @@ public class ChiTietSanPhamController {
         }
         //
         for (int x : listSize) {
-
-            var isDuplicate = chiTietSanPhamService.isDuplicateChiTietGiay(
+            var isDuplicate = chiTietSanPhamService.isDuplicateForAdd(
                     chiTietSanPham.getSanPham().getMasp(),
                     x,
                     chiTietSanPham.getMauSac().getMams(),
                     chiTietSanPham.getChatLieu().getMacl(),
-                    chiTietSanPham.getHinhAnh().getMaanh()
+                    chiTietSanPham.getHinhAnh().getMaanh(),
+                    chiTietSanPham.getDongia()
             );
+
             if (!isDuplicate.isEmpty()) {
                 for (ChiTietSanPham duplicateChiTietGiay : isDuplicate) {
                     System.out.println("ChiTietSanPham đã tồn tại với ID: " + duplicateChiTietGiay.getMactsp());
                     redirectAttributes.addFlashAttribute("userInput", duplicateChiTietGiay.getMactsp());
                 }
-                // Xử lý sự trùng lặp, ví dụ: hiển thị thông báo và không thêm mới
+                // Trả về thông báo lỗi và dừng cập nhật
                 redirectAttributes.addFlashAttribute("error", "daTonTai");
                 redirectAttributes.addFlashAttribute("updateQuantity", true);
-                return "redirect:/manager/san-pham-chi-tiet";
+                return "redirect:/manager/san-pham-chi-tiet"; // Thay đường dẫn bằng trang chỉnh sửa
             }
 
             ChiTietSanPham chiTietSanPham1 = new ChiTietSanPham();
@@ -348,6 +341,7 @@ public class ChiTietSanPhamController {
         redirectAttributes.addFlashAttribute("messageSanPham", true);
         return "redirect:/manager/san-pham-chi-tiet";
     }
+
     @PostMapping("/san-pham-chi-tiet/chat-lieu/add")
     public String addChatLieu(@Valid @ModelAttribute("chatLieuAdd") ChatLieu chatLieu,
                               BindingResult bindingResult,
@@ -373,6 +367,7 @@ public class ChiTietSanPhamController {
         redirectAttributes.addFlashAttribute("messageChatLieu", true);
         return "redirect:/manager/san-pham-chi-tiet";
     }
+
     @PostMapping("/san-pham-chi-tiet/size/add")
     public String addSize(@Valid @ModelAttribute("sizeAdd") Size size,
                           BindingResult bindingResult,
@@ -471,28 +466,260 @@ public class ChiTietSanPhamController {
         redirectAttributes.addFlashAttribute("messageHinhAnh", true);
         return "redirect:/manager/san-pham-chi-tiet";
     }
-    //nháp
-    @PostMapping("/san-pham-chi-tiettt/size/add")
-    public String addSizess(@Valid @ModelAttribute("sizeAdd") Size size,
-                          BindingResult bindingResult,
-                          RedirectAttributes redirectAttributes) {
+
+    @GetMapping("/san-pham-chi-tiet/viewUpdate/{id}")
+    public String viewUpdateChiTietGiay(@PathVariable int id, Model model
+
+            , @ModelAttribute("messageChiTietSanPham") String messageChiTietSanPham
+            , @ModelAttribute("donGiaError") String donGiaError
+            , @ModelAttribute("soLuongError") String soLuongError
+            , @ModelAttribute("mauSacError") String mauSacError
+            , @ModelAttribute("hinhAnhError") String hinhAnhError
+            , @ModelAttribute("sanPhamError") String sanPhamError
+            , @ModelAttribute("sizeError") String sizeError
+            , @ModelAttribute("chatLieuError") String chatLieuError
+            , @ModelAttribute("danhMucError") String danhMucError
+            , @ModelAttribute("motaError") String motaError
+            , @ModelAttribute("error") String error
+            , @ModelAttribute("userInput") ChiTietSanPham userInput
+
+            , @ModelAttribute("messageSanPham") String messageSanPham
+            , @ModelAttribute("tenSanPhamError") String tenSanPhamError
+            , @ModelAttribute("userInputSanPham") SanPham userInputSanPham
+
+            , @ModelAttribute("messageSize") String messageSize
+            , @ModelAttribute("kichThuocError") String soSizeError
+            , @ModelAttribute("userInputSize") Size userInputSize
+
+            , @ModelAttribute("messageMauSac") String messageMauSac
+            , @ModelAttribute("tenMauError") String tenMauError
+            , @ModelAttribute("userInputMauSac") MauSac userInputMauSac
+
+            , @ModelAttribute("messageHinhAnh") String messageHinhAnh
+            , @ModelAttribute("userInputHinhAnh") HinhAnh userInputHinhAnh
+
+            , @ModelAttribute("messageChatLieu") String messageChatLieu
+            , @ModelAttribute("tenChatLieuError") String tenChatLieuError
+            , @ModelAttribute("userInputChatLieu") ChatLieu userInputChatLieu
+
+            , @ModelAttribute("ErrormessageSanPham") String ErrormessageSanPham
+            , @ModelAttribute("ErrormessageChatLieu") String ErrormessageChatLieu
+            , @ModelAttribute("ErrormessageMauSac") String ErrormessageMauSac
+            , @ModelAttribute("ErrormessageSize") String ErrormessageSize
+            , @ModelAttribute("ErrormessageHinhAnh") String ErrormessageHinhAnh) {
+        var chiTietSanPham = chiTietSanPhamService.findId(id);
+        model.addAttribute("chitietsanphamUpdate", chiTietSanPham.orElse(null));
+
+        List<SanPham> sanPhamList = sanPhamService.getAllTrangThai(1);
+        model.addAttribute("sanpham", sanPhamList);
+
+        List<HinhAnh> hinhAnhList = hinhAnhService.getAllTrangThai(1);
+        model.addAttribute("hinhanh", hinhAnhList);
+        //
+        List<ChatLieu> chatLieuList = chatLieuService.getAllTrangThai(1);
+        model.addAttribute("chatlieu", chatLieuList);
+        //
+        List<MauSac> mauSacList = mauSacService.getAllTrangThai(1);
+        model.addAttribute("mausac", mauSacList);
+        //
+        List<Size> sizeList = sizeService.getAllTrangThai(1);
+        model.addAttribute("size", sizeList);
+        //
+        List<DanhMuc> danhMucList = danhMucService.getAllTrangThai(1);
+        model.addAttribute("danhmuc", danhMucList);
+        //
+        model.addAttribute("sanPhamAdd", new SanPham());
+        model.addAttribute("mauSacAdd", new MauSac());
+        model.addAttribute("sizeAdd", new Size());
+        model.addAttribute("hinhAnhAdd", new HinhAnh());
+        model.addAttribute("chatLieuAdd", new ChatLieu());
+
+        if (donGiaError == null || !"donGiaError".equals(error)) {
+            model.addAttribute("donGiaError", false);
+        }
+        if (soLuongError == null || !"soLuongError".equals(error)) {
+            model.addAttribute("soLuongError", false);
+        }
+        if (mauSacError == null || !"mauSacError".equals(error)) {
+            model.addAttribute("mauSacError", false);
+        }
+        if (hinhAnhError == null || !"hinhAnhError".equals(error)) {
+            model.addAttribute("hinhAnhError", false);
+        }
+        if (sizeError == null || !"sizeError".equals(error)) {
+            model.addAttribute("sizeError", false);
+        }
+        if (chatLieuError == null || !"chatLieuError".equals(error)) {
+            model.addAttribute("chatLieuError", false);
+        }
+        if (danhMucError == null || !"danhMucError".equals(error)) {
+            model.addAttribute("danhMucError", false);
+        }
+        if (sanPhamError == null || !"sanPhamError".equals(error)) {
+            model.addAttribute("sanPhamError", false);
+        }
+        // Kiểm tra xem có dữ liệu người dùng đã nhập không và điền lại vào trường nhập liệu
+//        if (userInput != null) {
+//            model.addAttribute("giayChiTietUpdate", userInput);
+//        }
+        if (messageChiTietSanPham == null || !"true".equals(messageChiTietSanPham)) {
+            model.addAttribute("messageChiTietSanPham", false);
+        }
+
+        //sp
+        if (messageSanPham == null || !"true".equals(messageSanPham)) {
+            model.addAttribute("messageSanPham", false);
+        }
+        if (tenSanPhamError == null || !"tenSanPhamError".equals(error)) {
+            model.addAttribute("tenSanPhamError", false);
+        }
+        // Kiểm tra xem có dữ liệu người dùng đã nhập không và điền lại vào trường nhập liệu
+        if (userInputSanPham != null) {
+            model.addAttribute("sanPhamAdd", userInputSanPham);
+        }
+
+        // size
+        if (messageSize == null || !"true".equals(messageSize)) {
+            model.addAttribute("messageSize", false);
+        }
+        if (soSizeError == null || !"soSizeError".equals(error)) {
+            model.addAttribute("soSizeError", false);
+        }
+        // Kiểm tra xem có dữ liệu người dùng đã nhập không và điền lại vào trường nhập liệu
+        if (userInputSize != null) {
+            model.addAttribute("sizeAdd", userInputSize);
+        }
+        //mau
+        if (messageMauSac == null || !"true".equals(messageMauSac)) {
+            model.addAttribute("messageMauSac", false);
+        }
+        if (tenMauError == null || !"tenMauError".equals(error)) {
+            model.addAttribute("tenMauError", false);
+        }
+        // Kiểm tra xem có dữ liệu người dùng đã nhập không và điền lại vào trường nhập liệu
+        if (userInputMauSac != null) {
+            model.addAttribute("mauSacAdd", userInputMauSac);
+        }
+        // anh
+        if (messageHinhAnh == null || !"true".equals(messageHinhAnh)) {
+            model.addAttribute("messageHinhAnh", false);
+        }
+        // Kiểm tra xem có dữ liệu người dùng đã nhập không và điền lại vào trường nhập liệu
+        if (userInputHinhAnh != null) {
+            model.addAttribute("hinhAnhAdd", userInputHinhAnh);
+        }
+
+        // chất liệu
+        if (messageChatLieu == null || !"true".equals(messageChatLieu)) {
+            model.addAttribute("messageChatLieu", false);
+        }
+        if (tenChatLieuError == null || !"tenChatLieuError".equals(error)) {
+            model.addAttribute("tenChatLieuError", false);
+        }
+        // Kiểm tra xem có dữ liệu người dùng đã nhập không và điền lại vào trường nhập liệu
+        if (userInputChatLieu != null) {
+            model.addAttribute("chatLieuAdd", userInputChatLieu);
+        }
+
+        if (ErrormessageSanPham == null || !"true".equals(ErrormessageSanPham)) {
+            model.addAttribute("ErrormessageSanPham", false);
+        }
+        if (ErrormessageChatLieu == null || !"true".equals(ErrormessageChatLieu)) {
+            model.addAttribute("ErrormessageChatLieu", false);
+        }
+        if (ErrormessageMauSac == null || !"true".equals(ErrormessageMauSac)) {
+            model.addAttribute("ErrormessageMauSac", false);
+        }
+        if (ErrormessageSize == null || !"true".equals(ErrormessageSize)) {
+            model.addAttribute("ErrormessageSize", false);
+        }
+        session.removeAttribute("id");
+        session.setAttribute("id", id);
+        return "manager/update-chi-tiet-san-pham";
+    }
+
+    @PostMapping("/san-pham-chi-tiet/viewUpdate/{id}")
+
+    public String updateChiTietSanPham(@PathVariable int id,@Valid @ModelAttribute("chitietsanphamUpdate") ChiTietSanPham chiTietSanPham,
+                                       BindingResult bindingResult,
+                                       RedirectAttributes redirectAttributes
+    ) {
+        var chitietsanphamDb = chiTietSanPhamService.findId(id);
+
+        int idCTGViewAdd = (int) session.getAttribute("id");
+        String link1 = "redirect:/manager/san-pham-chi-tiet/viewUpdate/" + idCTGViewAdd;
+        //
         if (bindingResult.hasErrors()) {
-            if (bindingResult.hasFieldErrors("kichthuoc")) {
-                redirectAttributes.addFlashAttribute("userInputSize", size);
-                redirectAttributes.addFlashAttribute("error", "soSizeError");
+            if (bindingResult.hasFieldErrors("dongia")) {
+                redirectAttributes.addFlashAttribute("userInput", chiTietSanPham);
+                redirectAttributes.addFlashAttribute("error", "donGiaError");
             }
-            return "redirect:/manager/san-pham-chi-tiet";
+            if (bindingResult.hasFieldErrors("soluong")) {
+                redirectAttributes.addFlashAttribute("userInput", chiTietSanPham);
+                redirectAttributes.addFlashAttribute("error", "soLuongError");
+            }
+            if (bindingResult.hasFieldErrors("mauSac")) {
+                redirectAttributes.addFlashAttribute("userInput", chiTietSanPham);
+                redirectAttributes.addFlashAttribute("error", "mauSacError");
+            }
+            if (bindingResult.hasFieldErrors("hinhAnh")) {
+                redirectAttributes.addFlashAttribute("userInput", chiTietSanPham);
+                redirectAttributes.addFlashAttribute("error", "hinhAnhError");
+            }
+            if (bindingResult.hasFieldErrors("sanPham")) {
+                redirectAttributes.addFlashAttribute("userInput", chiTietSanPham);
+                redirectAttributes.addFlashAttribute("error", "sanPhamrror");
+            }
+            if (bindingResult.hasFieldErrors("size")) {
+                redirectAttributes.addFlashAttribute("userInput", chiTietSanPham);
+                redirectAttributes.addFlashAttribute("error", "sizeError");
+            }
+            if (bindingResult.hasFieldErrors("chatLieu")) {
+                redirectAttributes.addFlashAttribute("userInput", chiTietSanPham);
+                redirectAttributes.addFlashAttribute("error", "chatLieuError");
+            }
+            return link1;
+        }
+        //
+        var isDuplicate = chiTietSanPhamService.isDuplicateForUpdate(
+                idCTGViewAdd,
+                chiTietSanPham.getSanPham().getMasp(),
+                chiTietSanPham.getSize().getMasize(),
+                chiTietSanPham.getMauSac().getMams(),
+                chiTietSanPham.getChatLieu().getMacl(),
+                chiTietSanPham.getHinhAnh().getMaanh(),
+                chiTietSanPham.getDongia()
+        );
+
+        if (!isDuplicate.isEmpty()) {
+            for (ChiTietSanPham duplicateChiTietGiay : isDuplicate) {
+                System.out.println("ChiTietSanPham đã tồn tại với ID: " + duplicateChiTietGiay.getMactsp());
+                redirectAttributes.addFlashAttribute("userInput", duplicateChiTietGiay.getMactsp());
+            }
+            redirectAttributes.addFlashAttribute("error", "daTonTai");
+            return link1;
         }
 
-        var existingSize = sizeService.findKichthuoc(size.getKichthuoc());
-        if (existingSize.isPresent()) {
-            redirectAttributes.addFlashAttribute("userInputSize", size);
-            redirectAttributes.addFlashAttribute("ErrormessageSize", true);
-            redirectAttributes.addFlashAttribute("isSizeModalOpen", true);
-            return "redirect:/manager/san-pham-chi-tiet";
-        }
+        chitietsanphamDb.ifPresent(c -> {
+            c.setSanPham(chiTietSanPham.getSanPham());
+            c.setDongia(chiTietSanPham.getDongia());
+            c.setSoluong(chiTietSanPham.getSoluong());
+            c.setChatLieu(chiTietSanPham.getChatLieu());
+            c.setMota(chiTietSanPham.getMota());
+            c.setMauSac(chiTietSanPham.getMauSac());
+            c.setHinhAnh(chiTietSanPham.getHinhAnh());
+            c.setSize(chiTietSanPham.getSize());
+            c.setTrangthai(chiTietSanPham.getTrangthai());
+            chiTietSanPhamService.add(c);
+            redirectAttributes.addFlashAttribute("messageChiTietSanPham", true);
+        });
+        return "redirect:/manager/san-pham-chi-tiet";
+    }
 
-        redirectAttributes.addFlashAttribute("messageSize", true);
+    @GetMapping("/san-pham-chi-tiet/delete/{id}")
+    public String deleteSanPham(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        chiTietSanPhamService.delete(id);
+        redirectAttributes.addFlashAttribute("messageChiTietSanPham", true);
         return "redirect:/manager/san-pham-chi-tiet";
     }
 

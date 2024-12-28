@@ -69,7 +69,6 @@ public class MauSacServiceImpl implements MauSacService {
                 if (row.getRowNum() == 0) continue;
 
                 MauSac mauSac = new MauSac();
-                mauSac.setRgp(row.getCell(0).getStringCellValue());
                 mauSac.setTenmau(row.getCell(1).getStringCellValue());
                 mauSac.setTrangthai(1);
                 mauSacRepository.save(mauSac);
