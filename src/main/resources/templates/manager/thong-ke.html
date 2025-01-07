@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="POS - Bootstrap Admin Template">
+    <meta name="keywords"
+          content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Sneaker Shop - Admin</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/img/icon.png">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="/plugins/toastr/toatr.css"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Thêm link thư viện Alertify -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/default.min.css"/>
+    <style>
+        /* Đặt lại định dạng chung */
+        /* Đặt lại định dạng chung */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        /* Section for the statistics charts */
+        .statistics-charts {
+            display: flex;
+            flex-direction: column; /* Các biểu đồ sẽ sắp xếp theo chiều dọc */
+            align-items: center;
+        }
+
+        /* Container cho biểu đồ tròn (Pie Chart) */
+        .pie-chart-container {
+            width: 30%; /* Đặt kích thước nhỏ cho biểu đồ tròn */
+            max-width: 250px; /* Đảm bảo không quá lớn */
+            position: absolute;
+            top: 60px; /* Đặt ở trên cùng */
+            right: 10%; /* Đặt ở phía tay phải */
+            z-index: 10; /* Đảm bảo nó không bị che khuất */
+        }
+
+        /* Container cho biểu đồ miền (Bar Chart) */
+        .bar-chart-container {
+            width: 80%; /* Đặt kích thước biểu đồ miền */
+            max-width: 800px;
+            margin-top: 100px; /* Khoảng cách giữa các biểu đồ */
+        }
+
+        /* Form và các phần tử khác */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        /* Sửa chiều rộng biểu đồ để đảm bảo chúng không quá nhỏ */
+        canvas {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Style cho phần tiêu đề */
+        h1, h3 {
+            text-align: center;
+        }
+
+        /* Định dạng cho các thông báo lỗi trong form */
+        #error-negative, #error-special, #error-general {
+            color: red;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        /* Form tìm kiếm */
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        form label {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        form input {
+            padding: 8px;
+            font-size: 1em;
+            width: 100px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            padding: 8px 16px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Container chứa các phần tử */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin: 0 20px;
+        }
+
+        /* Phần bảng Top Người Mua Hàng */
+        .top-buyers {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+
+        .top-buyers h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Phần chứa biểu đồ */
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            width: 100% !important;
+            max-width: 100%;
+            height: auto !important;
+        }
+
+        .alertify .ajs-message {
+            background-color: black;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của tiêu đề */
+        .alertify .ajs-header {
+            background-color: coral;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của các nút */
+        .alertify .ajs-buttons .ajs-ok {
+            background-color: #2ecc71;
+            color: #ffffff;
+        }
+    </style>
+
+</head>
+<body class="mini-sidebar">
+<div class="main-wrapper">
+    <div class="header">
+
+        <div class="header-left active">
+            <a href="/manage" class="logo">
+                <img src="/images/img/logo.png" alt="">
+            </a>
+            <a href="/manage" class="logo-small">
+                <img src="/images/img/logo-small.png" alt="">
+            </a>
+            <a id="toggle_btn" href="javascript:void(0);">
+
+            </a>
+        </div>
+
+        <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+            <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            </span>
+        </a>
+
+        <ul class="nav user-menu">
+
+            <li class="nav-item dropdown has-arrow flag-nav">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
+                    <i class="flag flag-vn"></i>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                    <img src="/images/img/icons/notification-bing.svg" alt="img"> <span
+                        class="badge rounded-pill"></span>
+                </a>
+                <div class="dropdown-menu notifications">
+                    <div class="topnav-dropdown-header">
+                        <span class="notification-title">Notifications</span>
+                        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                    </div>
+                    <div class="noti-content">
+                        <ul class="notification-list">
+
+                        </ul>
+                    </div>
+                    <div class="topnav-dropdown-footer">
+                        <a href="activities.html">View all Notifications</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown has-arrow main-drop">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+                    <span class="user-img"><img alt="">
+                    <span class="status online"></span></span>
+                </a>
+                <div class="dropdown-menu menu-drop-user">
+                    <div class="profilename">
+                        <div class="profileset">
+                            <span class="user-img"><img alt="">
+                            <span class="status online"></span></span>
+                            <div class="profilesets">
+                                <h6></h6>
+                                <h5></h5>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
+                            Profile</a>
+                        <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
+                                                                                data-feather="settings"></i>Settings</a>
+                        <hr class="m-0">
+                        <a class="dropdown-item logout pb-0" href="/logout"><img
+                                src="/images/img/icons/log-out.svg"
+                                class="me-2" alt="img">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="dropdown mobile-user-menu">
+            <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+               aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="profile.html">Thông tin cá nhân</a>
+                <a class="dropdown-item" href="generalsettings.html">Cài đặt</a>
+                <a class="dropdown-item" href="signin.html">Đăng xuất</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="/manager/"><img src="/images/iconlogo.png"
+                                                 alt="img"><span>Trang chủ </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manager/thongke" class="active" ><img src="/images/img/icons/dashboard.svg"
+                                                        alt="img"><span> Thống Kê</span>
+                        </a>
+                    </li>
+                    <li class="submenu">
+                        <a href="javascript:void(0);"><img src="/images/img/icons/product.svg"
+                                                           alt="img"><span> Quản lý Giày</span>
+                            <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="/manager/san-pham" >Giày</a></li>
+                            <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
+                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/mau-sac">Màu Sắc</a></li>
+                            <li><a href="/manager/size">Size</a></li>
+                            <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/manager/hoa-don"><img src="/images/img/icons/expense1.svg"
+                                                        alt="img"><span> Quản Lý Hóa Đơn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manager/khachhang"><img src="/images/img/icons/users1.svg"
+                                                          alt="img"><span> Quản Lý Khách Hàng</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="container mt-5">
+
+            <!-- Tiêu đề -->
+            <h3 class="text-center mb-4">Thống kê doanh thu năm <span th:text="${year}"></span></h3>
+
+            <!-- Form chọn năm -->
+            <form method="get" action="/manager/thongke" class="mb-4">
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" name="year" min="2000" max="2100" class="form-control"
+                           th:value="${year}" required oninput="validateYear(this)">
+                </div>
+                <div id="year-error" style="color: red; display: none;">
+                    <span id="error-negative" style="display: none;">Không được nhập số âm.</span><br>
+                    <span id="error-special" style="display: none;">Không được chứa ký tự đặc biệt.</span><br>
+                    <span id="error-general" style="display: none;">Vui lòng nhập một số hợp lệ.</span>
+                </div>
+            </form>
+
+            <!-- Top người mua hàng -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h3>Top Người Mua Hàng</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Người mua</th>
+                            <th>Tổng tiền (VND)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="buyer : ${topNguoiMuaHang}">
+                            <td th:text="${buyer.tenkh}">Tên người mua</td>
+                            <td th:text="${buyer.tongtien} + ' VND'"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Biểu đồ thống kê -->
+            <div class="statistics-charts">
+
+                <!-- Biểu đồ tròn - Top trạng thái (ở tay phải trên) -->
+                <div class="pie-chart-container mb-5">
+                    <canvas id="spchart" class="small-chart"></canvas>
+                </div>
+
+                <!-- Biểu đồ doanh thu (ở dưới) -->
+                <div class="bar-chart-container mb-5">
+                    <canvas id="doanhThuChart" width="600" height="400"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+        <script th:inline="javascript">
+            var doanhThu = /*[[${doanhThuTheoThang}]]*/ [];
+            var ctx = document.getElementById('doanhThuChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                        'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                    datasets: [{
+                        label: 'Doanh thu (VND)',
+                        data: doanhThu,
+                        backgroundColor: '#FF5733'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Doanh thu theo từng tháng trong năm ' + /*[[${year}]]*/
+                        }
+                    }
+                }
+            });
+            var ctx = document.getElementById('spchart').getContext('2d');
+
+            // Lấy dữ liệu từ controller qua Thymeleaf
+            var hoanThanh = /*[[${hoanThanh}]]*/ 0;
+            var daHuy = /*[[${daHuy}]]*/ 0;
+
+            console.log("Hoàn thành: ", hoanThanh);
+            console.log("Đã hủy: ", daHuy);
+
+            var chart = new Chart(ctx, {
+                type: 'pie', // Biểu đồ tròn
+                data: {
+                    labels: ['Hoàn thành', 'Đã hủy'], // Các trạng thái
+                    datasets: [{
+                        label: 'Doanh thu theo trạng thái',
+                        data: [hoanThanh, daHuy], // Dữ liệu lấy từ controller
+                        backgroundColor: ['#4CAF50', '#F44336'], // Màu sắc của các phần
+                        borderColor: ['#388E3C', '#D32F2F'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,  // Biểu đồ sẽ tự động điều chỉnh kích thước khi thay đổi kích thước màn hình
+                    maintainAspectRatio: false,  // Không giữ tỷ lệ mặc định
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.raw + ' đơn hàng';
+                                }
+                            }
+                        }
+                    },
+                    aspectRatio: 1,  // Đảm bảo tỷ lệ hình tròn
+                    layout: {
+                        padding: 10  // Thêm khoảng cách quanh biểu đồ nếu cần
+                    }
+                }
+            });
+
+        </script>
+
+        <script>
+            function validateYear(input) {
+                const negativeError = document.getElementById("error-negative");
+                const specialError = document.getElementById("error-special");
+                const generalError = document.getElementById("error-general");
+
+                const value = input.value;
+
+                // Kiểm tra số âm
+                if (value < 0) {
+                    negativeError.style.display = 'block'; // Hiển thị lỗi số âm
+                    specialError.style.display = 'none'; // Ẩn lỗi ký tự đặc biệt
+                    generalError.style.display = 'none'; // Ẩn lỗi chung
+                    input.setCustomValidity('Không được nhập số âm.');
+                }
+                // Kiểm tra ký tự đặc biệt
+                else if (!/^[0-9]*$/.test(value)) {
+                    negativeError.style.display = 'none'; // Ẩn lỗi số âm
+                    specialError.style.display = 'block'; // Hiển thị lỗi ký tự đặc biệt
+                    generalError.style.display = 'none'; // Ẩn lỗi chung
+                    input.setCustomValidity('Không được chứa ký tự đặc biệt.');
+                }
+                // Kiểm tra số hợp lệ chung
+                else if (!/^[1-9][0-9]*$/.test(value)) {
+                    negativeError.style.display = 'none'; // Ẩn lỗi số âm
+                    specialError.style.display = 'none'; // Ẩn lỗi ký tự đặc biệt
+                    generalError.style.display = 'block'; // Hiển thị lỗi chung
+                    input.setCustomValidity('Vui lòng nhập một số hợp lệ.');
+                }
+                // Nếu hợp lệ, ẩn tất cả thông báo lỗi
+                else {
+                    negativeError.style.display = 'none';
+                    specialError.style.display = 'none';
+                    generalError.style.display = 'none';
+                    input.setCustomValidity('');
+                }
+            }
+
+        </script>
+        </div>
+    </div>
+</div>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+
+    <script src="/js/feather.min.js"></script>
+
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/plugins/select2/js/select2.min.js"></script>
+
+    <script src="/plugins/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="/plugins/sweetalert/sweetalerts.min.js"></script>
+    <script src="/plugins/toastr/toastr.min.js"></script>
+    <script src="/plugins/toastr/toastr.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/plugins/alertify/custom-alertify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+
+
+</body>
+</html>
