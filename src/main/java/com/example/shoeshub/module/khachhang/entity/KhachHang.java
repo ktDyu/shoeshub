@@ -43,7 +43,6 @@ public class KhachHang {
     private String email;
 
     @Column(name = "ngay_sinh")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngaysinh;
 
     @Column(name = "mat_khau", nullable = false)

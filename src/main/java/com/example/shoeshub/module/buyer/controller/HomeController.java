@@ -42,7 +42,6 @@ public class HomeController {
             model.addAttribute("sumProductInCart", sumProductInCart);
             model.addAttribute("heartLogged", true);
             model.addAttribute("soThongBao", soThongBao);
-//            model.addAttribute("listThongBao", thongBaoKhachHangs);
 
         }else {
             model.addAttribute("messageLoginOrSignin", true);

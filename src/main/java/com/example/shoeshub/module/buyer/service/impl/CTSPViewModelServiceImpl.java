@@ -23,6 +23,11 @@ public class CTSPViewModelServiceImpl implements CTSPViewModelService {
     }
 
     @Override
+    public List<CTSPViewModel> getAllSold() {
+        return chiTietSanPhamRepository.getAllSold();
+    }
+
+    @Override
     public List<SPViewModel> getAllGiay() {
         return chiTietSanPhamRepository.getAllGiay();
     }

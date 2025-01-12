@@ -16,8 +16,10 @@ import com.example.shoeshub.module.khachhang.service.KhachHangService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +32,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
@@ -60,6 +69,7 @@ public class UserController {
 
     private final KhachHangService khachHangService;
 
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/setting")
     private String getSettingAccount(Model model) {
@@ -69,20 +79,52 @@ public class UserController {
         UserForm(model, khachHang);
         model.addAttribute("userLogin", khachHang);
         model.addAttribute("pagesettingAccount", true);
+//        Timestamp timestamp = Timestamp.valueOf(khachHang.getNgaysinh());
+//
+//        // Convert to LocalDate
+//        LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
+
+        // Add to the model
+//        model.addAttribute("ngaySinh", localDate);
+
+        model.addAttribute("ngaysinh", khachHang.getNgaysinh());
         return "online/user";
     }
+
     @PostMapping("/users/update")
-    public String updateUser(@RequestParam int makh, @RequestParam String gioitinh,
-                             @RequestParam Date ngaysinh, @RequestParam String email,
-                             @RequestParam String sdt) {
-        KhachHang existingKhachHang = khachHangService.findID(makh);
+    public String updateUser(@RequestParam String gioitinh,
+                             @RequestParam String ngaysinh,
+                             @RequestParam String sdt) throws ParseException {
+        KhachHang existingKhachHang = (KhachHang) session.getAttribute("KhachHangLogin");
 
         // Cập nhật thông tin
         existingKhachHang.setGioitinh(Boolean.parseBoolean(gioitinh));
-        existingKhachHang.setNgaysinh(ngaysinh);
-        existingKhachHang.setEmail(email);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        // Chuyển đổi String sang Date
+        Date date = format.parse(ngaysinh);
+        existingKhachHang.setNgaysinh(date);
+
         existingKhachHang.setSdt(sdt);
-        khachHangService.save(existingKhachHang);
+        khachHangService.save1(existingKhachHang);
+
+        return "redirect:/buyer/setting";
+    }
+
+    @PostMapping("/users/updatepassword")
+    public String updatePassword(@RequestParam String password,
+                                 @RequestParam String passwordnew) {
+        KhachHang existingKhachHang = (KhachHang) session.getAttribute("KhachHangLogin");
+
+
+        if (!passwordEncoder.matches(password, existingKhachHang.getPassword())) {
+            return "redirect:/buyer/setting";
+//            model.addAttribute("detailBillPay", true);
+        }
+        // Cập nhật mật khẩu mới
+        existingKhachHang.setPassword(passwordEncoder.encode(passwordnew));
+
+        khachHangService.save1(existingKhachHang);
 
         return "redirect:/buyer/setting";
     }
@@ -177,7 +219,7 @@ public class UserController {
         diaChi.setQuanhuyen(district);
         diaChi.setXaphuong(ward);
         diaChi.setMota(description);
-        if(defaultSelected == true){
+        if (defaultSelected == true) {
             diaChiKHDefaultList.setLoaidiachi(false);
             diaChiKHService.save(diaChiKHDefaultList);
             diaChi.setLoaidiachi(true);
@@ -346,50 +388,28 @@ public class UserController {
 
         int trangThai = hoaDon.getTrangThai();
         if (trangThai == 0) {
-
             model.addAttribute("detailBillPay", true);
             model.addAttribute("modalThayDoiPhuongThucThanhToan", true);
             model.addAttribute("billDetailPay", hoaDon);
 
-            session.removeAttribute("hoaDonPayDetail");
-            session.setAttribute("hoaDonPayDetail", hoaDon);
-
         } else if (trangThai == 1) {
 
             model.addAttribute("modalThayDoiPhuongThucThanhToan", true);
-
             model.addAttribute("detailBillShip", true);
             model.addAttribute("billDetailShip", hoaDon);
 
-
-            session.removeAttribute("hoaDonPayDetail");
-            session.setAttribute("hoaDonPayDetail", hoaDon);
-
         } else if (trangThai == 2) {
-
 
             model.addAttribute("detailBillRecieve", true);
             model.addAttribute("billDetailRecieve", hoaDon);
 
-
         } else if (trangThai == 3) {
-            Date ngayBatDau = hoaDon.getTgtt();
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(ngayBatDau);
-
-            calendar.add(Calendar.DATE, 2);
-
-            Date ngayKetThuc = calendar.getTime();
-            model.addAttribute("ngayKetThucHoanHang", ngayKetThuc);
-
 
             model.addAttribute("detailBillCompleted", true);
             model.addAttribute("billDetailCompleted", hoaDon);
         } else if (trangThai == 4) {
             model.addAttribute("detailBillCancel", true);
             model.addAttribute("billDetailCancel", hoaDon);
-
 
         }
 
@@ -398,7 +418,6 @@ public class UserController {
 
         return "online/user";
     }
-
 
     @GetMapping("/purchase/bill/detail/cancel/{mahd}")
     private String getDetailCancelForm(Model model, @PathVariable int mahd) {
@@ -419,19 +438,14 @@ public class UserController {
             model.addAttribute("detailBillPay", true);
             model.addAttribute("billDetailPay", hoaDon);
 
-            session.removeAttribute("hoaDonPayDetail");
-            session.setAttribute("hoaDonPayDetail", hoaDon);
 
         } else if (trangThai == 1) {
             model.addAttribute("modalHuyHoaDonInDetailBillPay", true);
-
             model.addAttribute("modalThayDoiPhuongThucThanhToan", true);
 
             model.addAttribute("detailBillShip", true);
             model.addAttribute("billDetailShip", hoaDon);
 
-            session.removeAttribute("hoaDonPayDetail");
-            session.setAttribute("hoaDonPayDetail", hoaDon);
 
         } else if (trangThai == 2) {
 
@@ -453,7 +467,6 @@ public class UserController {
 
         return "online/user";
     }
-
 
     @PostMapping("/purchase/pay/change/payment/{mahd}")
     private String changePaymentMethod(Model model, @PathVariable int mahd) {
@@ -484,19 +497,21 @@ public class UserController {
 
     @PostMapping("/purchase/bill/pay/cancel/{mahd}")
     private String cancelBillPay(Model model, @PathVariable int mahd) {
-        String lyDoHuy = request.getParameter("lyDoHuy");
+        String lyDoHuy = request.getParameter("lydohuy");
 
         KhachHang khachHang = (KhachHang) session.getAttribute("KhachHangLogin");
-        DiaChi diaChiKHDefault = diaChiKHService.findDCDefaulByKhachHang(khachHang);
 
         HoaDon hoaDonHuy = hoaDonService.findById(mahd);
 
-        Date date = new Date();
-        HoaDon hoaDonNew = new HoaDon();
+        if (lyDoHuy.equals("changeSize")) {
+            lyDoHuy = "Tôi muốn thay đổi size/ màu";
+            hoaDonHuy.setLydohuy(lyDoHuy);
+            hoaDonHuy.setTghuy(new Date());
+            hoaDonHuy.setTrangThai(4);
+            hoaDonService.save(hoaDonHuy);
 
-        String maHD = "HD_" + khachHang.getMakh() + date.getDate() + generateRandomNumbers();
 
-        if (lyDoHuy.equals("changeProduct")) {
+        } else if (lyDoHuy.equals("changeProduct")) {
             lyDoHuy = "Tôi muốn thay đổi sản phẩm";
             hoaDonHuy.setLydohuy(lyDoHuy);
             hoaDonHuy.setTghuy(new Date());
@@ -505,13 +520,13 @@ public class UserController {
 
         } else if (lyDoHuy.equals("none")) {
             lyDoHuy = "Tôi không  có nhu cầu mua nữa";
-            hoaDonHuy.setTrangThai(4);
             hoaDonHuy.setLydohuy(lyDoHuy);
             hoaDonHuy.setTghuy(new Date());
+            hoaDonHuy.setTrangThai(4);
             hoaDonService.save(hoaDonHuy);
 
-        } else if (lyDoHuy.equals("changeSize")) {
-            lyDoHuy = request.getParameter("hutThuocNenDauDaDay");
+        } else if (lyDoHuy.equals("lyDoKhac")) {
+            lyDoHuy = "Lý do khác";
             hoaDonHuy.setTrangThai(4);
             hoaDonHuy.setLydohuy(lyDoHuy);
             hoaDonHuy.setTghuy(new Date());
@@ -521,12 +536,14 @@ public class UserController {
 
     }
 
-    @PostMapping("/purchase/bill/refund/confirm/{idHD}")
-    private String confirmBillRefund(Model model, @PathVariable UUID idHD) {
-        String dvvc = request.getParameter("donViNhanHang");
-        String maVanDon = request.getParameter("maVanDon");
-        return "redirect:/buyer/";
+    @GetMapping("/purchase/bill/complete/{mahd}")
+    private String completeBill(@PathVariable int mahd) {
+        HoaDon hoaDon = hoaDonService.findById(mahd);
+        hoaDon.setTrangThai(3);
+        hoaDonService.save(hoaDon);
+        return "redirect:/buyer/purchase/receive";
     }
+
 
     private void UserForm(Model model, KhachHang khachHang) {
         GioHang gioHang = (GioHang) session.getAttribute("GHLogged");

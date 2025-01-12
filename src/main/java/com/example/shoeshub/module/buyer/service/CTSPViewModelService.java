@@ -11,6 +11,8 @@ import java.util.List;
 public interface CTSPViewModelService {
     List<CTSPViewModel> getAll();
 
+    List<CTSPViewModel> getAllSold();
+
     List<SPViewModel> getAllGiay();
 
     Page<CTSPViewModel> getAllPage(Pageable pageable);

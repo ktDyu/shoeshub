@@ -52,6 +52,11 @@ public class KhachHangServiceImpl implements KhachHangService {
     }
 
     @Override
+    public KhachHang save1(KhachHang khachHang) {
+        return khachHangRepository.save(khachHang);
+    }
+
+    @Override
     public KhachHang findID(int makh) {
         return khachHangRepository.findById(makh).orElse(null);
     }

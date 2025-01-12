@@ -201,12 +201,12 @@
 <section class="checkout spad">
     <div class="container">
 
-        <form action="/buyer/checkout/placeoder" method="post">
+        <form action="/buyer/checkout/placeoder" method="post" id="checkoutForm">
 
             <div class="checkout__form">
 
                 <!--Show Dia Chi Khach Hang Begin-->
-                <div th:if="${addNewAddressNotNull}" class="row">
+                <div th:if="${addNewAddressNotNull}" class="row" id="addressSection">
                     <div class="col-lg-12 col-md-12" style="height: 130px; background-color: #f5f5f5;"
                          th:object="${diaChiKHDefault}">
 
@@ -226,12 +226,12 @@
                         </h6>
 
                         <div style="display: flex; margin-left: 100px; margin-top: -10px;">
-                            <!--                            <h5 style="font-weight: 700; font-size: 12pt ;"-->
-                            <!--                                th:text="${diaChiKHDefault.tenNguoiNhan}"></h5>-->
-                            <!--                            <span style="margin: -4px 5px 0 5px ;"> | </span>-->
-                            <!--                            <h5 style="font-weight: 700; font-size: 12pt ;"-->
-                            <!--                                th:text="${diaChiKHDefault.sdtNguoiNhan}"></h5>-->
-                            <!--                            <span style="margin-left: 20px;"></span>-->
+                            <h5 style="font-weight: 700; font-size: 12pt ;"
+                                th:text="${diaChiKHDefault.tennguoinhan}"></h5>
+                            <span style="margin: -4px 5px 0 5px ;"> | </span>
+                            <h5 style="font-weight: 700; font-size: 12pt ;"
+                                th:text="${diaChiKHDefault.sdtnguoinhan}"></h5>
+                            <span style="margin-left: 20px;"></span>
                             <h5 style="font-size: 11pt ;" th:text="${diaChiKHDefault.diachichitiet}"></h5>
                         </div>
 
@@ -244,7 +244,41 @@
 
                     </div>
                 </div>
+                <!--Show Dia Chi Khach Hang NULL-->
+                <div id="noAddressSection" th:unless="${addNewAddressNotNull}" style="display: none;">
+                    <p style="color: red; font-weight: bold;">Vui lòng thêm địa chỉ trước khi thanh toán!</p>
+                </div>
+                <!--Show Dia Chi Khach Hang NULL-->
+
+
                 <!--Show Dia Chi Khach Hang End-->
+                <div th:unless="${addNewAddressNotNull}" class="row">
+                    <div class="col-lg-12 col-md-12" style="height: 130px; background-color: #f5f5f5;">
+
+                        <h6 class="coupon__code">
+                            <a href="" style="margin-top: -10px;">
+                                <svg style="height: 30px; width: 30px;" viewBox="0 0 1024 1024" fill="#000000"
+                                     class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path d="M512 1012.8c-253.6 0-511.2-54.4-511.2-158.4 0-92.8 198.4-131.2 283.2-143.2h3.2c12 0 22.4 8.8 24 20.8 0.8 6.4-0.8 12.8-4.8 17.6-4 4.8-9.6 8.8-16 9.6-176.8 25.6-242.4 72-242.4 96 0 44.8 180.8 110.4 463.2 110.4s463.2-65.6 463.2-110.4c0-24-66.4-70.4-244.8-96-6.4-0.8-12-4-16-9.6-4-4.8-5.6-11.2-4.8-17.6 1.6-12 12-20.8 24-20.8h3.2c85.6 12 285.6 50.4 285.6 143.2 0.8 103.2-256 158.4-509.6 158.4z m-16.8-169.6c-12-11.2-288.8-272.8-288.8-529.6 0-168 136.8-304.8 304.8-304.8S816 145.6 816 313.6c0 249.6-276.8 517.6-288.8 528.8l-16 16-16-15.2zM512 56.8c-141.6 0-256.8 115.2-256.8 256.8 0 200.8 196 416 256.8 477.6 61.6-63.2 257.6-282.4 257.6-477.6C768.8 172.8 653.6 56.8 512 56.8z m0 392.8c-80 0-144.8-64.8-144.8-144.8S432 160 512 160c80 0 144.8 64.8 144.8 144.8 0 80-64.8 144.8-144.8 144.8zM512 208c-53.6 0-96.8 43.2-96.8 96.8S458.4 401.6 512 401.6c53.6 0 96.8-43.2 96.8-96.8S564.8 208 512 208z"
+                                              fill=""></path>
+                                    </g>
+                                </svg>
+                            </a>
+                            <a style="margin-left: 15px; font-weight: 700; font-size: 13pt;">Địa chỉ nhận hàng</a>
+                        </h6>
+
+                        <div style="display: flex; margin-left: 100px; margin-top: -10px;">
+                        </div>
+
+                        <div style="display: flex; margin-left: 100px; margin-top: 10px;">
+                            <a data-toggle="modal"  data-target="#addNewAddressNull" style="height: 40px; width: 200px; color: #363434; font-size: 12pt; margin-top: 20px;" href=""> + Thêm mới địa chỉ</a>
+                        </div>
+
+                    </div>
+                </div>
 
 
                 <!--Show Product in Bill Begin-->
@@ -345,12 +379,16 @@
                             </div>
                             <div class="col-lg-2">
 
+                                <p style=" color: black; font-size: 11pt; margin-top: 10px; font-weight: 700;"
+                                   th:text="'₫' + ${#numbers.formatDecimal(shippingFee, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+
                                 <p style=" color: #979797; font-size: 8pt; margin-top: -20px;">-</p>
+                                <p style=" color: black; font-size: 11pt; margin-top: 10px; font-weight: 700;"></p>
 
                                 <div style="background-color: #979797; height: 0.5px; width: 100%;  margin-top: -10px;"></div>
 
                                 <p style=" color: black; font-size: 11pt; margin-top: 10px; font-weight: 700;"
-                                   th:text="'₫' + ${#numbers.formatDecimal(tongTienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                   th:text="'₫' + ${#numbers.formatDecimal(shippingFee, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                             </div>
                         </div>
@@ -418,7 +456,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="product__details__cart__option">
-                                    <button type="submit" href="#" class="primary-btn">Thanh toán</button>
+                                    <button type="submit" id="checkoutButton" href="#" class="primary-btn">Thanh toán</button>
                                 </div>
                             </div>
                         </div>
@@ -460,8 +498,11 @@
                             </div>
                         </div>
                         <div class="row" style="margin: 20px 20px 0 0;">
-                            <p><b>Cách 1.</b> Để thanh toán tiền NHANH (xác nhận trong 5 phút), Quý khách sử dụng ứng dụng Internet Banking quét mã QR-CODE bên dưới và nhập <b>NỘI DUNG THÔNG TIN THANH TOÁN.</b></p>
-                            <p><b>Cách 2.</b> Nếu ứng dụng Internet Banking của Quý khách không có chức năng quét mã QR-CODE, vui lòng thực hiện chuyển khoản theo <b>NỘI DUNG THÔNG TIN THANH TOÁN.</b></p>
+                            <p><b>Cách 1.</b> Để thanh toán tiền NHANH (xác nhận trong 5 phút), Quý khách sử dụng ứng
+                                dụng Internet Banking quét mã QR-CODE bên dưới và nhập <b>NỘI DUNG THÔNG TIN THANH
+                                    TOÁN.</b></p>
+                            <p><b>Cách 2.</b> Nếu ứng dụng Internet Banking của Quý khách không có chức năng quét mã
+                                QR-CODE, vui lòng thực hiện chuyển khoản theo <b>NỘI DUNG THÔNG TIN THANH TOÁN.</b></p>
                         </div>
                     </div>
                 </div>
@@ -536,8 +577,7 @@
 <!--Modal Address Begin-->
 <section>
 
-    <div th:if="${addNewAddressNotNull}" class="modal fade" id="modalAddress" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+    <div th:if="${addNewAddressNotNull}" class="modal fade" id="modalAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 600px;">
             <form action="/buyer/checkout/change/address" method="post">
 
@@ -551,23 +591,17 @@
                     <div class="modal-body">
 
                         <div>
-                            <div style="display: flex; margin-left: 20px; margin:10px 0 10px 10px;"
-                                 th:object="${diaChiKHDefault}">
-                                <input type="radio" th:value="${diaChiKHDefault.madc}" name="madc"
-                                       style="height: 20px; width: 20px; margin: 0 20px 0 -10px;">
-                                <h5 style="font-weight: 700; font-size: 13pt ;"
-                                    th:text="${diaChiKHDefault.tennguoinhan}"></h5>
+                            <div style="display: flex; margin-left: 20px; margin:10px 0 10px 10px;" th:object="${diaChiKHDefault}">
+                                <input type="radio" th:value="${diaChiKHDefault.madc}" name="madc" style="height: 20px; width: 20px; margin: 0 20px 0 -10px;" >
+                                <h5 style="font-weight: 700; font-size: 13pt ;" th:text="${diaChiKHDefault.tennguoinhan}" ></h5>
                                 <span style="margin: -4px 5px 0 5px ;"> | </span>
-                                <h5 style="font-weight: 700; font-size: 12pt ;"
-                                    th:text="${diaChiKHDefault.sdtnguoinhan}"></h5>
+                                <h5 style="font-weight: 700; font-size: 12pt ;" th:text="${diaChiKHDefault.sdtnguoinhan}"></h5>
                                 <span style="margin-left: 20px;"></span>
-                                <h5 style="font-weight: 700; font-size: 12pt ;"
-                                    th:text="${diaChiKHDefault.tendiachi}"></h5>
+                                <h5 style="font-weight: 700; font-size: 12pt ;" th:text="${diaChiKHDefault.tendiachi}"></h5>
                                 <span style="margin-left: 10px;"></span>
                                 <h5 style="font-weight: 700; font-size: 12pt ; color: red">Mặc định</h5>
                             </div>
-                            <h5 style=" margin-bottom: 10px ;font-size: 11pt;"
-                                th:text="${diaChiKHDefault.diachichitiet}"></h5>
+                            <h5 style=" margin-bottom: 10px ;font-size: 11pt;" th:text="${diaChiKHDefault.diachichitiet}"></h5>
                         </div>
 
                         <div style="width: 465px; margin: 20px 0 20px 0; height: 0.5px; background: rgba(0,0,0,.54);"></div>
@@ -576,9 +610,8 @@
 
                             <div>
                                 <div style="display: flex; margin-left: 20px; margin:10px 0 10px 10px;">
-                                    <input type="radio" th:value="${x.madc}" name="madc"
-                                           style=" height: 20px; width: 20px; margin: 0 20px 0 -10px;">
-                                    <h5 style="font-weight: 700; font-size: 13pt ;" th:text="${x.tennguoinhan}"></h5>
+                                    <input type="radio" th:value="${x.madc}" name="madc" style=" height: 20px; width: 20px; margin: 0 20px 0 -10px;">
+                                    <h5 style="font-weight: 700; font-size: 13pt ;" th:text="${x.tennguoinhan}" ></h5>
                                     <span style="margin: -4px 5px 0 5px ;"> | </span>
                                     <h5 style="font-weight: 700; font-size: 12pt ;" th:text="${x.sdtnguoinhan}"></h5>
                                     <span style="margin-left: 20px;"></span>
@@ -592,9 +625,7 @@
 
                         </th:block>
 
-                        <a data-toggle="modal" data-target="#addNewAddress"
-                           style="height: 40px; width: 200px; color: #363434; font-size: 12pt; margin-top: 20px;"
-                           href=""> + Thêm mới địa chỉ</a>
+                        <a data-toggle="modal" data-target="#addNewAddress" style="height: 40px; width: 200px; color: #363434; font-size: 12pt; margin-top: 20px;" href=""> + Thêm mới địa chỉ</a>
 
                     </div>
                     <div class="modal-footer">
@@ -607,8 +638,7 @@
         </div>
     </div>
 
-    <div th:if="${addNewAddressNotNull}" class="modal fade" id="addNewAddress" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div th:if="${addNewAddressNotNull}" class="modal fade" id="addNewAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 550px">
             <div class="modal-content">
                 <form action="/buyer/checkout/add/address" method="post">
@@ -622,17 +652,14 @@
                         <div>
                             <div class="row" style="margin-bottom: 20px;">
                                 <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên địa chỉ" name="nameAddress">
+                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text" placeholder="Tên địa chỉ" name="nameAddress">
 
                                 <input style="height: 40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên người nhận" name="fullName">
+                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text" placeholder="Tên người nhận" name="fullName" >
                             </div>
                             <div class="row" style="margin-bottom: 20px;">
                                 <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="SDT người nhận" name="phoneAddress">
+                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text" placeholder="SDT người nhận" name="phoneAddress">
 
                                 <select class="select" id="city" name="city"
                                         style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
@@ -655,11 +682,10 @@
 
                             </div>
 
-                            <div class="row" style="margin-bottom: 20px;">
+                            <div class="row" style="margin-bottom: 20px;" >
 
                                 <input name="description" style="height: 40px;width: 410px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381;  padding: 10px 15px; margin-left: 38px;"
-                                       type="text" placeholder="Mô tả" ;>
+                                font-weight: 500; font-size: 14px; color: #637381;  padding: 10px 15px; margin-left: 38px;" type="text" placeholder="Mô tả";  >
 
                             </div>
 
@@ -668,8 +694,7 @@
                             <div style="width: 100%; height:15px;"></div>
 
                             <div class="row">
-                                <input style="margin: 0 10px 0 38px;" type="checkbox" name="defaultSelected"> Đặt làm
-                                mặc định
+                                <input style="margin: 0 10px 0 38px;" type="checkbox" name="defaultSelected">  Đặt làm mặc định
                             </div>
 
                         </div>
@@ -683,8 +708,7 @@
         </div>
     </div>
 
-    <div th:if="${addNewAddressNulll}" class="modal fade" id="addNewAddressNull" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div th:if="${addNewAddressNulll}" class="modal fade" id="addNewAddressNull" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 550px">
             <div class="modal-content">
                 <form action="/buyer/checkout/add/address" method="post">
@@ -698,18 +722,15 @@
                         <div>
                             <div class="row" style="margin-bottom: 20px;">
                                 <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên địa chỉ" name="nameAddress">
+                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text" placeholder="Tên địa chỉ" name="nameAddress">
 
                                 <input style="height: 40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên người nhận" name="fullName">
+                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text" placeholder="Tên người nhận" name="fullName" >
                             </div>
 
                             <div class="row" style="margin-bottom: 20px;">
                                 <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Số điện thoại người nhận" name="phoneAddress">
+                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text" placeholder="Số điện thoại người nhận" name="phoneAddress">
 
                                 <select class="select" id="city" name="city"
                                         style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
@@ -719,6 +740,7 @@
                             </div>
 
                             <div class="row" style="margin-bottom: 20px;">
+
 
                                 <select class="select" id="district" name="district" style="margin-left: 38px; width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
                                 font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px; margin-right: 30px;">
@@ -732,19 +754,17 @@
 
                             </div>
 
-                            <div class="row" style="margin-bottom: 20px;">
+                            <div class="row" style="margin-bottom: 20px;" >
 
                                 <input name="description" style="margin-left: 38px; height: 40px;width: 410px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381;  padding: 10px 15px;" type="text"
-                                       placeholder="Mô tả" ;>
+                                font-weight: 500; font-size: 14px; color: #637381;  padding: 10px 15px;" type="text" placeholder="Mô tả";>
 
                             </div>
 
                             <div style="width: 100%; height: 0.5px; background-color: rgb(64, 64, 64) ;"></div>
 
                             <div class="row">
-                                <input style="margin: 0 10px 0 38px;" checked type="radio" name="defaultSelected"> Đặt
-                                làm mặc định
+                                <input style="margin: 0 10px 0 38px;" checked type="radio" name="defaultSelected"> Đặt làm mặc định
                             </div>
 
                         </div>
@@ -757,6 +777,8 @@
             </div>
         </div>
     </div>
+
+
 </section>
 <!--Modal Address End-->
 
@@ -766,7 +788,7 @@
 <script src="/js/script.js"></script>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.nice-select.min.js"></script>
+<!--<script src="/js/jquery.nice-select.min.js"></script>-->
 <script src="/js/jquery.nicescroll.min.js"></script>
 <script src="/js/jquery.magnific-popup.min.js"></script>
 <script src="/js/jquery.countdown.min.js"></script>
@@ -779,6 +801,19 @@
 <script src="/js/custom-scroll.js"></script>
 
 <!--Show modal Thong Bao dia chi begin-->
+<script>
+    document.getElementById('checkoutButton').addEventListener('click', function (e) {
+        const addressSection = document.getElementById('addressSection');
+        const noAddressSection = document.getElementById('noAddressSection');
+
+        // Kiểm tra xem có địa chỉ mặc định không
+        if (!addressSection || addressSection.style.display === 'none') {
+            e.preventDefault(); // Ngăn biểu mẫu được gửi
+            noAddressSection.style.display = 'block'; // Hiển thị thông báo
+            $('#addNewAddressNull').modal('show'); // Hiển thị modal thêm địa chỉ
+        }
+    });
+</script>
 
 <script>
     $(document).ready(function () {
@@ -787,11 +822,8 @@
     $(document).ready(function () {
         $('#addNewAddressNotNull').modal('show');
     });
-    $(document).ready(function () {
-        $('#noticaAddVoucher').modal('show');
-    });
-</script>
 
+</script>
 <!--Show modal thong bao dia chi end-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>

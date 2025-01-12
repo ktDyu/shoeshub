@@ -68,7 +68,7 @@ public class CheckoutController {
         hoaDon.setTenhd(tenhd);
         hoaDon.setKhachHang(khachHang);
         hoaDon.setTgtt(date);
-        hoaDon.setTrangThai(1);
+        hoaDon.setTrangThai(0);
         hoaDonService.save(hoaDon);
 
         if (diaChiDefault != null) {
@@ -102,7 +102,10 @@ public class CheckoutController {
                 .mapToDouble(HoaDonChiTiet::getDongia)
                 .sum();
 
-        if (diaChiDefault == null) {
+        if ((diaChiDefault == null) && (diaChiList == null || diaChiList.isEmpty())) {
+            model.addAttribute("noAddress", true);
+            model.addAttribute("addNewAddressNulll", true);
+        } else if (diaChiDefault == null) {
             model.addAttribute("addNewAddressNulll", true);
             model.addAttribute("addNewAddressNull", true);
         } else {
@@ -122,14 +125,18 @@ public class CheckoutController {
         model.addAttribute("sumProductInCart", sumProductInCart);
         model.addAttribute("toTalOder", total);
 
-        ////
+        //
         if (diaChiDefault != null) {
             Double shippingFee = 25000.0;
             hoaDon.setTongtien(total + shippingFee);
             hoaDonService.save(hoaDon);
             model.addAttribute("shippingFee", shippingFee);
             model.addAttribute("toTalOder", total + shippingFee);
-            model.addAttribute("tongTienShip", total + shippingFee);
+        }
+        else {
+            Double shippingFee = 0.0;
+            model.addAttribute("shippingFee", shippingFee);
+            model.addAttribute("toTalOder", total);
         }
         session.removeAttribute("hoaDonTaoMoi");
 
@@ -172,6 +179,8 @@ public class CheckoutController {
         //dia chi
         DiaChi diaChi = new DiaChi();
         diaChi.setDiachichitiet(diaChiChiTiet);
+        diaChi.setTennguoinhan(fullName);
+        diaChi.setSdtnguoinhan(phoneAddress);
         diaChi.setMota(description);
         diaChi.setKhachHang(khachHang);
         diaChi.setTrangthai(1);
@@ -196,8 +205,8 @@ public class CheckoutController {
                 .mapToDouble(HoaDonChiTiet::getDongia)
                 .sum();
 
-        Double shippingFee = 25000.0;
 
+        Double shippingFee = 25000.0;
         hoaDon.setTongtien(total + shippingFee);
         hoaDonService.save(hoaDon);
 
@@ -268,7 +277,7 @@ public class CheckoutController {
 
         model.addAttribute("shippingFee", shippingFee);
 
-        model.addAttribute("tongTienShip", shippingFee);
+
         model.addAttribute("toTalOder", total + shippingFee);
 
 //      TODO PASSING DATA END
@@ -314,7 +323,7 @@ public class CheckoutController {
 
         } else {
             hoaDon.setHinhthucthanhtoan(1);
-            hoaDon.setTrangThai(0);
+            hoaDon.setTrangThai(1);
             hoaDonService.save(hoaDon);
 
             UserForm(model);

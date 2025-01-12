@@ -12,6 +12,8 @@ public interface KhachHangService {
 
     KhachHang save(KhachHang khachHang);
 
+    KhachHang save1(KhachHang khachHang);
+
     KhachHang findID(int makh);
 
     List<KhachHang> getAllCustomers();

@@ -87,13 +87,17 @@ public class DetailProductController {
             model.addAttribute("CTGByMoreMau", true);
             model.addAttribute("listMauSacByGiay", listMauSacByGiay);
         }
+//        if(listCTSPByGiay.isEmpty()){
+//
+//        }else{
+//
+//        }
 
-        //Infor begin
         Optional<Float> maxPriceByGiay = listCTSPByGiay.stream()
                 .map(ChiTietSanPham :: getDongia)
                 .max(Float :: compare);
 
-        Float maxPrice = maxPriceByGiay.get();
+        Float maxPrice = maxPriceByGiay.orElse(0f);
 
         int sumCTSPByGiay = listCTSPByGiay.stream()
                 .mapToInt(ChiTietSanPham::getSoluong)
@@ -103,7 +107,7 @@ public class DetailProductController {
                 .map(ChiTietSanPham :: getDongia)
                 .min(Float :: compare);
 
-        Float minPrice = minPriceByGiay.get();
+        Float minPrice = minPriceByGiay.orElse(0f);
 
         //Infor end
 
@@ -118,6 +122,73 @@ public class DetailProductController {
         model.addAttribute("listMauSacByGiay", listMauSacByGiay);
         model.addAttribute("listSizeCTG", allSizeByGiay);
         model.addAttribute("listGiavaSize", listCTSPByGiay);
+
+        return "online/detail-product";
+    }
+
+    @GetMapping("/shop-details/sold/{idGiay}/{idMau}")
+    private String getFormDetailSold(Model model,@PathVariable int idGiay, @PathVariable int idMau){
+
+        KhachHang khachHang = (KhachHang) session.getAttribute("KhachHangLogin");
+
+        SanPham sanPham = sanPhamService.findId(idGiay).orElse(null);
+        MauSac mauSac = mauSacService.findId(idMau).orElse(null);
+
+        if (sanPham == null){
+            sanPham = sanPhamService.findId(idMau).orElse(null);
+            mauSac = mauSacService.findId(idGiay).orElse(null);
+        }
+        checkKHLogged(model, khachHang);
+
+        model.addAttribute("buyReceiveMail", true);
+        List<ChiTietSanPham> listCTSPByGiay = chiTietSanPhamService.findBySanPhamAndMauSacSold(sanPham, mauSac,1, 0);
+
+        List<MauSac> listMauSacByGiay = chiTietSanPhamService.findDistinctMauSacByGiay(sanPham);
+
+        if (listMauSacByGiay.size() == 1){
+            model.addAttribute("CTGBy1Mau", true);
+            model.addAttribute("tenMau", mauSac.getTenmau());
+        }else {
+            model.addAttribute("CTGByMoreMau", true);
+            model.addAttribute("listMauSacByGiay", listMauSacByGiay);
+        }
+        List<Object[]> allSizeByGiay = new ArrayList<>();
+        String showReceiveMail = "false";
+        for (ChiTietSanPham x : listCTSPByGiay) {
+            if (x.getSoluong()==0){
+                showReceiveMail = "true";
+            }
+            allSizeByGiay.add(new Object[] { x.getSize().getKichthuoc(), x.getMactsp(), showReceiveMail});
+        }
+
+        Optional<Float> maxPriceByGiay = listCTSPByGiay.stream()
+                .map(ChiTietSanPham :: getDongia)
+                .max(Float :: compare);
+
+        Float maxPrice = maxPriceByGiay.orElse(0f);
+
+        int sumCTSPByGiay = listCTSPByGiay.stream()
+                .mapToInt(ChiTietSanPham::getSoluong)
+                .sum();
+
+        Optional<Float> minPriceByGiay = listCTSPByGiay.stream()
+                .map(ChiTietSanPham :: getDongia)
+                .min(Float :: compare);
+
+        Float minPrice = minPriceByGiay.orElse(0f);
+
+        HinhAnh hinhAnhByGiayAndMau = chiTietSanPhamService.findDistinctHinhAnhByGiayAndMau(sanPham, mauSac);
+
+        model.addAttribute("hethang", true);
+        model.addAttribute("hinhAnh", hinhAnhByGiayAndMau);
+        model.addAttribute("product", sanPham);
+        model.addAttribute("minPrice", minPrice);
+        model.addAttribute("maxPrice", maxPrice);
+        model.addAttribute("listSizeCTG", allSizeByGiay);
+        model.addAttribute("sunProductAvaible", sumCTSPByGiay);
+        model.addAttribute("listProducts", listCTSPByGiay);
+        model.addAttribute("listMauSacByGiay", listMauSacByGiay);
+
 
         return "online/detail-product";
     }

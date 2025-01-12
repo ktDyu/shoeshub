@@ -29,7 +29,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public List<HoaDon> findByKhachHangAndTrangThai(KhachHang khachHang, int i) {
-        return null;
+        return hoaDonRepository.findByKhachHangAndTrangThai(khachHang, i);
     }
 
     @Override

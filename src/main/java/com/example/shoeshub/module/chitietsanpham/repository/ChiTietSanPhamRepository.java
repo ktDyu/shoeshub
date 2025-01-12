@@ -79,8 +79,8 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
             AND ctsp.hinhAnh.maanh IS NOT NULL
             AND sp.trangthai = 1
             AND ctsp.trangthai = 1
-            
             GROUP BY ctsp.sanPham.masp, ctsp.mauSac.mams, ctsp.hinhAnh.maanh, sp.tensp, ms.tenmau, ha.url1
+            HAVING SUM(ctsp.soluong) > 0
             """)
     List<CTSPViewModel> getAll();
 
@@ -95,8 +95,25 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
             AND ctsp.hinhAnh.maanh IS NOT NULL
             AND sp.trangthai = 1
             AND ctsp.trangthai = 1
-            
             GROUP BY ctsp.sanPham.masp, ctsp.mauSac.mams, ctsp.hinhAnh.maanh, sp.tensp, ms.tenmau, ha.url1
+            HAVING SUM(ctsp.soluong) = 0
+            """)
+    List<CTSPViewModel> getAllSold();
+
+
+    @Query("""
+            SELECT NEW com.example.shoeshub.module.buyer.entity.CTSPViewModel
+            ( ctsp.sanPham.masp, ctsp.mauSac.mams, ctsp.hinhAnh.maanh, SUM(ctsp.soluong) ,MIN(ctsp.dongia),MAX(ctsp.dongia), sp.tensp, ms.tenmau, ha.url1)
+            FROM ChiTietSanPham ctsp 
+            LEFT JOIN ctsp.sanPham sp 
+            LEFT JOIN ctsp.mauSac ms 
+            LEFT JOIN ctsp.hinhAnh ha
+            WHERE ctsp.sanPham.masp IS NOT NULL
+            AND ctsp.hinhAnh.maanh IS NOT NULL
+            AND sp.trangthai = 1
+            AND ctsp.trangthai = 1
+            GROUP BY ctsp.sanPham.masp, ctsp.mauSac.mams, ctsp.hinhAnh.maanh, sp.tensp, ms.tenmau, ha.url1
+            HAVING SUM(ctsp.soluong) > 0
             """)
     Page<CTSPViewModel> getAllPage(Pageable pageable);
 
@@ -108,7 +125,9 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
             INNER JOIN ctsp.hinhAnh ha
             WHERE sp.trangthai = 1
             AND ctsp.trangthai = 1
+            
             GROUP BY ha.url1, sp.tensp
+            
             """)
     List<SPViewModel> getAllGiay();
 

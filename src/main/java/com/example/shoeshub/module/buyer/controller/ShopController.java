@@ -84,14 +84,15 @@ public class ShopController {
         showDataBuyerShop(model);
         checkKhachHangLogged(model);
 
-        List<CTSPViewModel> listCTGModel = ctspViewModelService.getAll();
+        List<CTSPViewModel> listCTGModelSold = ctspViewModelService.getAllSold();
 
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
         Page<CTSPViewModel> page = ctspViewModelService.getAllPage(pageable);
 
         model.addAttribute("totalPage", page.getTotalPages());
         model.addAttribute("listCTSPModel", page.getContent());
-        model.addAttribute("listCTSPModelSoldOff", listCTGModel);
+        //
+        model.addAttribute("listCTSPModelSoldOff", listCTGModelSold);
         model.addAttribute("pageNumber", true);
         model.addAttribute("showPage", true);
         return "online/shop";

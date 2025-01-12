@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "hoa_don")
@@ -41,6 +43,9 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "ma_kh", referencedColumnName = "makh")
     private KhachHang khachHang;
+
+    @OneToMany(mappedBy = "hoaDon")
+    private List<HoaDonChiTiet> hoaDonChiTiets;
 
     @Column(name = "tgtt")
     private Date tgtt;

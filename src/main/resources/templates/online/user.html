@@ -341,7 +341,8 @@
                                 </svg>
                                 <p style="margin:4px 0 0 0; font-weight: 600; font-size: 12pt;">Quay lại</p>
                             </a>
-                            <p style="float: right; display: flex; " th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailPay.maHD}">
+                            <p style="float: right; display: flex; "
+                               th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailPay.tenhd}">
                             <p style="margin: 0 10px 0 10px;">|</p>
                             <p style="color: red;">CHỜ THANH TOÁN</p>
                             </p>
@@ -349,7 +350,7 @@
 
                         <div class="row" style="display: flex; margin: 30px 0 0 30px; width: 100%;">
 
-                            <div class="col-md-2" style="display: block;">
+                            <div class="col-md-3" style="display: block;">
 
                                 <svg style="margin:0 0 10px 35px; width: 30px; height: 30px;" viewBox="0 0 24 24"
                                      fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -368,7 +369,7 @@
                                 <p style="font-size: 10pt;">Đơn hàng đã đặt</p>
                             </div>
 
-                            <div class="col-md-2" style="margin: 0 25px 0 35px;">
+                            <div class="col-md-3" >
                                 <svg style="margin:0 0 10px 35px; width: 30px; height: 30px;" viewBox="0 0 24 24"
                                      fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -414,7 +415,7 @@
                                 <p style="font-size: 10.5pt;">Đang Giao Hàng</p>
                             </div>
 
-                            <div class="col-md-2" style="margin-right: 5px;">
+                            <div class="col-md-3" >
                                 <svg style="margin:0 0 10px 15px; width: 30px; height: 30px;" viewBox="0 0 24 24"
                                      fill="none" xmlns="http://www.w3.org/2000/svg"
                                      transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="#000000"
@@ -431,30 +432,13 @@
                                 <p style="font-size: 10pt;">Nhận Hàng</p>
                             </div>
 
-                            <div class="col-md-2">
-
-                                <svg style="margin:0 0 10px 15px; width: 30px; height: 30px;" viewBox="0 0 24 24"
-                                     fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path stroke="#000000"
-                                              d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838"
-                                              stroke-width="0.9600000000000002" stroke-linecap="round"></path>
-                                    </g>
-                                </svg>
-
-                                <p style="font-size: 10.5pt;">Đánh Giá</p>
-
-                            </div>
                         </div>
 
                     </div>
 
                     <div class="row coupon__code" style="margin-bottom: 30px;">
                         <div class="col-lg-8">
-                            <p style="font-size: 10pt;">Vui lòng thanh toán trước <b
-                                    th:text="${#dates.format(ngayKetThuc, 'HH:mm yyyy-MM-dd')}"></b> bằng phương thức QR
+                            <p style="font-size: 10pt;">Vui lòng xác nhận thanh toán trước <b></b> bằng phương thức QR
                                 Code Banking</p>
                             <p style="font-size: 10pt; margin-top: 100px;">Mọi chi tiết xin liên hệ tới tổng đài <b>038.432.9003</b>
                                 để được nhân viên CSKH tư vấn</p>
@@ -476,18 +460,18 @@
                         <div class="col-lg-6">
                             <a style=" font-size: 14pt;">Địa chỉ nhận hàng</a>
                             <a style="color: #17178b; cursor: pointer"
-                               th:if="${billDetailPay.soLanThayDoiViTriShip < 1}" data-toggle="modal"
+                               data-toggle="modal"
                                data-target="#thongBaoThayDoiDiaChiNhan">Thay đổi</a>
-                            <p style="font-weight: 600; margin-top: 20px;" th:text="${billDetailPay.tenNguoiNhan}"></p>
+                            <p style="font-weight: 600; margin-top: 20px;" th:text="${billDetailPay.tennguoinhan}"></p>
                             <p style="font-weight: 500; font-size: 10pt; margin-top: -15px;"
-                               th:text="${billDetailPay.sdtNguoiNhan}"></p>
+                               th:text="${billDetailPay.sdtnguoinhan}"></p>
                             <p style="font-size: 9pt; font-weight: 400; margin-top: -15px;"
-                               th:text="${billDetailPay.diaChiNguoiNhan}"></p>
+                               th:text="${billDetailPay.diachinguoinhan}"></p>
                         </div>
 
                         <div class="col-lg-2" style="border-left: 0.5px solid black;">
                             <p style="font-size: 9pt; font-weight: 400;"
-                               th:text="${#dates.format(billDetailPay.tgTao, 'HH:mm yyyy-MM-dd')}"></p>
+                               th:text="${#dates.format(billDetailPay.tgtt, 'HH:mm yyyy-MM-dd')}"></p>
                         </div>
 
                         <div class="col-lg-4">
@@ -501,22 +485,20 @@
 
                             <div style="display: flex; margin-bottom: 40px;">
                                 <div class="col-sm-9" style="display: flex;">
-                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                          style="height: 70px; width: 70px;" alt="">
                                     <div style=" display: block;">
-                                        <p style="margin-left: 20px;" th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                        <p style="margin-left: 20px;"
+                                           th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | Size:' + ${product.chiTietGiay.size.soSize} "></span>
+                                              th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | Size:' + ${product.chiTietSanPham.size.kichthuoc} "></span>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'x' + ${product.soLuong}"></span>
+                                              th:text="'x' + ${product.soluong}"></span>
                                     </div>
 
                                 </div>
                                 <div class="col-sm-3" style="display: flex;">
-                                    <p th:if="${product.donGia != product.donGiaTruocGiam}"
-                                       th:text="'₫' + ${#numbers.formatDecimal(product.donGiaTruocGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
-                                       style="color: #b7b7b7;text-decoration: line-through; margin-right: 30px;"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.chiTietSanPham.dongia * product.soluong, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                 </div>
                             </div>
 
@@ -528,22 +510,13 @@
                             <div class="col-sm-4" style="display: block;">
                                 <p>Tổng tiền hàng</p>
                                 <p>Phí vận chuyển</p>
-                                <p>Giảm giá phí vận chuyển</p>
-                                <p>Giảm giá hóa đơn</p>
                                 <p style="font-size: 13pt; font-weight: 600;">Thành tiền</p>
                             </div>
                             <div class="col-sm-2" style="display: block;">
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailPay.tongTien - billDetailPay.tienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'+ ₫' + ${#numbers.formatDecimal(billDetailPay.tienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailPay.tongtien - billDetailPay.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'+ ₫' + (${billDetailPay.tienship == 0 ? '0' : #numbers.formatDecimal(billDetailPay.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')})"></p>
 
-                                <p th:if="${billDetailPay.giamGiaShip == 0}">- ₫ 0</p>
-                                <p th:if="${billDetailPay.giamGiaHoaDon == 0}">- ₫ 0</p>
-
-                                <p th:if="${billDetailPay.giamGiaShip != 0}"
-                                   th:text="'- ₫' + ${#numbers.formatDecimal(billDetailPay.giamGiaShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:if="${billDetailPay.giamGiaHoaDon != 0}"
-                                   th:text="'- ₫' + ${#numbers.formatDecimal(billDetailPay.giamGiaHoaDon, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailPay.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailPay.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
                                    style="font-size: 13pt; font-weight: 600;"></p>
                             </div>
                         </div>
@@ -572,15 +545,15 @@
                                 <p style="margin:4px 0 0 0; font-weight: 600; font-size: 12pt;">Quay lại</p>
                             </a>
                             <p style="float: right; display: flex; "
-                               th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailShip.maHD}">
+                               th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailShip.tenhd}">
                             <p style="margin: 0 10px 0 10px;">|</p>
-                            <p style="color: red;">CHỜ GIAO HÀNG</p>
+                            <p style="color: red;">CHỜ XÁC NHẬN</p>
                             </p>
                         </div>
 
                         <div class="row" style="display: flex; margin: 30px 0 0 30px; width: 100%;">
 
-                            <div class="col-md-2" style="display: block;">
+                            <div class="col-md-3" >
 
                                 <svg style="margin:0 0 10px 35px; width: 30px; height: 30px;" viewBox="0 0 24 24"
                                      fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -599,7 +572,7 @@
                                 <p style="font-size: 10pt;">Đơn hàng đã đặt</p>
                             </div>
 
-                            <div class="col-md-2" style="margin: 0 25px 0 35px;">
+                            <div class="col-md-3" >
                                 <svg stroke="#2dc258" style="margin:0 0 10px 30px; width: 30px; height: 30px;"
                                      viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -613,7 +586,7 @@
                                               stroke-width="0.9120000000000001" stroke-linecap="round"></path>
                                     </g>
                                 </svg>
-                                <p style="font-size: 10pt;">Chờ Giao Hàng</p>
+                                <p style="font-size: 10pt;">Chờ xác nhận</p>
                             </div>
 
                             <div class="col-md-3">
@@ -642,7 +615,7 @@
                                 <p style="font-size: 10.5pt;">Đang Giao Hàng</p>
                             </div>
 
-                            <div class="col-md-2" style="margin-right: 5px;">
+                            <div class="col-md-3" >
                                 <svg style="margin:0 0 10px 15px; width: 30px; height: 30px;" viewBox="0 0 24 24"
                                      fill="none" xmlns="http://www.w3.org/2000/svg"
                                      transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="#000000"
@@ -659,29 +632,12 @@
                                 <p style="font-size: 10pt;">Nhận Hàng</p>
                             </div>
 
-                            <div class="col-md-2">
-
-                                <svg style="margin:0 0 10px 15px; width: 30px; height: 30px;" viewBox="0 0 24 24"
-                                     fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path stroke="#000000"
-                                              d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838"
-                                              stroke-width="0.9600000000000002" stroke-linecap="round"></path>
-                                    </g>
-                                </svg>
-
-                                <p style="font-size: 10.5pt;">Đánh Giá</p>
-
-                            </div>
                         </div>
 
                     </div>
 
                     <div class="row coupon__code" style="margin-bottom: 30px;">
                         <div class="col-lg-8">
-                            <p th:text="'Dự kiến nhận hàng vào ' + ${#dates.format(billDetailShip.tgNhanDK, 'yyyy-MM-dd')}"></p>
                             <p style="font-size: 10pt; margin-top: 100px;">Mọi chi tiết xin liên hệ tới tổng đài <b>0384329003</b>
                                 để được nhân viên CSKH tư vấn</p>
                         </div>
@@ -705,35 +661,16 @@
                         <div class="col-lg-4">
                             <a style=" font-size: 14pt;">Địa chỉ nhận hàng</a>
                             <a style="color: #17178b; cursor: pointer"
-                               th:if="${billDetailShip.soLanThayDoiViTriShip < 1}" data-toggle="modal"
+                               data-toggle="modal"
                                data-target="#thongBaoThayDoiDiaChiNhan">Thay đổi</a>
-                            <p style="font-weight: 600; margin-top: 20px;" th:text="${billDetailShip.tenNguoiNhan}"></p>
+                            <p style="font-weight: 600; margin-top: 20px;" th:text="${billDetailShip.tennguoinhan}"></p>
                             <p style="font-weight: 500; font-size: 10pt; margin-top: -5px;"
-                               th:text="${billDetailShip.sdtNguoiNhan}"></p>
+                               th:text="${billDetailShip.sdtnguoinhan}"></p>
                             <p style="font-size: 9pt; font-weight: 400; margin-top: -15px;"
-                               th:text="${billDetailShip.diaChiNguoiNhan}"></p>
+                               th:text="${billDetailShip.diachinguoinhan}"></p>
                         </div>
                         <div class="col-lg-9" style="border-left: 0.5px solid black;">
-                            <th:block th:each="x: ${listViTriDonHang}">
-                                <div th:if="${x.trangThai == 2}" class="row">
-                                    <p style="margin-left: 30px;color: #d73211; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: #d73211;" th:text="${x.viTri}"></p>
-                                </div>
-                                <div th:if="${x.trangThai == 1}" class="row">
-                                    <p style="margin-left: 30px;color: #26aa99; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: #26aa99;" th:text="${x.viTri}"></p>
-                                </div>
-                                <div th:if="${x.trangThai == 0}" class="row">
-                                    <p style="margin-left: 30px;color: black; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: black;" th:text="${x.viTri}"></p>
-                                </div>
-                            </th:block>
+
                         </div>
                     </div>
 
@@ -743,22 +680,20 @@
 
                             <div style="display: flex; margin-bottom: 40px;">
                                 <div class="col-sm-9" style="display: flex;">
-                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                          style="height: 70px; width: 70px;" alt="">
                                     <div style=" display: block;">
-                                        <p style="margin-left: 20px;" th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                        <p style="margin-left: 20px;"
+                                           th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | Size:' + ${product.chiTietGiay.size.soSize} "></span>
+                                              th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | Size:' + ${product.chiTietSanPham.size.kichthuoc} "></span>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'x' + ${product.soLuong}"></span>
+                                              th:text="'x' + ${product.soluong}"></span>
                                     </div>
 
                                 </div>
                                 <div class="col-sm-3" style="display: flex;">
-                                    <p th:if="${product.donGia != product.donGiaTruocGiam}"
-                                       th:text="'₫' + ${#numbers.formatDecimal(product.donGiaTruocGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
-                                       style="color: #b7b7b7;text-decoration: line-through; margin-right: 30px;"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.chiTietSanPham.dongia * product.soluong, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                 </div>
                             </div>
 
@@ -770,22 +705,13 @@
                             <div class="col-sm-4" style="display: block;">
                                 <p>Tổng tiền hàng</p>
                                 <p>Phí vận chuyển</p>
-                                <p>Giảm giá phí vận chuyển</p>
-                                <p>Giảm giá hóa đơn</p>
+
                                 <p style="font-size: 13pt; font-weight: 600;">Thành tiền</p>
                             </div>
                             <div class="col-sm-2" style="display: block;">
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailShip.tongTien - billDetailShip.tienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'+ ₫' + ${#numbers.formatDecimal(billDetailShip.tienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-
-                                <p th:if="${billDetailShip.giamGiaShip == 0}">- ₫ 0</p>
-                                <p th:if="${billDetailShip.giamGiaHoaDon == 0}">- ₫ 0</p>
-
-                                <p th:if="${billDetailShip.giamGiaShip != 0}"
-                                   th:text="'- ₫' + ${#numbers.formatDecimal(billDetailShip.giamGiaShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:if="${billDetailShip.giamGiaHoaDon != 0}"
-                                   th:text="'- ₫' + ${#numbers.formatDecimal(billDetailShip.giamGiaHoaDon, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailShip.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailShip.tongtien - billDetailShip.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'+ ₫' + ${#numbers.formatDecimal(billDetailShip.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailShip.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
                                    style="font-size: 13pt; font-weight: 600;"></p>
                             </div>
                         </div>
@@ -814,14 +740,14 @@
                                 <p style="margin:4px 0 0 0; font-weight: 600; font-size: 12pt;">Quay lại</p>
                             </a>
                             <p style="float: right; display: flex; "
-                               th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailRecieve.maHD}">
+                               th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailRecieve.tenhd}">
                             <p style="margin: 0 10px 0 10px;">|</p>
                             <p style="color: red;">ĐANG GIAO</p>
                         </div>
 
                         <div class="row" style="display: flex; margin: 30px 0 0 30px; width: 100%;">
 
-                            <div class="col-md-2" style="display: block;">
+                            <div class="col-md-3" style="display: block;">
 
                                 <svg style="margin:0 0 10px 35px; width: 30px; height: 30px;" viewBox="0 0 24 24"
                                      fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -840,18 +766,7 @@
                                 <p style="font-size: 10pt;">Đơn hàng đã đặt</p>
                             </div>
 
-                            <div class="col-md-2" style="margin: 0 25px 0 35px;">
-
-                                <!-- <svg style="margin:0 0 10px 35px; width: 30px; height: 30px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path stroke="#2dc258" d="M3.17157 20.8284C4.34315 22 6.22876 22 10 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14C22 12.8302 22 11.8419 21.965 11M20.8284 7.17157C19.6569 6 17.7712 6 14 6H10C6.22876 6 4.34315 6 3.17157 7.17157C2 8.34315 2 10.2288 2 14C2 15.1698 2 16.1581 2.03496 17" stroke-width="0.9120000000000001" stroke-linecap="round"></path>
-                                        <path stroke="#2dc258" d="M12 2C13.8856 2 14.8284 2 15.4142 2.58579C16 3.17157 16 4.11438 16 6M8.58579 2.58579C8 3.17157 8 4.11438 8 6" stroke-width="0.9120000000000001" stroke-linecap="round"></path>
-                                        <path stroke="#2dc258" d="M12 17.3333C13.1046 17.3333 14 16.5871 14 15.6667C14 14.7462 13.1046 14 12 14C10.8954 14 10 13.2538 10 12.3333C10 11.4129 10.8954 10.6667 12 10.6667M12 17.3333C10.8954 17.3333 10 16.5871 10 15.6667M12 17.3333V18M12 10V10.6667M12 10.6667C13.1046 10.6667 14 11.4129 14 12.3333" stroke-width="0.9120000000000001" stroke-linecap="round"></path>
-                                    </g>
-                                </svg>
-                                <p style="font-size: 10pt;">Chờ Thanh Toán</p>  -->
+                            <div class="col-md-3" >
 
                                 <svg fill="#2dc258" style="margin:0 0 10px 30px; width: 30px; height: 30px;"
                                      version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg"
@@ -894,7 +809,7 @@
                                 <p style="font-size: 10.5pt;">Đang Giao Hàng</p>
                             </div>
 
-                            <div class="col-md-2" style="margin-right: 5px;">
+                            <div class="col-md-3" >
                                 <svg style="margin:0 0 10px 15px; width: 30px; height: 30px;" viewBox="0 0 24 24"
                                      fill="none" xmlns="http://www.w3.org/2000/svg"
                                      transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="#000000"
@@ -911,87 +826,21 @@
                                 <p style="font-size: 10pt;">Nhận Hàng</p>
                             </div>
 
-                            <div class="col-md-2">
-
-                                <svg style="margin:0 0 10px 15px; width: 30px; height: 30px;" viewBox="0 0 24 24"
-                                     fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path stroke="#000000"
-                                              d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838"
-                                              stroke-width="0.9600000000000002" stroke-linecap="round"></path>
-                                    </g>
-                                </svg>
-
-                                <p style="font-size: 10.5pt;">Đánh Giá</p>
-
-                            </div>
                         </div>
 
-                    </div>
-
-                    <div class="row coupon__code" style="margin-bottom: 30px;">
-                        <div class="col-lg-8">
-                            <p>Nếu hàng nhận được có vấn đề, bạn có thể gửi yêu cầu Trả hàng/Hoàn tiền trước
-                                23-11-2023</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div style="display: grid;">
-                                <button style="border: 0.3px solid black; height: 40px;">Đánh Giá</button>
-                                <a th:if="${billDetailRecieve.trangThaiHoan != 8 }"
-                                   th:href="@{'/buyer/purchaser/bill/detail/refund/' + ${billDetailRecieve.idHD}}" type
-                                   style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px;
-                                              width: 250px; border: 0.5px solid black; margin: 0 20px 0 0; background-color: #f0f0f0">
-                                    Xem chi tiết Hoàn/Đổi Hàng</a>
-
-                                <form th:if="${billDetailRecieve.trangThaiHoan == 8}"
-                                      th:action="@{'/buyer/purchaser/bill/refund/' + ${billDetailRecieve.idHD}}"
-                                      method="post">
-                                    <button type="submit" style=" color: black; text-align: center;
-                                                 align-items: center; height: 40px; width: 130px; border: 0.5px solid black; background-color: #f0f0f0">
-                                        Yêu Cầu Hoàn Hàng/Tiền
-                                    </button>
-                                </form>
-                                <button style="border: 0.3px solid black; margin: 20px 0 20px 0; height: 40px;">Yêu Cầu
-                                    Hoàn Hàng/Tiền
-                                </button>
-                            </div>
-                        </div>
                     </div>
 
                     <div style="margin-bottom: 30px;" class="row coupon__code">
                         <div class="col-lg-4">
                             <a style=" font-size: 14pt;">Địa chỉ nhận hàng</a>
                             <p style="font-weight: 600; margin-top: 20px;"
-                               th:text="${billDetailRecieve.tenNguoiNhan}"></p>
+                               th:text="${billDetailRecieve.tennguoinhan}"></p>
                             <p style="font-weight: 500; font-size: 10pt; margin-top: -5px;"
-                               th:text="${billDetailRecieve.sdtNguoiNhan}"></p>
+                               th:text="${billDetailRecieve.sdtnguoinhan}"></p>
                             <p style="font-size: 9pt; font-weight: 400; margin-top: -15px;"
-                               th:text="${billDetailRecieve.diaChiNguoiNhan}"></p>
+                               th:text="${billDetailRecieve.diachinguoinhan}"></p>
                         </div>
                         <div class="col-lg-8" style="border-left: 0.5px solid black;">
-
-                            <th:block th:each="x: ${listViTriDonHang}">
-                                <div th:if="${x.trangThai == 2}" class="row">
-                                    <p style="margin-left: 30px;color: #d73211; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: #d73211;" th:text="${x.viTri}"></p>
-                                </div>
-                                <div th:if="${x.trangThai == 1}" class="row">
-                                    <p style="margin-left: 30px;color: #26aa99; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: #26aa99;" th:text="${x.viTri}"></p>
-                                </div>
-                                <div th:if="${x.trangThai == 0}" class="row">
-                                    <p style="margin-left: 30px;color: black; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: black;" th:text="${x.viTri}"></p>
-                                </div>
-                            </th:block>
 
                         </div>
                     </div>
@@ -1002,22 +851,20 @@
 
                             <div class="row" style="border-bottom: 0.5px solid black; margin-bottom: 10px;">
                                 <div class="col-sm-9 d-flex">
-                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                          style="height: 70px; width: 70px;" alt="">
                                     <div style=" display: block;">
-                                        <p style="margin-left: 20px;" th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                        <p style="margin-left: 20px;"
+                                           th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | Size:' + ${product.chiTietGiay.size.soSize} "></span>
+                                              th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | Size:' + ${product.chiTietSanPham.size.kichthuoc} "></span>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'x' + ${product.soLuong}"></span>
+                                              th:text="'x' + ${product.soluong}"></span>
                                     </div>
 
                                 </div>
                                 <div class="col-lg-3">
-                                    <p th:unless="${product.donGiaTruocGiam == product.donGia}"
-                                       th:text="'₫' + ${#numbers.formatDecimal(product.donGiaTruocGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
-                                       style="color: #b7b7b7;text-decoration: line-through; margin-right: 30px;"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.chiTietSanPham.dongia * product.soluong, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                 </div>
                             </div>
 
@@ -1029,16 +876,12 @@
                             <div class="col-sm-4" style="display: block;">
                                 <p>Tổng tiền hàng</p>
                                 <p>Phí vận chuyển</p>
-                                <p>Giảm giá phí vận chuyển</p>
-                                <p>Giảm giá hóa đơn</p>
                                 <p style="font-size: 13pt; font-weight: 600;">Thành tiền</p>
                             </div>
                             <div class="col-sm-2" style="display: block;">
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.tongTien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.tienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.giamGiaShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.giamGiaHoaDon, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.tongtien - billDetailRecieve.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailRecieve.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
                                    style="font-size: 13pt; font-weight: 600;"></p>
                             </div>
                         </div>
@@ -1067,12 +910,12 @@
                                     <p style="margin:4px 100px 0 0; font-weight: 600; font-size: 12pt;">Quay lại</p>
                                 </a>
                                 <p style="float: right; display: flex;"
-                                   th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailCancel.maHD}">
+                                   th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailCancel.tenhd}">
                                 <p style="margin: 0 10px 0 10px;">|</p>
                                 <p style="color: red;">ĐÃ HỦY</p>
                                 </p>
                                 <p style="font-size: 9pt"
-                                   th:text="'* Bạn đã huỷ đơn hàng vào lúc : ' + ${#dates.format(billDetailCancel.tgHuy, 'HH:mm yyyy-MM-dd')}"></p>
+                                   th:text="'* Bạn đã huỷ đơn hàng vào lúc : ' + ${#dates.format(billDetailCancel.tghuy, 'HH:mm yyyy-MM-dd')}"></p>
                             </div>
 
                             <div class="row" style="display: flex; margin: 30px 0 0 30px; width: 100%;">
@@ -1128,7 +971,7 @@
 
                             <div class="col-lg-8">
                                 <p style="font-size: 12pt; font-weight: 600;"
-                                   th:text="'Lý do hủy đơn : ' + ${billDetailCancel.lyDoHuy}"></p>
+                                   th:text="'Lý do hủy đơn : ' + ${billDetailCancel.lydohuy}"></p>
                                 <p style="font-size: 10pt;">*Tiền sẽ được hoàn vào tài khoản ngân hàng của bạn trong
                                     vòng 24h (nếu bạn đã thanh toán)</p>
                                 <p style="font-size: 10pt; color: red;">*Đơn hàng đã giao nếu không nhận hàng sẽ không
@@ -1136,47 +979,19 @@
                                 <p style="font-size: 9pt; margin-top: 10px;">Mọi chi tiết xin liên hệ tới tổng đài <b>0384329003</b>
                                     để được nhân viên CSKH tư vấn</p>
                             </div>
-                            <div class="col-lg-4">
-                                <div style="display: grid;">
-                                    <a th:href="@{'/buyer/purchaser/bill/buy/again/' + ${billDetailCancel.idHD}}"
-                                       style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 40px; width: 243px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Mua
-                                        Lại</a>
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="row coupon__code" style="margin-bottom: 30px;">
                             <div class="col-lg-6">
                                 <a style=" font-size: 14pt;">Địa chỉ nhận hàng</a>
                                 <p style="font-weight: 600; margin-top: 20px;"
-                                   th:text="${billDetailCancel.tenNguoiNhan}"></p>
+                                   th:text="${billDetailCancel.tennguoinhan}"></p>
                                 <p style="font-weight: 500; font-size: 10pt; margin-top: -5px;"
-                                   th:text="${billDetailCancel.sdtNguoiNhan}"></p>
+                                   th:text="${billDetailCancel.sdtnguoinhan}"></p>
                                 <p style="font-size: 9pt; font-weight: 400; margin-top: -15px;"
-                                   th:text="${billDetailCancel.diaChiNguoiNhan}"></p>
+                                   th:text="${billDetailCancel.diachinguoinhan}"></p>
                             </div>
                             <div class="col-lg-6" style="border-left: 0.5px solid black;">
-                                <th:block th:each="x: ${listViTriDonHang}">
-                                    <div th:if="${x.trangThai == 2}" class="row">
-                                        <p style="margin-left: 30px;color: #d73211; font-size: 9pt; font-weight: 400;"
-                                           th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                        <span style="margin: 0 10px 0 10px"></span>
-                                        <p style="font-size: 11px; color: #d73211;" th:text="${x.viTri}"></p>
-                                    </div>
-                                    <div th:if="${x.trangThai == 1}" class="row">
-                                        <p style="margin-left: 30px;color: #26aa99; font-size: 9pt; font-weight: 400;"
-                                           th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                        <span style="margin: 0 10px 0 10px"></span>
-                                        <p style="font-size: 11px; color: #26aa99;" th:text="${x.viTri}"></p>
-                                    </div>
-                                    <div th:if="${x.trangThai == 0}" class="row">
-                                        <p style="margin-left: 30px;color: black; font-size: 9pt; font-weight: 400;"
-                                           th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                        <span style="margin: 0 10px 0 10px"></span>
-                                        <p style="font-size: 11px; color: black;" th:text="${x.viTri}"></p>
-                                    </div>
-                                </th:block>
                             </div>
                         </div>
 
@@ -1186,23 +1001,20 @@
 
                                 <div class="row" style="border-bottom: 0.5px solid black; margin-bottom: 10px;">
                                     <div class="col-sm-9 d-flex">
-                                        <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                        <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                              style="height: 70px; width: 70px;" alt="">
                                         <div style=" display: block;">
                                             <p style="margin-left: 20px;"
-                                               th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                               th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                             <span style="margin-left: 20px; margin-top: -20px;"
-                                                  th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | Size:' + ${product.chiTietGiay.size.soSize} "></span>
+                                                  th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | Size:' + ${product.chiTietSanPham.size.kichthuoc} "></span>
                                             <span style="margin-left: 20px; margin-top: -20px;"
-                                                  th:text="'x' + ${product.soLuong}"></span>
+                                                  th:text="'x' + ${product.soluong}"></span>
                                         </div>
 
                                     </div>
                                     <div class="col-lg-3">
-                                        <p th:unless="${product.donGiaTruocGiam == product.donGia}"
-                                           th:text="'₫' + ${#numbers.formatDecimal(product.donGiaTruocGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
-                                           style="color: #b7b7b7;text-decoration: line-through; margin-right: 30px;"></p>
-                                        <p th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                        <p th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                     </div>
                                 </div>
 
@@ -1214,16 +1026,12 @@
                                 <div class="col-sm-4" style="display: block;">
                                     <p>Tổng tiền hàng</p>
                                     <p>Phí vận chuyển</p>
-                                    <p>Giảm giá phí vận chuyển</p>
-                                    <p>Giảm giá hóa đơn</p>
                                     <p style="font-size: 13pt; font-weight: 600;">Thành tiền</p>
                                 </div>
                                 <div class="col-sm-2" style="display: block;">
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.tongTien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.tienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.giamGiaShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.giamGiaHoaDon, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
+                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.tongtien - billDetailCancel.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                    <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCancel.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
                                        style="font-size: 13pt; font-weight: 600;"></p>
                                 </div>
                             </div>
@@ -1252,7 +1060,7 @@
                                 <p style="margin:4px 0 0 0; font-weight: 600; font-size: 12pt;">Quay lại</p>
                             </a>
                             <p style="float: right; display: flex; "
-                               th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailCompleted.maHD}">
+                               th:text="'MÃ ĐƠN HÀNG : ' + ${billDetailCompleted.tenhd}">
                             <p style="margin: 0 10px 0 10px;">|</p>
                             <p style="color: red;">GIAO THÀNH CÔNG</p>
                         </div>
@@ -1339,92 +1147,23 @@
 
                             <div class="col-md-2">
 
-                                <svg style="margin:0 0 10px 15px; width: 30px; height: 30px;" viewBox="0 0 24 24"
-                                     fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path stroke="#000000"
-                                              d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838"
-                                              stroke-width="0.9600000000000002" stroke-linecap="round"></path>
-                                    </g>
-                                </svg>
-
-                                <p style="font-size: 10.5pt;">Đánh Giá</p>
 
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="row coupon__code" style="margin-bottom: 30px;">
-                        <div class="col-lg-8">
-                            <p>Nếu hàng nhận được có vấn đề, bạn có thể gửi yêu cầu Trả hàng/Hoàn tiền trước
-                                <b th:text="${#dates.format(ngayKetThucHoanHang, 'HH:mm yyyy-MM-dd')}"></b></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div style="display: grid;">
-                                <button data-toggle="modal" data-target="#modalDanhGiaDonHang"
-                                        style="border: 0.3px solid black; height: 40px; width: 243px;">Đánh Giá
-                                </button>
-
-                                <a th:if="${billDetailCompleted.trangThaiHoan != 9 }"
-                                   th:href="@{'/buyer/purchaser/bill/detail/refund/' + ${billDetailCompleted.idHD}}"
-                                   style=" color: black; text-align: center; padding-top: 9px; align-items: center; height: 50px;border: 0.3px solid black;height: 40px; width: 243px;
-                                    border: 0.5px solid black; margin: 20px 20px 20px 0; background-color: #f0f0f0"> Xem
-                                    chi tiết Hoàn/Đổi Hàng</a>
-
-                                <form th:if="${ngayKetThucHoanHang.after(#dates.createNow()) and billDetailCompleted.trangThaiHoan == 9}"
-                                      th:action="@{'/buyer/purchaser/bill/refund/' + ${billDetailCompleted.idHD}}"
-                                      method="post">
-                                    <button style="border: 0.3px solid black; margin: 20px 0 20px 0; height: 40px; width: 243px;"
-                                            type="submit">Yêu Cầu Hoàn Hàng/Tiền
-                                    </button>
-                                </form>
-
-                                <button th:if="${ngayKetThucHoanHang.before(#dates.createNow())}"
-                                        style="border: 0.3px solid black; margin: 20px 0 20px 0; height: 40px; width: 243px;">
-                                    Hết hạn yêu Cầu Hoàn Hàng/Tiền
-                                </button>
-
-                                <a th:href="@{'/buyer/purchaser/bill/buy/again/' + ${billDetailCompleted.idHD}}" style=" color: black; text-align: center; padding-top: 9px; align-items: center;
-                                 height: 40px; width: 243px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Mua
-                                    Lại</a>
-                            </div>
-                        </div>
                     </div>
 
                     <div style="margin-bottom: 30px;" class="row coupon__code">
                         <div class="col-lg-3">
                             <a style=" font-size: 14pt;">Địa chỉ nhận hàng</a>
                             <p style="font-weight: 600; margin-top: 20px;"
-                               th:text="${billDetailCompleted.tenNguoiNhan}"></p>
+                               th:text="${billDetailCompleted.tennguoinhan}"></p>
                             <p style="font-weight: 500; font-size: 10pt; margin-top: -5px;"
-                               th:text="${billDetailCompleted.sdtNguoiNhan}"></p>
+                               th:text="${billDetailCompleted.sdtnguoinhan}"></p>
                             <p style="font-size: 9pt; font-weight: 400; margin-top: -15px;"
-                               th:text="${billDetailCompleted.diaChiNguoiNhan}"></p>
+                               th:text="${billDetailCompleted.diachinguoinhan}"></p>
                         </div>
                         <div class="col-lg-9" style="border-left: 0.5px solid black;">
-                            <th:block th:each="x: ${listViTriDonHang}">
-                                <div th:if="${x.trangThai == 2}" class="row">
-                                    <p style="margin-left: 30px;color: #d73211; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: #d73211;" th:text="${x.viTri}"></p>
-                                </div>
-                                <div th:if="${x.trangThai == 1}" class="row">
-                                    <p style="margin-left: 30px;color: #26aa99; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: #26aa99;" th:text="${x.viTri}"></p>
-                                </div>
-                                <div th:if="${x.trangThai == 0}" class="row">
-                                    <p style="margin-left: 30px;color: black; font-size: 9pt; font-weight: 400;"
-                                       th:text="${#dates.format(x.thoiGian, 'HH:mm yyyy-MM-dd')}"></p>
-                                    <span style="margin: 0 10px 0 10px"></span>
-                                    <p style="font-size: 11px; color: black;" th:text="${x.viTri}"></p>
-                                </div>
-                            </th:block>
                         </div>
                     </div>
 
@@ -1434,22 +1173,20 @@
 
                             <div class="row">
                                 <div class="col-lg-9 d-flex">
-                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                    <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                          style="height: 70px; width: 70px;" alt="">
                                     <div style=" display: block;">
-                                        <p style="margin-left: 20px;" th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                        <p style="margin-left: 20px;"
+                                           th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | Size:' + ${product.chiTietGiay.size.soSize} "></span>
+                                              th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | Size:' + ${product.chiTietSanPham.size.kichthuoc} "></span>
                                         <span style="margin-left: 20px; margin-top: -20px;"
-                                              th:text="'x' + ${product.soLuong}"></span>
+                                              th:text="'x' + ${product.soluong}"></span>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3">
-                                    <p th:unless="${product.donGiaTruocGiam == product.donGia}"
-                                       th:text="'₫' + ${#numbers.formatDecimal(product.donGiaTruocGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
-                                       style="color: #b7b7b7;text-decoration: line-through; margin-right: 30px;"></p>
-                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                    <p th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                 </div>
                             </div>
 
@@ -1461,16 +1198,12 @@
                             <div class="col-sm-4" style="display: block;">
                                 <p>Tổng tiền hàng</p>
                                 <p>Phí vận chuyển</p>
-                                <p>Giảm giá phí vận chuyển</p>
-                                <p>Giảm giá hóa đơn</p>
                                 <p style="font-size: 13pt; font-weight: 600;">Thành tiền</p>
                             </div>
                             <div class="col-sm-2" style="display: block;">
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.tongTien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.tienShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.giamGiaShip, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.giamGiaHoaDon, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.tongtien - billDetailCompleted.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.tienship, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                <p th:text="'₫' + ${#numbers.formatDecimal(billDetailCompleted.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"
                                    style="font-size: 13pt; font-weight: 600;"></p>
                             </div>
                         </div>
@@ -1481,16 +1214,20 @@
 
                 <!--                Setting Account Begin-->
                 <div th:if="${pagesettingAccount}" class="card">
-                    <form action="/users/update" method="post">
-                        <div class="card-body">
 
-                            <div class="row" style="background-color: #f3f2ee; height: 100px; width: 803px; margin-left: 2px;  border-radius: 5px;">
-                                <img src="/images/imgRanks/Gold.png" alt="" style="margin-left: 700px; width: 50px; height: 50xp;">
+                    <div class="card-body">
+                        <form action="/buyer/users/update" method="post">
+                            <div class="row"
+                                 style="background-color: #f3f2ee; height: 100px; width: 803px; margin-left: 2px;  border-radius: 5px;">
+                                <img src="/images/imgRanks/Gold.png" alt=""
+                                     style="margin-left: 700px; width: 50px; height: 50xp;">
                                 <h4 style="margin-top: 60px; margin-left: 70px;" th:text="${fullNameLogin}"></h4>
                             </div>
 
-                            <div class="row" th:object="${userLogin}" style="width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 40px;">
-                                <input type="hidden" id="makh" th:object="${userLogin.makh}" />
+                            <div class="row" th:object="${userLogin}"
+                                 style="width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 40px;">
+
+                                <input type="hidden" id="makh" th:value="${userLogin.makh}"/>
                                 <!-- Giới tính -->
                                 <div class="form-group" style="margin-left: 50px; margin-top: 50px; width: 300px;">
                                     <label>Giới tính:</label>
@@ -1502,51 +1239,67 @@
                                 <!-- Ngày sinh -->
                                 <div class="form-group" style="margin-left: 50px; margin-top: 50px; width: 300px;">
                                     <label>Ngày sinh:</label>
-                                    <input type="date" class="form-control" id="ngaysinh" th:value="${userLogin.ngaysinh}" disabled>
+                                    <input type="date" class="form-control" name="ngaysinh" id="ngaysinh"
+                                           th:value="${#dates.format(ngaysinh, 'yyyy-MM-dd')}" disabled>
                                 </div>
                                 <br>
                                 <!-- Email -->
                                 <div class="form-group" style="margin-left: 50px; margin-top: 10px; width: 300px;">
                                     <label>Email:</label>
-                                    <input type="email" class="form-control" id="email" th:value="${userLogin.email}" disabled>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           th:value="${userLogin.email}" disabled>
                                 </div>
                                 <!-- Số điện thoại -->
                                 <div class="form-group" style="margin-left: 50px; margin-top: 10px; width: 300px;">
                                     <label>SDT:</label>
-                                    <input type="text" class="form-control" id="sdt" th:value="${userLogin.sdt}" disabled>
+                                    <input type="text" class="form-control" name="sdt" id="sdt"
+                                           th:value="${userLogin.sdt}" disabled>
                                 </div>
                                 <br>
                             </div>
 
-                            <div class="row" style="width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 20px;">
+                            <div class="row"
+                                 style="width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 20px;">
                                 <!-- Nút cập nhật -->
-                                <button class="btn btn-success" id="updateBtn" style="height: 50px; width: 100px;">Cập Nhật</button>
+                                <button class="btn btn-success" id="updateBtn" style="height: 50px; width: 100px;">Thay Đổi
+                                </button>
                                 <!-- Nút submit -->
-                                <button class="btn btn-primary" id="submitBtn" style="height: 50px; width: 100px; margin-left: 10px; display: none;">
-                                    Submit
+                                <button class="btn btn-primary" id="submitBtn" style="height: 50px; width: 100px; margin-left: 10px; display: none;">Cập Nhật
                                 </button>
                             </div>
-                            <div class="row" style="height: 1px; width: 100%; background-color: black; margin: 30px 0 10px 7px;"></div>
+                        </form>
+
+                <!--changepasword-->
+                        <form action="/buyer/users/updatepassword" method="post">
+
+                            <div class="row"
+                                 style="height: 1px; width: 100%; background-color: black; margin: 30px 0 10px 7px;"></div>
 
                             <h5 style="margin-top: 20px; font-weight: 100; ">Đổi mật khẩu</h5>
-                            <div class="row" style=" width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 20px;">
+                            <div class="row"
+                                 style=" width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 20px;">
                                 <div class="form-group" style="margin-left: 50px; margin-top: 10px; width: 300px;">
                                     <label>Mật khẩu cũ :</label>
                                     <br>
-                                    <input type="password" class="form-control">
+                                    <input type="password" name="password" id="password" class="form-control" disabled>
                                 </div>
                                 <div class="form-group" style="margin-left: 50px; margin-top: 10px; width: 300px;">
                                     <label>Mật khẩu mới :</label>
                                     <br>
-                                    <input type="text" class="form-control">
+                                    <input type="password" name="passwordnew" id="passwordnew" class="form-control" disabled>
                                 </div>
                                 <br>
                             </div>
-                            <div class="row" style="width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 20px;">
-                                <button class="btn btn-success" style="height: 50px; width: 100px;">Thay đổi</button>
+                            <div class="row"
+                                 style="width: 803px; margin-left: 2px; border-radius: 5px; margin-top: 20px;">
+                                <button class="btn btn-success" id="updateBtn1" style="height: 50px; width: 100px;">Thay Đổi</button>
+                                <!-- Nút submit -->
+                                <button class="btn btn-primary" id="submitBtn1" style="height: 50px; width: 100px; margin-left: 10px; display: none;">Cập Nhật
+                                </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
                 <!--                Setting Account End-->
 
@@ -1599,7 +1352,7 @@
                                             th:text="${x.sdtnguoinhan}"></h3>
 
                                         <a th:href="@{'/buyer/addresses/edit/' +${x.madc}}"
-                                           style="color: black; margin-top: 30px; margin-left: 398px;border: 0.5px solid #4e4d4d">Edit</a>
+                                           style="color: black; margin-top: 30px; margin-left: 398px;border: 0.5px solid #4e4d4d">Sửa</a>
 
                                         <a th:href="@{'/buyer/addresses/delete/' +${x.madc}}" class="delete"
                                            style=" margin-top: 30px; margin-left: 10px;border: 0.5px solid #4e4d4d ">Xóa</a>
@@ -1643,13 +1396,13 @@
                                         thanh toán</a></li>
                                     <li th:class="${type3}" style="margin-right: 27px;"><a style="font-size: 11pt"
                                                                                            th:href="@{'/buyer/purchase/ship'}">Chờ
-                                        giao hàng</a></li>
+                                        xác nhận</a></li>
                                     <li th:class="${type4}" style="margin-right: 27px;"><a style="font-size: 11pt"
-                                                                                           th:href="@{'/buyer/purchase/receive'}">Giao
-                                        hàng</a></li>
+                                                                                           th:href="@{'/buyer/purchase/receive'}">
+                                        Đang giao hàng</a></li>
                                     <li th:class="${type5}" style="margin-right: 27px;"><a style="font-size: 11pt"
-                                                                                           th:href="@{'/buyer/purchase/completed'}">Thành
-                                        công</a></li>
+                                                                                           th:href="@{'/buyer/purchase/completed'}">
+                                        Thành công</a></li>
                                     <li th:class="${type6}" style="margin-right: 27px;"><a style="font-size: 11pt"
                                                                                            th:href="@{'/buyer/purchase/cancel'}">Đã
                                         hủy</a></li>
@@ -1661,85 +1414,70 @@
 
                         <div th:if="${purchaseAll}" class="row"
                              style="background-color: white; width: 836px ; border-radius: 5px;">
-
                             <!-- List All Hoa Don Begin -->
-
                             <th:block th:each="x : ${listAllHDByKhachHang}">
 
                                 <div th:unless="${x.trangThai == 6 or x.trangThai == 7}" class=""
                                      style=" display: block; width: 100%; border-radius: 5px; margin-bottom: 10px;  border: 0.5px solid rgb(176, 176, 176); background-color: #f3f2ee;">
 
-                                    <div th:if="${x.idHDOld == null}"
-                                         style="float: right; display: flex; padding: 10px 0 0 0;">
-                                        <p style="float: right; display: flex; " th:text="${x.maHD}"></p>
+                                    <div
+                                            style="float: right; display: flex; padding: 10px 0 0 0;">
+                                        <p style="float: right; display: flex; " th:text="${x.tenhd}"></p>
                                         <p style="margin: 0 10px 0 10px;">|</p>
                                         <p th:if="${x.trangThai == 0}" style="color: red; margin-right: 20px;">CHỜ THANH
                                             TOÁN</p>
-                                        <p th:if="${x.trangThai == 1}" style="color: red; margin-right: 20px;">CHỜ GIAO
+                                        <p th:if="${x.trangThai == 1}" style="color: red; margin-right: 20px;">CHỜ XÁC
+                                            NHẬN</p>
+                                        <p th:if="${x.trangThai == 2}" style="color: red; margin-right: 20px;">ĐANG GIAO
                                             HÀNG</p>
-                                        <p th:if="${x.trangThai == 2}" style="color: red; margin-right: 20px;">ĐANG
-                                            GIAO</p>
                                         <p th:if="${x.trangThai == 3}" style="color: red; margin-right: 20px;">GIAO
                                             THÀNH CÔNG</p>
                                         <p th:if="${x.trangThai == 4}" style="color: red; margin-right: 20px;">ĐÃ
                                             HỦY</p>
                                     </div>
 
-                                    <div th:if="${x.idHDOld == null}"
-                                         style="width: 90%; margin: 40px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
+                                    <div
+                                            style="width: 90%; margin: 40px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
 
                                     <!-- List CTDP in HD begin -->
-                                    <th:block th:if="${x.idHDOld == null}" th:each="product : ${x.hoaDonChiTiets}">
+                                    <th:block th:each="product : ${x.hoaDonChiTiets}">
                                         <div style="display: flex; padding-left: 40px;">
-                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                                  style="height: 80px; width: 80px; border-radius: 5px;" alt="">
                                             <div style="width: 300px;">
                                                 <p style="margin: 5px 0 0 15px; color: #637381; font-size: 11pt;"
-                                                   th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                                   th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | ' + ${product.chiTietGiay.size.soSize} "></p>
+                                                   th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | ' + ${product.chiTietSanPham.size.kichthuoc} "></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Số lượng: ' + ${product.soLuong}"></p>
+                                                   th:text="'Số lượng: ' + ${product.soluong}"></p>
                                             </div>
-                                            <p style="color: #b7b7b7;text-decoration: line-through;margin:10px 20px 0 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.chiTietGiay.soTienTruocKhiGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
-                                            <p style="margin:10px 10px 0 0; font-size: 12pt; color: black;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                            <p style="margin:10px 10px 0 0; font-size: 12pt; color: black;" th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+
                                         </div>
 
                                         <div style="width: 90%; margin: 15px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
                                     </th:block>
                                     <!-- List CTDP in HD end -->
 
-                                    <div th:if="${x.idHDOld == null}" style=" margin: 0 0 20px 560px;">
+                                    <div style=" margin: 0 0 20px 560px;">
 
                                         <p style="font-size: 13pt; color: black; font-weight: 600; margin-right: 50px; "
-                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                                     </div>
 
-                                    <div th:if="${x.idHDOld == null}" style="float: right; margin: 0 0 20px 0;">
+                                    <div style="float: right; margin: 0 0 20px 0;">
                                         <div style="display: flex; margin-right: 20px;">
-                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.idHD}}"
+                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.mahd}}"
                                                style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Xem
                                                 chi tiết</a>
-                                            <a th:if="${x.trangThai == 3 or x.trangThai == 4 or x.trangThai == 5}"
-                                               th:href="@{'/buyer/purchaser/bill/buy/again/' + ${x.idHD}}"
-                                               style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Mua
-                                                lại</a>
-                                            <a th:if="${x.trangThai == 3 and x.soLanDanhGia < 1}"
-                                               th:data-bs-toggle="modal"
-                                               th:data-bs-target="'#modalDanhGia' + ${x.idHD}"
-                                               style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Đánh
-                                                giá</a>
-
-
                                             <a th:if="${x.trangThai == 0}" th:data-bs-toggle="modal"
-                                               th:data-bs-target="'#modalQRCode' + ${x.idHD}"
+                                               th:data-bs-target="'#modalQRCode' + ${x.mahd}"
                                                style="cursor: pointer; color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Thanh
                                                 Toán</a>
                                             <a th:if="${x.trangThai == 0 or x.trangThai == 1}"
-                                               th:href="@{'/buyer/purchase/bill/detail/cancel/' + ${x.idHD}}"
+                                               th:href="@{'/buyer/purchase/bill/detail/cancel/' + ${x.mahd}}"
                                                style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Hủy
                                                 đơn</a>
                                         </div>
@@ -1758,37 +1496,33 @@
                              style="margin-top: 10px; background-color: white; width: 836px; border-radius: 5px;">
                             <th:block th:each="x : ${listAllHDByKhachHang}">
 
-                                <div th:if="${x.idHDOld == null}" class=""
+                                <div  class=""
                                      style="width: 100%; border-radius: 5px; margin-bottom: 10px;  border: 0.5px solid rgb(176, 176, 176); background-color: #f3f2ee;">
 
                                     <div style="float: right; display: flex; padding: 10px 0 0 0;">
-                                        <a style="color: black;" href="#" th:text="${x.maHD}"></a>
+                                        <a style="color: black;" href="#" th:text="${x.tenhd}"></a>
                                         <span style="margin: 0 10px 0 10px;">  | </span>
                                         <p style="margin-right: 20px; color: red;">CHỜ THANH TOÁN</p>
                                     </div>
 
                                     <div style="width: 90%; margin: 40px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
 
-
                                     <!-- List CTDP in HD begin -->
                                     <th:block th:each="product : ${x.hoaDonChiTiets}">
                                         <div style="display: flex; padding-left: 40px;">
-                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                                  style="height: 80px; width: 80px; border-radius: 5px;" alt="">
                                             <div style="width: 300px;">
                                                 <p style="margin: 5px 0 0 15px; color: #637381; font-size: 11pt;"
-                                                   th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                                   th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | ' + ${product.chiTietGiay.size.soSize} "></p>
+                                                   th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | ' + ${product.chiTietSanPham.size.kichthuoc} "></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Số lượng: ' + ${product.soLuong}"></p>
+                                                   th:text="'Số lượng: ' + ${product.soluong}"></p>
                                             </div>
 
-                                            <p th:if="${product.chiTietGiay.soTienTruocKhiGiam != product.chiTietGiay.giaBan}"
-                                               style="color: #b7b7b7;text-decoration: line-through;margin:10px 20px 0 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.chiTietGiay.soTienTruocKhiGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                             <p style="margin:10px 10px 0 0; font-size: 12pt; color: black;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                               th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                         </div>
 
                                         <div style="width: 90%; margin: 15px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
@@ -1798,15 +1532,16 @@
                                     <div style="float: right; margin: 0 0 20px 0;">
 
                                         <p style="font-size: 13pt; color: black; font-weight: 600; margin-left: 80px;"
-                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                                         <div style="display: flex; margin-right: 20px;">
-                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.idHD}}"
+                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.mahd}}"
                                                style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0">Xem
                                                 chi tiết</a>
-                                            <button style="height: 50px; width: 130px; border: 0.5px solid black;">Huỷ
-                                                Đơn Hàng
-                                            </button>
+                                            <a th:href="@{'/buyer/purchase/bill/detail/cancel/' + ${x.mahd}}"
+                                               style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Hủy
+                                                đơn</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -1820,13 +1555,13 @@
                              style="margin-top: 10px; background-color: white; width: 836px; border-radius: 5px;">
                             <th:block th:each="x : ${listAllHDByKhachHang}">
 
-                                <div th:if="${x.idHDOld == null}" class=""
+                                <div  class=""
                                      style="width: 100%; border-radius: 5px; margin-bottom: 10px;  border: 0.5px solid rgb(176, 176, 176); background-color: #f3f2ee;">
 
                                     <div style="float: right; display: flex; padding: 10px 0 0 0;">
-                                        <a style="color: black;" href="#" th:text="${x.maHD}"></a>
+                                        <a style="color: black;" href="#" th:text="${x.tenhd}"></a>
                                         <span style="margin: 0 10px 0 10px;">  | </span>
-                                        <p style="margin-right: 20px; color: red;">CHỜ GIAO HÀNG</p>
+                                        <p style="margin-right: 20px; color: red;">CHỜ XÁC NHẬN</p>
                                     </div>
 
                                     <div style="width: 90%; margin: 40px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
@@ -1835,21 +1570,18 @@
                                     <!-- List CTDP in HD begin -->
                                     <th:block th:each="product : ${x.hoaDonChiTiets}">
                                         <div style="display: flex; padding-left: 40px;">
-                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                                  style="height: 80px; width: 80px; border-radius: 5px;" alt="">
                                             <div style="width: 300px;">
                                                 <p style="margin: 5px 0 0 15px; color: #637381; font-size: 11pt;"
-                                                   th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                                   th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | ' + ${product.chiTietGiay.size.soSize} "></p>
+                                                   th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | ' + ${product.chiTietSanPham.size.kichthuoc} "></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Số lượng: ' + ${product.soLuong}"></p>
+                                                   th:text="'Số lượng: ' + ${product.soluong}"></p>
                                             </div>
-                                            <p th:if="${product.chiTietGiay.soTienTruocKhiGiam != product.chiTietGiay.giaBan}"
-                                               style="color: #b7b7b7;text-decoration: line-through;margin:10px 20px 0 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.chiTietGiay.soTienTruocKhiGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                             <p style="margin:10px 10px 0 0; font-size: 12pt; color: black;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                               th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                         </div>
 
                                         <div style="width: 90%; margin: 15px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
@@ -1859,15 +1591,15 @@
                                     <div style="float: right; margin: 0 0 20px 0;">
 
                                         <p style="font-size: 13pt; color: black; font-weight: 600; margin-left: 80px;"
-                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                                         <div style="display: flex; margin-right: 20px;">
-                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.idHD}}"
+                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.mahd}}"
                                                style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0">Xem
                                                 chi tiết</a>
-                                            <button style="height: 50px; width: 130px; border: 0.5px solid black;">Huỷ
-                                                Đơn Hàng
-                                            </button>
+                                            <a th:href="@{'/buyer/purchase/bill/detail/cancel/' + ${x.mahd}}"
+                                               style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Hủy
+                                                đơn</a>
                                         </div>
                                     </div>
                                 </div>
@@ -1881,11 +1613,11 @@
                              style="margin-top: 10px;background-color: white; width: 836px ; border-radius: 5px;">
                             <th:block th:each="x : ${listAllHDByKhachHang}">
 
-                                <div th:if="${x.idHDOld == null}" class=""
+                                <div  class=""
                                      style="width: 100%; border-radius: 5px; margin-bottom: 10px;  border: 0.5px solid rgb(176, 176, 176); background-color: #f3f2ee;">
 
                                     <div style="float: right; display: flex; padding: 10px 0 0 0;">
-                                        <a style="color: black;" href="#" th:text="${x.maHD}"></a>
+                                        <a style="color: black;" href="#" th:text="${x.tenhd}"></a>
                                         <span style="margin: 0 10px 0 10px;">  | </span>
                                         <p style="margin-right: 20px; color: red;">ĐANG GIAO HÀNG</p>
                                     </div>
@@ -1895,21 +1627,18 @@
                                     <!-- List CTDP in HD begin -->
                                     <th:block th:each="product : ${x.hoaDonChiTiets}">
                                         <div style="display: flex; padding-left: 40px;">
-                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                                  style="height: 80px; width: 80px; border-radius: 5px;" alt="">
                                             <div style="width: 300px;">
                                                 <p style="margin: 5px 0 0 15px; color: #637381; font-size: 11pt;"
-                                                   th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                                   th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | ' + ${product.chiTietGiay.size.soSize} "></p>
+                                                   th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | ' + ${product.chiTietSanPham.size.kichthuoc} "></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Số lượng: ' + ${product.soLuong}"></p>
+                                                   th:text="'Số lượng: ' + ${product.soluong}"></p>
                                             </div>
-                                            <p th:if="${product.chiTietGiay.soTienTruocKhiGiam != product.chiTietGiay.giaBan}"
-                                               style="color: #b7b7b7;text-decoration: line-through;margin:10px 20px 0 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.chiTietGiay.soTienTruocKhiGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                             <p style="margin:10px 10px 0 0; font-size: 12pt; color: black;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                               th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                         </div>
 
                                         <div style="width: 90%; margin: 15px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
@@ -1919,15 +1648,17 @@
                                     <div style="float: right; margin: 0 0 20px 0;">
 
                                         <p style="font-size: 13pt; color: black; font-weight: 600; margin-left: 80px;"
-                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                                         <div style="display: flex; margin-right: 20px;">
-                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.idHD}}"
+                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.mahd}}"
                                                style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0">Xem
                                                 chi tiết</a>
-                                            <button style="height: 50px; width: 130px; border: 0.5px solid black;">Đã
-                                                Nhận Hàng
-                                            </button>
+
+                                            <a th:href="@{'/buyer/purchase/bill/complete/' + ${x.mahd}}"
+                                               style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0">Đã
+                                                Nhận Hàng</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -1941,11 +1672,11 @@
                              style="margin-top: 10px;background-color: white; width: 836px ; border-radius: 5px;">
                             <th:block th:each="x : ${listAllHDByKhachHang}">
 
-                                <div th:if="${x.idHDOld == null}" class=""
+                                <div  class=""
                                      style="width: 100%; border-radius: 5px; margin-bottom: 10px;  border: 0.5px solid rgb(176, 176, 176); background-color: #f3f2ee;">
 
                                     <div style="float: right; display: flex; padding: 10px 0 0 0;">
-                                        <a style="color: black;" href="#" th:text="${x.maHD}"></a>
+                                        <a style="color: black;" href="#" th:text="${x.tenhd}"></a>
                                         <span style="margin: 0 10px 0 10px;">  | </span>
                                         <p style="margin-right: 20px; color: red;">ĐÃ GIAO HÀNG</p>
                                     </div>
@@ -1956,21 +1687,18 @@
                                     <!-- List CTDP in HD begin -->
                                     <th:block th:each="product : ${x.hoaDonChiTiets}">
                                         <div style="display: flex; padding-left: 40px;">
-                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                                  style="height: 80px; width: 80px; border-radius: 5px;" alt="">
                                             <div style="width: 300px;">
                                                 <p style="margin: 5px 0 0 15px; color: #637381; font-size: 11pt;"
-                                                   th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                                   th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | ' + ${product.chiTietGiay.size.soSize} "></p>
+                                                   th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | ' + ${product.chiTietSanPham.size.kichthuoc} "></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Số lượng: ' + ${product.soLuong}"></p>
+                                                   th:text="'Số lượng: ' + ${product.soluong}"></p>
                                             </div>
-                                            <p th:if="${product.chiTietGiay.soTienTruocKhiGiam != product.chiTietGiay.giaBan}"
-                                               style="color: #b7b7b7;text-decoration: line-through;margin:10px 20px 0 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.chiTietGiay.soTienTruocKhiGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                             <p style="margin:10px 10px 0 0; font-size: 12pt; color: black;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                               th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                         </div>
 
                                         <div style="width: 90%; margin: 15px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
@@ -1980,30 +1708,12 @@
                                     <div style="float: right; margin: 0 0 20px 0;">
 
                                         <p style="font-size: 13pt; color: black; font-weight: 600; margin-left: 80px;"
-                                           th:text="'Thanh toán: ₫' + ${#numbers.formatDecimal(x.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                           th:text="'Thanh toán: ₫' + ${#numbers.formatDecimal(x.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                                         <div style="display: flex; margin-right: 20px;">
-                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.idHD}}"
+                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.mahd}}"
                                                style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0">Xem
                                                 chi tiết</a>
-                                            <a th:href="@{'/buyer/purchaser/bill/completed/rated/' + ${x.idHD}}" style=" color: black; text-align: center; margin-right:20px;  padding-top: 12px; align-items: center; height: 50px;
-                                              width: 130px; border: 0.5px solid black; background-color: #f0f0f0">Đánh
-                                                giá</a>
-
-                                            <a th:if="${x.trangThaiHoan != 9 }"
-                                               th:href="@{'/buyer/purchaser/bill/detail/refund/' + ${x.idHD}}" type
-                                               style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px;
-                                              width: 250px; border: 0.5px solid black; margin: 0 20px 0 0; background-color: #f0f0f0">
-                                                Xem chi tiết Hoàn/Đổi Hàng</a>
-
-                                            <form th:if="${x.trangThaiHoan == 9}"
-                                                  th:action="@{'/buyer/purchaser/bill/refund/' + ${x.idHD}}"
-                                                  method="post">
-                                                <button type="submit" style=" color: black; text-align: center;
-                                                 align-items: center; height: 50px; width: 130px; border: 0.5px solid black; background-color: #f0f0f0">
-                                                    Hoàn/Đổi Hàng
-                                                </button>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -2017,11 +1727,11 @@
                              style="margin-top: 10px;background-color: white; width: 836px ; border-radius: 5px;">
                             <th:block th:each="x : ${listAllHDByKhachHang}">
 
-                                <div th:if="${x.idHDOld == null}" class=""
+                                <div  class=""
                                      style="width: 100%; border-radius: 5px; margin-bottom: 10px;  border: 0.5px solid rgb(176, 176, 176); background-color: #f3f2ee;">
 
                                     <div style="float: right; display: flex; padding: 10px 0 0 0;">
-                                        <a style="color: black;" href="#" th:text="${x.maHD}"></a> <span
+                                        <a style="color: black;" href="#" th:text="${x.tenhd}"></a> <span
                                             style="margin: 0 10px 0 10px;">  | </span>
                                         <p style="margin-right: 20px; color: red;">ĐÃ HỦY</p>
                                     </div>
@@ -2031,22 +1741,19 @@
                                     <!-- List CTDP in HD begin -->
                                     <th:block th:each="product : ${x.hoaDonChiTiets}">
                                         <div style="display: flex; padding-left: 40px;">
-                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietGiay.hinhAnh.url1}}"
+                                            <img th:src="@{'/images/imgsProducts/' + ${product.chiTietSanPham.hinhAnh.url1}}"
                                                  style="height: 80px; width: 80px; border-radius: 5px;" alt="">
                                             <div style="width: 300px;">
                                                 <p style="margin: 5px 0 0 15px; color: #637381; font-size: 11pt;"
-                                                   th:text="${product.chiTietGiay.giay.tenGiay}"></p>
+                                                   th:text="${product.chiTietSanPham.sanPham.tensp}"></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Phân loại: ' + ${product.chiTietGiay.mauSac.tenMau} +' | ' + ${product.chiTietGiay.size.soSize} "></p>
+                                                   th:text="'Phân loại: ' + ${product.chiTietSanPham.mauSac.tenmau} +' | ' + ${product.chiTietSanPham.size.kichthuoc} "></p>
                                                 <p style="margin: 0 0 0 15px; color: #637381; font-size: 10pt;"
-                                                   th:text="'Số lượng: ' + ${product.soLuong}"></p>
+                                                   th:text="'Số lượng: ' + ${product.soluong}"></p>
                                             </div>
 
-                                            <p th:if="${product.chiTietGiay.soTienTruocKhiGiam != product.chiTietGiay.giaBan}"
-                                               style="color: #b7b7b7;text-decoration: line-through;margin:10px 20px 0 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.chiTietGiay.soTienTruocKhiGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                             <p style="margin:10px 10px 0 0; font-size: 12pt; color: black;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(product.donGia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                               th:text="'₫' + ${#numbers.formatDecimal(product.dongia, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                         </div>
 
                                         <div style="width: 90%; margin: 15px 0 20px 40px ; background-color: black; height: 0.5px;"></div>
@@ -2056,15 +1763,12 @@
                                     <div style="float: right; margin: 0 0 20px 0;">
 
                                         <p style="font-size: 13pt; color: black; font-weight: 600; margin-left: 80px;"
-                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                           th:text="'Thanh toán      : ₫' + ${#numbers.formatDecimal(x.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                                         <div style="display: flex; margin-right: 20px;">
-                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.idHD}}"
+                                            <a th:href="@{'/buyer/purchase/bill/detail/' + ${x.mahd}}"
                                                style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0">Xem
                                                 chi tiết</a>
-                                            <a th:href="@{'/buyer/purchaser/bill/buy/again/' + ${x.idHD}}"
-                                               style=" color: black; text-align: center; padding-top: 12px; align-items: center; height: 50px; width: 130px; border: 0.5px solid black; margin-right: 20px; background-color: #f0f0f0;">Mua
-                                                lại</a>
                                         </div>
                                     </div>
                                 </div>
@@ -2072,7 +1776,6 @@
                             </th:block>
                         </div>
                         <!-- to return cancel end -->
-
                     </div>
                 </div>
                 <!--                Purchase End-->
@@ -2159,7 +1862,6 @@
 <!--Modal begin-->
 <section>
 
-    <!--    Thêm địa chỉ  begin-->
     <div th:if="${addNewAddressSetting}" class="modal fade" id="modalThemDiaChi" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 500px">
@@ -2235,9 +1937,7 @@
             </div>
         </div>
     </div>
-    <!--    Thêm địa chỉ end-->
 
-    <!--    Thông tin thanh toán begin-->
     <div class="modal fade" id="modalQRCode" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 1170px;">
@@ -2279,12 +1979,12 @@
                                             <p style="display: flex;">NỘI DUNG CHUYỂN KHOẢN </p>
 
                                             <p style="font-weight: 700; border: 0.5px solid black; padding: 10px; width: 250px;"
-                                               th:text="${billDetailPay.maHD}"></p>
+                                               th:text="${billDetailPay.tenhd}"></p>
 
                                             <p>Số Tiền</p>
 
                                             <p style="font-weight: 700; border: 0.5px solid black; padding: 10px; width: 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(billDetailPay.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                               th:text="'₫' + ${#numbers.formatDecimal(billDetailPay.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
 
                                         </div>
                                     </div>
@@ -2310,11 +2010,9 @@
             </div>
         </div>
     </div>
-    <!--    Thông tin thanh toán end-->
 
-    <!--  List Thông tin thanh toán begin-->
     <th:block th:each="x : ${listHoaDonChoThanhToan}">
-        <div class="modal fade" th:id="'modalQRCode' + ${x.idHD}" tabindex="-1" role="dialog"
+        <div class="modal fade" th:id="'modalQRCode' + ${x.mahd}" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document" style="width: 1170px;">
                 <div class="modal-content">
@@ -2352,10 +2050,10 @@
                                             <p style="font-weight: 700;">NỘI DUNG THANH TOÁN</p>
                                             <p style="display: flex;">NỘI DUNG CHUYỂN KHOẢN</p>
                                             <p style="font-weight: 700; border: 0.5px solid black; padding: 10px; width: 250px;"
-                                               th:text="${x.maHD}"></p>
+                                               th:text="${x.tenhd}"></p>
                                             <p>Số Tiền</p>
                                             <p style="font-weight: 700; border: 0.5px solid black; padding: 10px; width: 150px;"
-                                               th:text="'₫' + ${#numbers.formatDecimal(x.tongTienDG, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
+                                               th:text="'₫' + ${#numbers.formatDecimal(x.tongtien, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -2380,16 +2078,14 @@
             </div>
         </div>
     </th:block>
-    <!--  List Thông tin thanh toán end-->
 
-    <!--    Thay đổi phương thức thanh toán begin-->
     <div th:if="${modalThayDoiPhuongThucThanhToan}" class="modal fade" id="modalThayDoiPhuongThucThanhToan"
          tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
         <!--        Modal thay đổi phương thức thanh toán (chờ thanh toán) begin-->
         <div th:if="${detailBillPay}" class="modal-dialog modal-dialog-centered" role="document" style="width: 550px;"
              th:object="${billDetailPay}">
-            <form th:action="@{'/buyer/purchase/pay/change/payment/' + ${billDetailPay.idHD}}" method="post">
+            <form th:action="@{'/buyer/purchase/pay/change/payment/' + ${billDetailPay.mahd}}" method="post">
                 <div class="modal-content">
 
                     <div class="modal-header">
@@ -2422,7 +2118,7 @@
         <!--        Modal thay đổi phương thức thanh toán (chờ thanh toán) begin-->
         <div th:if="${detailBillShip}" class="modal-dialog modal-dialog-centered" role="document" style="width: 550px;"
              th:object="${billDetailShip}">
-            <form th:action="@{'/buyer/purchase/pay/change/payment/' + ${billDetailShip.idHD}}" method="post">
+            <form th:action="@{'/buyer/purchase/pay/change/payment/' + ${billDetailShip.mahd}}" method="post">
                 <div class="modal-content">
 
                     <div class="modal-header">
@@ -2451,9 +2147,7 @@
         <!--        Modal thay đổi phương thức thanh toán (chờ thanh toán) end-->
 
     </div>
-    <!--   Thay đổi phương thức thanh toán end-->
 
-    <!--    Modal hủy hóa đơn begin-->
     <div class="modal fade" id="modalHuyHoaDon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
          aria-hidden="true">
 
@@ -2481,7 +2175,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeSize" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         size/ màu</p>
                                 </div>
@@ -2490,7 +2184,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeProduct" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         sản phẩm</p>
                                 </div>
@@ -2498,7 +2192,7 @@
 
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
-                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lyDoHuy">
+                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi không có nhu
                                         cầu mua nữa</p>
                                 </div>
@@ -2507,9 +2201,9 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="lyDoKhac" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 15px 0 30px; font-size: 12pt; font-weight: 500;">Khác</p>
-                                    <textarea name="hutThuocNenDauDaDay" cols="25" rows="3"></textarea>
+                                    <textarea name="khac" cols="25" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -2533,7 +2227,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Thay đổi phương thức thanh toán</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Lý do hủy hóa đơn thanh toán</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -2550,7 +2244,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeSize" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         size/ màu</p>
                                 </div>
@@ -2559,7 +2253,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeProduct" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         sản phẩm</p>
                                 </div>
@@ -2567,7 +2261,7 @@
 
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
-                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lyDoHuy">
+                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi không có nhu
                                         cầu mua nữa</p>
                                 </div>
@@ -2576,9 +2270,9 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="lyDoKhac" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 15px 0 30px; font-size: 12pt; font-weight: 500;">Khác</p>
-                                    <textarea name="hutThuocNenDauDaDay" cols="25" rows="3"></textarea>
+                                    <textarea name="khac" cols="25" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -2596,13 +2290,10 @@
         <!--        Modal hủy chờ giao hàng end-->
 
     </div>
-    <!--   Modal hủy hóa đơn end-->
 
-    <!--    Modal hủy đơn all begin -->
     <div th:if="${modalHuyHoaDonInDetailBillPay}" class="modal fade" id="modalHuyHoaDonInDetailBillPay" tabindex="-1"
          role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
-        <!--       Modal Hủy chờ thanh toán begin-->
         <div th:if="${detailBillPay}" class="modal-dialog modal-dialog-centered" role="document" style="width: 600px;"
              th:object="${billDetailPay}">
             <form th:action="@{'/buyer/purchase/bill/pay/cancel/' + ${billDetailPay.mahd}}" method="post">
@@ -2626,7 +2317,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeSize" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         size/ màu</p>
                                 </div>
@@ -2635,7 +2326,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeProduct" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         sản phẩm</p>
                                 </div>
@@ -2643,7 +2334,7 @@
 
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
-                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lyDoHuy">
+                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi không có nhu
                                         cầu mua nữa</p>
                                 </div>
@@ -2652,9 +2343,9 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="lyDoKhac" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 15px 0 30px; font-size: 12pt; font-weight: 500;">Khác</p>
-                                    <textarea name="hutThuocNenDauDaDay" cols="25" rows="3"></textarea>
+                                    <textarea name="khac" cols="25" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -2669,16 +2360,14 @@
                 </div>
             </form>
         </div>
-        <!--       Modal Hủy chờ thanh toán end-->
 
-        <!--        Modal hủy chờ giao hàng begin-->
-        <div th:if="${detailBillShip}" class="modal-dialog modal-dialog-centered" role="document"
+        <div th:if="${detailBillShip}" class="modal-dialog modal-dialog-centered" role="document" style="width: 600px;"
              th:object="${billDetailShip}">
             <form th:action="@{'/buyer/purchase/bill/pay/cancel/' + ${billDetailShip.mahd}}" method="post">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Thay đổi phương thức thanh toán</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Lý do hủy hóa đơn thanh toán</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -2695,7 +2384,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeSize" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         size/ màu</p>
                                 </div>
@@ -2704,7 +2393,7 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="changeProduct" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi muốn thay đổi
                                         sản phẩm</p>
                                 </div>
@@ -2712,7 +2401,7 @@
 
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
-                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lyDoHuy">
+                                    <input type="radio" value="none" style="height: 20px; width: 20px;" name="lydohuy">
                                     <p style="margin: 0 0 0 30px; font-size: 12pt; font-weight: 500;">Tôi không có nhu
                                         cầu mua nữa</p>
                                 </div>
@@ -2721,9 +2410,9 @@
                             <div class="row" style="margin: 15px 0 15px 0;">
                                 <div style="margin-left: 50px; display: flex; margin-right: 50px;">
                                     <input type="radio" value="lyDoKhac" style="height: 20px; width: 20px;"
-                                           name="lyDoHuy">
+                                           name="lydohuy">
                                     <p style="margin: 0 15px 0 30px; font-size: 12pt; font-weight: 500;">Khác</p>
-                                    <textarea name="hutThuocNenDauDaDay" cols="25" rows="3"></textarea>
+                                    <textarea name="khac" cols="25" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -2738,13 +2427,10 @@
                 </div>
             </form>
         </div>
-        <!--        Modal hủy chờ giao hàng end-->
 
     </div>
-    <!--    Modal hủy đơn all end-->
 
 
-    <!--    Modal thong bao thay doi pttt begin-->
     <div th:if="${showThongBaoThayDoiHTTT}" class="modal fade" id="thongBaoThayDoiHTTT" tabindex="-1" role="dialog"
          aria-labelledby="messAddThanhCongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 550px;">
@@ -2774,162 +2460,6 @@
     </div>
     <!--    Modal thong bao thay doi pttt end-->
 
-    <!--    Modal thêm địa chỉ lấy hàng begin-->
-    <div th:if="${billDetailPay}" class="modal fade" id="addNewAddressNhanHang" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" style="width: 500px">
-            <div class="modal-content">
-                <form th:action="'/buyer/purchase/bill/add/address/get/' + ${billDetailPay.mahd}" method="post">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Thêm địa chỉ nhận hàng mới</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <div class="row" style="margin-bottom: 20px;">
-                                <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên địa chỉ" name="nameAddress">
-
-                                <input style="height: 40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên người nhận" name="fullName">
-                            </div>
-                            <div class="row" style="margin-bottom: 20px;">
-                                <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="SDT người nhận" name="phoneAddress">
-
-                                <select class="select" id="city" name="city"
-                                        style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                                       font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;">
-                                    <option value="" selected>Chọn thành phố</option>
-                                </select>
-                            </div>
-
-                            <div class="row" style="margin-bottom: 20px;">
-
-                                <select class="select" id="district" name="district" style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px; margin-left: 38px; margin-right: 30px; ">
-                                    <option value="" selected>Chọn quận huyện</option>
-                                </select>
-
-                                <select class="select" id="ward" name="ward" style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px; ">
-                                    <option value="" selected>Chọn phường/xã</option>
-                                </select>
-
-                            </div>
-
-                            <div class="row" style="margin-bottom: 20px;">
-
-                                <input name="description" style="height: 40px;width: 410px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381;  padding: 10px 15px; margin-left: 38px;"
-                                       type="text" placeholder="Mô tả" ;>
-
-                            </div>
-
-                            <div style="width: 100%; height:15px;"></div>
-                            <div style="width: 100%; height: 0.5px; background-color: rgb(64, 64, 64) ;"></div>
-                            <div style="width: 100%; height:15px;"></div>
-
-                            <div class="row">
-                                <input style="margin: 0 10px 0 38px;" type="checkbox" name="defaultSelected"> Đặt làm
-                                mặc định
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--    Modal thêm địa chỉ lấy hàng end-->
-
-
-    <!--    Modal thêm địa chỉ lấy hàng begin-->
-    <div th:if="${detailBillShip}" class="modal fade" id="addNewAddressNhanHangDelivery" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" style="width: 500px">
-            <div class="modal-content">
-                <form th:action="'/buyer/purchase/bill/add/address/get/' + ${billDetailShip.mahd}" method="post">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Thêm địa chỉ nhận hàng mới</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <div class="row" style="margin-bottom: 20px;">
-                                <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên địa chỉ" name="nameAddress">
-
-                                <input style="height: 40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="Tên người nhận" name="fullName">
-                            </div>
-                            <div class="row" style="margin-bottom: 20px;">
-                                <input style="height: 40px; margin-left: 38px; margin-right: 30px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;" type="text"
-                                       placeholder="SDT người nhận" name="phoneAddress">
-
-                                <select class="select" id="city" name="city"
-                                        style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                                       font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px;">
-                                    <option value="" selected>Chọn thành phố</option>
-                                </select>
-                            </div>
-
-                            <div class="row" style="margin-bottom: 20px;">
-
-                                <select class="select" id="district" name="district" style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px; margin-left: 38px; margin-right: 30px; ">
-                                    <option value="" selected>Chọn quận huyện</option>
-                                </select>
-
-                                <select class="select" id="ward" name="ward" style="width: 190px; height:40px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381; padding: 10px 15px; ">
-                                    <option value="" selected>Chọn phường/xã</option>
-                                </select>
-
-                            </div>
-
-                            <div class="row" style="margin-bottom: 20px;">
-
-                                <input name="description" style="height: 40px;width: 410px; border: 1px solid rgba(145, 158, 171, .32); border-radius: 5px;
-                                font-weight: 500; font-size: 14px; color: #637381;  padding: 10px 15px; margin-left: 38px;"
-                                       type="text" placeholder="Mô tả" ;>
-
-                            </div>
-
-                            <div style="width: 100%; height:15px;"></div>
-                            <div style="width: 100%; height: 0.5px; background-color: rgb(64, 64, 64) ;"></div>
-                            <div style="width: 100%; height:15px;"></div>
-
-                            <div class="row">
-                                <input style="margin: 0 10px 0 38px;" type="checkbox" name="defaultSelected"> Đặt làm
-                                mặc định
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--    Modal thêm địa chỉ lấy hàng end-->
 
 </section>
 <!--Modal end-->
@@ -2953,7 +2483,7 @@
 <script src="/js/scrollbar.min.js"></script>
 <script src="/js/custom-scroll.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     const host = "https://provinces.open-api.vn/api/";
     var callAPI = (api) => {
@@ -3003,56 +2533,6 @@
     }
 </script>
 
-<script>
-    $(".imgAdd").click(function () {
-        $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Tải <input type="file" class="uploadFile img" style="width:0px;height:0px;overflow:hidden;"></label><i class="del">X</i></div>');
-    });
-    $(document).on("click", "i.del", function () {
-        $(this).parent().remove();
-    });
-    $(function () {
-        $(document).on("change", ".uploadFile", function () {
-            var uploadFile = $(this);
-            var files = !!this.files ? this.files : [];
-            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-
-            if (/^image/.test(files[0].type)) { // only image file
-                var reader = new FileReader(); // instance of the FileReader
-                reader.readAsDataURL(files[0]); // read the local file
-
-                reader.onloadend = function () { // set image data as background of div
-                    //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                    uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
-                }
-            }
-
-        });
-    });
-</script>
-
-<script>
-    $(document).on("click", "i.del", function () {
-        $(this).parent().remove();
-    });
-    $(function () {
-        $(document).on("change", ".uploadFile", function () {
-            var uploadFile = $(this);
-            var files = !!this.files ? this.files : [];
-            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-
-            if (/^image/.test(files[0].type)) { // only image file
-                var reader = new FileReader(); // instance of the FileReader
-                reader.readAsDataURL(files[0]); // read the local file
-
-                reader.onloadend = function () { // set image data as background of div
-                    //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                    uploadFile.closest(".imgUp2").find('.imagePreview2').css("background-image", "url(" + this.result + ")");
-                }
-            }
-
-        });
-    });
-</script>
 
 <script>
     $(document).ready(function () {
@@ -3070,7 +2550,8 @@
 </script>
 
 <script>
-    document.getElementById('updateBtn').addEventListener('click', function () {
+    document.getElementById('updateBtn').addEventListener('click', function (event) {
+        event.preventDefault();
         // Chuyển các input từ chế độ readonly sang editable
         document.getElementById('gioitinh').disabled = false;
         document.getElementById('ngaysinh').disabled = false;
@@ -3080,6 +2561,27 @@
         // Hiển thị nút Submit và ẩn nút Cập Nhật
         document.getElementById('submitBtn').style.display = 'inline-block';
         this.style.display = 'none';
+
+    });
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        // Form sẽ chỉ được gửi khi người dùng nhấn Submit
+        // alert('Dữ liệu đang được gửi...');
+    });
+
+    document.getElementById('updateBtn1').addEventListener('click', function (event) {
+        event.preventDefault();
+        // Chuyển các input từ chế độ readonly sang editable
+        document.getElementById('password').disabled = false;
+        document.getElementById('passwordnew').disabled = false;
+
+        // Hiển thị nút Submit và ẩn nút Cập Nhật
+        document.getElementById('submitBtn1').style.display = 'inline-block';
+        this.style.display = 'none';
+
+    });
+    document.getElementById('submitBtn1').addEventListener('click', function () {
+        // Form sẽ chỉ được gửi khi người dùng nhấn Submit
+        // alert('Dữ liệu đang được gửi...');
     });
 </script>
 
