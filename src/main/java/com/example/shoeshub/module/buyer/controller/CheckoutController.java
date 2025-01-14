@@ -9,8 +9,6 @@ import com.example.shoeshub.module.hoadon.entity.HoaDon;
 import com.example.shoeshub.module.hoadon.entity.HoaDonChiTiet;
 import com.example.shoeshub.module.hoadon.service.HoaDonChiTietService;
 import com.example.shoeshub.module.hoadon.service.HoaDonService;
-import com.example.shoeshub.module.hoadon.service.impl.HoaDonChiTietServiceImpl;
-import com.example.shoeshub.module.hoadon.service.impl.HoaDonServiceImpl;
 import com.example.shoeshub.module.khachhang.entity.DiaChi;
 import com.example.shoeshub.module.khachhang.entity.KhachHang;
 import com.example.shoeshub.module.khachhang.service.DiaChiService;
@@ -132,8 +130,7 @@ public class CheckoutController {
             hoaDonService.save(hoaDon);
             model.addAttribute("shippingFee", shippingFee);
             model.addAttribute("toTalOder", total + shippingFee);
-        }
-        else {
+        } else {
             Double shippingFee = 0.0;
             model.addAttribute("shippingFee", shippingFee);
             model.addAttribute("toTalOder", total);

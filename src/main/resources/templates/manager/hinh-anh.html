@@ -94,31 +94,7 @@
                     </div>
                     <div class="noti-content">
                         <ul class="notification-list">
-                            <!--                            <th:block th:each="">-->
-                            <!--                                <li th:if="" class="notification-message">-->
-                            <!--                                    <a href="/manage/bill/online">-->
-                            <!--                                        <div class="media d-flex">-->
-                            <!--                                        <span class="avatar flex-shrink-0">-->
-                            <!--                                        <img alt="" src="/images/img/profiles/avatar-02.jpg">-->
-                            <!--                                        </span>-->
-                            <!--                                            <div class="media-body flex-grow-1">-->
-                            <!--                                                <p class="noti-details">-->
-                            <!--                                                    <span class="noti-title" th:text=""></span>-->
-                            <!--                                                    <span th:text=""></span>-->
-                            <!--                                                    <span class="noti-title" th:text=""></span>-->
-                            <!--                                                </p>-->
-                            <!--                                                &lt;!&ndash;                                                <p class="noti-time">&ndash;&gt;-->
-                            <!--                                                &lt;!&ndash;                                                    <span class="notification-time"th:text="${#dates.format(x.tgTB, 'HH:mm yyyy-MM-dd')}"></span>&ndash;&gt;-->
-                            <!--                                                &lt;!&ndash;                                                </p>&ndash;&gt;-->
-                            <!--                                            </div>-->
-                            <!--                                        </div>-->
-                            <!--                                    </a>-->
-                            <!--                                </li>-->
-                            <!--                            </th:block>-->
                         </ul>
-                    </div>
-                    <div class="topnav-dropdown-footer">
-                        <a href="activities.html">View all Notifications</a>
                     </div>
                 </div>
             </li>
@@ -139,10 +115,6 @@
                             </div>
                         </div>
                         <hr class="m-0">
-                        <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
-                            Profile</a>
-                        <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
-                                                                                data-feather="settings"></i>Settings</a>
                         <hr class="m-0">
                         <a class="dropdown-item logout pb-0" href="/logout"><img
                                 src="/images/img/icons/log-out.svg"
@@ -152,26 +124,12 @@
             </li>
         </ul>
 
-        <div class="dropdown mobile-user-menu">
-            <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-               aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="profile.html">Thông tin cá nhân</a>
-                <a class="dropdown-item" href="generalsettings.html">Cài đặt</a>
-                <a class="dropdown-item" href="signin.html">Đăng xuất</a>
-            </div>
-        </div>
 
     </div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-inner slimscroll">
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
-                    <li>
-                        <a href="/manager/"><img src="/images/iconlogo.png"
-                                                 alt="img"><span>Trang chủ </span>
-                        </a>
-                    </li>
                     <li>
                         <a href="/manager/thongke"><img src="/images/img/icons/dashboard.svg"
                                                         alt="img"><span> Thống Kê</span>
@@ -285,16 +243,6 @@
                         </div>
                         <div class="wordset">
                             <ul>
-                                <li>
-                                    <a th:href="@{/manager/hinhAnh/export/pdf}" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title="pdf"><img
-                                            src="/images/img/icons/pdf.svg" alt="img"></a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/manager/hinhAnh/export/excel}" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title="excel"><img
-                                            src="/images/img/icons/excel.svg" alt="img"></a>
-                                </li>
                                 <li>
                                     <a id="printButton" data-bs-toggle="tooltip" data-bs-placement="top"
                                        title="print"><img
