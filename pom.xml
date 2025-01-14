@@ -134,7 +134,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.4</version> <!-- Phiên bản cụ thể của thư viện -->
+            <version>1.5</version> <!-- Phiên bản cụ thể của thư viện -->
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
