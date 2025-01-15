@@ -6,6 +6,7 @@ import com.example.shoeshub.module.danhmuc.service.DanhMucService;
 import com.example.shoeshub.module.mausac.entity.MauSac;
 import com.example.shoeshub.module.sanpham.entity.SanPham;
 import com.example.shoeshub.module.sanpham.repository.SanPhamRepository;
+import com.example.shoeshub.module.sanpham.response.SanPhamResponse;
 import com.example.shoeshub.module.sanpham.service.SanPhamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class SanPhamServiceImpl implements SanPhamService {
     private final DanhMucService danhMucService;
 
     @Override
-    public List<SanPham> getAll() {
-        return sanPhamRepository.findAll();
+    public List<SanPhamResponse> getAll() {
+        return sanPhamRepository.findSanPhamWithTotalQuantityAndCategoryName();
     }
 
     @Override

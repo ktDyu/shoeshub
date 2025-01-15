@@ -11,6 +11,7 @@ import com.example.shoeshub.module.hinhanh.service.HinhAnhService;
 import com.example.shoeshub.module.mausac.entity.MauSac;
 import com.example.shoeshub.module.mausac.service.MauSacService;
 import com.example.shoeshub.module.sanpham.entity.SanPham;
+import com.example.shoeshub.module.sanpham.response.SanPhamResponse;
 import com.example.shoeshub.module.sanpham.service.SanPhamService;
 import com.example.shoeshub.module.size.entity.Size;
 import com.example.shoeshub.module.size.service.SizeService;
@@ -81,7 +82,9 @@ public class SanPhamController {
             , @ModelAttribute("userInput") DanhMuc userInputDanhMuc
             , @ModelAttribute("ErrormessageDanhMuc") String ErrormessageDanhMuc) {
 
-        List<SanPham> list = sanPhamService.getAll();
+//        List<SanPham> list = sanPhamService.getAll();
+
+        List<SanPhamResponse> list = sanPhamService.getAll();
         model.addAttribute("sanPham", list);
 
         List<DanhMuc> listdm = danhMucService.getAllTrangThai(1);

@@ -225,6 +225,7 @@
                                 <th>Mã Giày</th>
                                 <th>Tên Giày</th>
                                 <th>Danh Mục</th>
+                                <th>Tổng Số Lượng</th>
                                 <th>Trạng Thái</th>
                                 <th>Action</th>
                             </tr>
@@ -233,7 +234,8 @@
                             <tr th:each="items : ${sanPham}">
                                 <td th:text="${items.masp}"></td>
                                 <td th:text="${items.tensp}"></td>
-                                <td th:text="${items.danhmuc.tendanhmuc}"></td>
+                                <td th:text="${items.tendanhmuc}"></td>
+                                <td th:text="${items.tongsp ?: 0}"></td>
                                 <td>
                                     <span
                                             th:if="${items.trangthai == 1}"

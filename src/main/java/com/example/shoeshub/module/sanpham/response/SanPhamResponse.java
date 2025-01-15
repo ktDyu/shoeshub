@@ -6,18 +6,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class SanPhamResponse {
 
-    private Long masp;
-
+    private Integer masp;
     private String tensp;
-
-    private String ngaynhap;
-
-    private String ngaycapnhat;
-
     private Integer trangthai;
-
     private String tendanhmuc;
+    private Long tongsp;
+
+    public SanPhamResponse(Integer masp, String tensp, Integer trangthai, String tendanhmuc, Long tongsp) {
+        this.masp = masp;
+        this.tensp = tensp;
+        this.trangthai = trangthai;
+        this.tendanhmuc = tendanhmuc;
+        this.tongsp = tongsp;
+    }
 }

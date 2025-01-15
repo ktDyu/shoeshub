@@ -24,7 +24,6 @@ public class DanhMuc {
     @Column(name = "ma_dm")
     private Integer madm;
 
-    @NotBlank
     @Column(name = "ten_danh_muc")
     private String tendanhmuc;
 

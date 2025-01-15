@@ -2,13 +2,14 @@ package com.example.shoeshub.module.sanpham.service;
 
 import com.example.shoeshub.module.danhmuc.entity.DanhMuc;
 import com.example.shoeshub.module.sanpham.entity.SanPham;
+import com.example.shoeshub.module.sanpham.response.SanPhamResponse;
 
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
 public interface SanPhamService {
-    List<SanPham> getAll();
+    List<SanPhamResponse> getAll();
 
     SanPham add(SanPham sanPham);
 
