@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="POS - Bootstrap Admin Template">
+    <meta name="keywords"
+          content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Sneaker Shop - Admin</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/img/icon.png">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="/plugins/toastr/toatr.css"/>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Thêm link thư viện Alertify -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/default.min.css"/>
+    <style>
+        /* Toàn bộ trang */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container chính */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Tiêu đề */
+        h1 {
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Thêm địa chỉ */
+        .add-address {
+            display: block;
+            text-align: right;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .add-address a {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .add-address a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Bảng địa chỉ */
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        table .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: black;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+    </style>
+    <style>
+        /* Toàn bộ trang */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container chính */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Tiêu đề */
+        h2 {
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form tìm kiếm */
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #007bff;
+            width: 250px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Bảng khách hàng */
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Nút hành động */
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .alertify .ajs-message {
+            background-color: black;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của tiêu đề */
+        .alertify .ajs-header {
+            background-color: coral;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của các nút */
+        .alertify .ajs-buttons .ajs-ok {
+            background-color: #2ecc71;
+            color: #ffffff;
+        }
+        body {
+            background-color: #f8f9fa; /* Màu nền sáng cho toàn trang */
+        }
+        .table thead {
+            background-color: #007bff; /* Màu nền xanh cho header */
+            color: white;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1; /* Màu nền khi hover vào dòng */
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body class="mini-sidebar">
+<div class="main-wrapper">
+    <div class="header">
+
+        <div class="header-left active">
+            <a href="/manage" class="logo">
+                <img src="/images/img/logo.png" alt="">
+            </a>
+            <a href="/manage" class="logo-small">
+                <img src="/images/img/logo-small.png" alt="">
+            </a>
+            <a id="toggle_btn" href="javascript:void(0);">
+
+            </a>
+        </div>
+
+        <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+            <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            </span>
+        </a>
+
+        <ul class="nav user-menu">
+
+            <li class="nav-item dropdown has-arrow flag-nav">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
+                    <i class="flag flag-vn"></i>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                    <img src="/images/img/icons/notification-bing.svg" alt="img"> <span
+                        class="badge rounded-pill"></span>
+                </a>
+                <div class="dropdown-menu notifications">
+                    <div class="topnav-dropdown-header">
+                        <span class="notification-title">Notifications</span>
+                        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                    </div>
+                    <div class="noti-content">
+                        <ul class="notification-list">
+
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown has-arrow main-drop">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+                    <span class="user-img"><img alt="">
+                    <span class="status online"></span></span>
+                </a>
+                <div class="dropdown-menu menu-drop-user">
+                    <div class="profilename">
+                        <div class="profileset">
+                            <span class="user-img"><img alt="">
+                            <span class="status online"></span></span>
+                            <div class="profilesets">
+                                <h6></h6>
+                                <h5></h5>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
+                            Profile</a>
+                        <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
+                                                                                data-feather="settings"></i>Settings</a>
+                        <hr class="m-0">
+                        <a class="dropdown-item logout pb-0" href="/logout"><img
+                                src="/images/img/icons/log-out.svg"
+                                class="me-2" alt="img">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="dropdown mobile-user-menu">
+            <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+               aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="profile.html">Thông tin cá nhân</a>
+                <a class="dropdown-item" href="generalsettings.html">Cài đặt</a>
+                <a class="dropdown-item" href="signin.html">Đăng xuất</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="/manager/"><img src="/images/iconlogo.png"
+                                                 alt="img"><span>Trang chủ </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manager/thongke"><img src="/images/img/icons/dashboard.svg"
+                                                        alt="img"><span> Thống Kê</span>
+                        </a>
+                    </li>
+                    <li class="submenu">
+                        <a href="javascript:void(0);"><img src="/images/img/icons/product.svg"
+                                                           alt="img"><span> Quản lý Giày</span>
+                            <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="/manager/san-pham" >Giày</a></li>
+                            <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
+                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/mau-sac">Màu Sắc</a></li>
+                            <li><a href="/manager/size">Size</a></li>
+                            <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/manager/hoa-don"><img src="/images/img/icons/expense1.svg"
+                                                        alt="img"><span> Quản Lý Hóa Đơn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manager/khachhang"><img src="/images/img/icons/users1.svg"
+                                                          alt="img"><span> Quản Lý Khách Hàng</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h4>quản lý khách hàng  </h4>
+                </div>
+                <div class="page-btn">
+
+                </div>
+            </div>
+
+
+
+            <div class="table-responsive"> <h1>Danh Sách Địa Chỉ Của [[${customer.tenkh}]]</h1>
+
+                <!-- Thêm địa chỉ -->
+                <!--                <div class="add-address">-->
+                <!--                    <a th:href="@{/manager/khachhang/diachi/{customerId}/addresses/add(customerId=${customer.makh})}">Thêm Địa Chỉ Mới</a>-->
+                <!--                </div>-->
+
+
+                <!-- Bảng địa chỉ -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Thành Phố</th>
+                        <th>Quận Huyện</th>
+                        <th>Xã Phường</th>
+                        <th>Địa Chỉ Chi Tiết</th>
+                        <th>Mô Tả</th>
+                        <th>Mặc Định</th>
+                        <th>Hành Động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="address : ${addresses}">
+                        <td th:text="${address.tinhtp}"></td>
+                        <td th:text="${address.quanhuyen}"></td>
+                        <td th:text="${address.xaphuong}"></td>
+                        <td th:text="${address.diachichitiet}"></td>
+                        <td th:text="${address.mota}"></td>
+                        <td th:text="${address.loaidiachi ? 'Mặc Định' : 'Không'}"></td>
+                        <td class="action-buttons">
+                            <a th:href="@{'/manager/khachhang/' + ${customer.makh} + '/addresses/delete/' + ${address.madc}}"
+                               class="btn btn-warning"
+                               onclick="return confirm('Xoá địa chỉ?')">
+                                <i class="fas fa-trash-alt"></i> Xoá
+                            </a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div th:if="${message}" id="toast-container" class="toast-container toast-top-right">
+    <div class="toast toast-success" aria-live="polite" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Thành Công</div>
+        <div class="toast-message">Dữ liệu của bạn đã được cập nhật</div>
+    </div>
+</div>
+<div th:if="${tenChatLieuError}" id="warning2" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Tên không được bỏ trống.</div>
+    </div>
+</div>
+<div th:if="${Errormessage}" id="checkMa" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Tên Chất Liệu đã tồn tại.</div>
+    </div>
+</div>
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+<script src="/js/feather.min.js"></script>
+
+<script src="/js/jquery.slimscroll.min.js"></script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<script src="/plugins/select2/js/select2.min.js"></script>
+
+<script src="/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="/plugins/sweetalert/sweetalerts.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
+<script src="/plugins/toastr/toastr.js"></script>
+<script src="/js/script.js"></script>
+<script src="/plugins/alertify/custom-alertify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>

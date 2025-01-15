@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="POS - Bootstrap Admin Template">
+    <meta name="keywords"
+          content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Sneaker Shop - Admin</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/img/icon.png">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="/plugins/toastr/toatr.css"/>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Thêm link thư viện Alertify -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/default.min.css"/>
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+
+        .row.mb-4 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .table-responsive {
+            margin-top: 20px;
+        }
+
+        .alertify .ajs-message {
+            background-color: black;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của tiêu đề */
+        .alertify .ajs-header {
+            background-color: coral;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của các nút */
+        .alertify .ajs-buttons .ajs-ok {
+            background-color: #2ecc71;
+            color: #ffffff;
+        }
+        body {
+            background-color: #f8f9fa; /* Màu nền sáng cho toàn trang */
+        }
+        .table thead {
+            background-color: #007bff; /* Màu nền xanh cho header */
+            color: white;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1; /* Màu nền khi hover vào dòng */
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body class="mini-sidebar">
+<div class="main-wrapper">
+    <div class="header">
+
+        <div class="header-left active">
+            <a href="/manage" class="logo">
+                <img src="/images/img/logo.png" alt="">
+            </a>
+            <a href="/manage" class="logo-small">
+                <img src="/images/img/logo-small.png" alt="">
+            </a>
+            <a id="toggle_btn" href="javascript:void(0);">
+
+            </a>
+        </div>
+
+        <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+            <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            </span>
+        </a>
+
+        <ul class="nav user-menu">
+
+            <li class="nav-item dropdown has-arrow flag-nav">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
+                    <i class="flag flag-vn"></i>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                    <img src="/images/img/icons/notification-bing.svg" alt="img"> <span
+                        class="badge rounded-pill"></span>
+                </a>
+                <div class="dropdown-menu notifications">
+                    <div class="topnav-dropdown-header">
+                        <span class="notification-title">Notifications</span>
+                        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                    </div>
+                    <div class="noti-content">
+                        <ul class="notification-list">
+
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown has-arrow main-drop">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+                    <span class="user-img"><img alt="">
+                    <span class="status online"></span></span>
+                </a>
+                <div class="dropdown-menu menu-drop-user">
+                    <div class="profilename">
+                        <div class="profileset">
+                            <span class="user-img"><img alt="">
+                            <span class="status online"></span></span>
+                            <div class="profilesets">
+                                <h6></h6>
+                                <h5></h5>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+
+                        <hr class="m-0">
+                        <a class="dropdown-item logout pb-0" href="/manager/logout"><img
+                                src="/images/img/icons/log-out.svg"
+                                class="me-2" alt="img">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="/manager/thongke"><img src="/images/img/icons/dashboard.svg"
+                                                        alt="img"><span> Thống Kê</span>
+                        </a>
+                    </li>
+                    <li class="submenu">
+                        <a href="javascript:void(0);"><img src="/images/img/icons/product.svg"
+                                                           alt="img"><span> Quản lý Giày</span>
+                            <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="/manager/san-pham" >Giày</a></li>
+                            <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
+                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/mau-sac">Màu Sắc</a></li>
+                            <li><a href="/manager/size">Size</a></li>
+                            <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/manager/hoa-don"><img src="/images/img/icons/expense1.svg"
+                                                        alt="img"><span> Quản Lý Hóa Đơn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manager/khachhang"><img src="/images/img/icons/users1.svg"
+                                                          alt="img"><span> Quản Lý Khách Hàng</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="page-header">
+                <div class="container mt-4">
+                    <h1 class="text-center mb-4">Quản lý hóa đơn</h1>
+                </div>
+                <div>
+                    <a th:href="@{/manager/hoa-don/export(date=${date}, keyword=${keyword})}" class="btn btn-primary">
+                        Xuất Excel
+                    </a>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary btn-sm w-100" onclick="window.location.href='/manager/hoa-don'">
+                        Hủy tìm kiếm
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Container tổng để chứa các form và bảng -->
+            <div class="container">
+                <!-- Hàng chứa hai form -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <form method="get" action="/manager/hoa-don" class="card p-4 shadow-sm h-100">
+                            <h3 class="mb-2">Tìm kiếm hóa đơn</h3>
+                            <div class="row g-2 mb-2">
+                                <!-- Input Chọn ngày -->
+                                <div class="col-md-6">
+                                    <label for="date" class="form-label">Chọn ngày:</label>
+                                    <input type="date" id="date" name="date" class="form-control form-control-sm"
+                                           th:value="${date != null ? date : ''}">
+                                </div>
+                                <!-- Input Từ khóa -->
+                                <div class="col-md-6">
+                                    <label for="keyword" class="form-label">Từ khóa:</label>
+                                    <input type="text" id="keyword" name="keyword" class="form-control form-control-sm"
+                                           th:value="${keyword}" placeholder="Tên hóa đơn, người nhận...">
+                                </div>
+                            </div>
+                            <!-- Nút Tìm kiếm -->
+                            <button type="submit" class="btn btn-primary btn-sm w-100 mb-2">Tìm kiếm</button>
+                            <!-- Nút Hủy tìm kiếm -->
+
+                        </form>
+
+                    </div>
+
+                    <!-- Form Lọc theo trạng thái -->
+                    <div class="col-md-6">
+                        <form th:action="@{/manager/hoa-don/filter}" method="get" class="card p-4 shadow-sm h-100">
+                            <h3 class="mb-2">Lọc hóa đơn theo trạng thái</h3>
+                            <div class="mb-3">
+                                <label for="trangThai" class="form-label">Chọn trạng thái:</label>
+                                <select name="trangThai" id="trangThai" class="form-select">
+                                    <option th:value="0" th:selected="${trangThai == 0}">Hóa đơn chờ (Chưa thanh toán)</option>
+                                    <option th:value="1" th:selected="${trangThai == 1}">Chờ xác nhận</option>
+                                    <option th:value="2" th:selected="${trangThai == 2}">Đang giao hàng</option>
+                                    <option th:value="3" th:selected="${trangThai == 3}">Thành công</option>
+                                    <option th:value="4" th:selected="${trangThai == 4}">Đã hủy</option>
+
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Lọc</button>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Bảng danh sách hóa đơn -->
+                <div class="table-responsive">
+                    <h2 class="mb-4">Danh Sách Hóa Đơn</h2>
+
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Mã Hóa Đơn</th>
+                            <th>Tên Hóa Đơn</th>
+                            <th>Tên người nhận</th>
+                            <th>Số điện thoại người nhận</th>
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Ngày Thanh Toán</th>
+                            <th>Hành Động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="hoaDon : ${hoaDons}">
+                            <td th:text="${hoaDon.mahd}"></td>
+                            <td th:text="${hoaDon.tenhd}"></td>
+                            <td th:text="${hoaDon.tennguoinhan}"></td>
+                            <td th:text="${hoaDon.sdtnguoinhan}"></td>
+                            <td th:text="${hoaDon.tongtien}"></td>
+                            <td>
+                                <form th:action="@{/manager/hoa-don/update-trang-thai}" method="post">
+                                    <input type="hidden" name="hoaDonId" th:value="${hoaDon.mahd}" />
+
+                                    <!-- Áp dụng Bootstrap lớp form-select -->
+                                    <select name="trangThai" class="form-select form-select-sm">
+                                        <!-- Đã đặt hàng -->
+                                        <!-- Hóa đơn chờ -->
+                                        <option value="0" th:selected="${hoaDon.trangThai == 0}" th:disabled="${hoaDon.trangThai != 0}">
+                                            Hóa đơn chờ (Chưa thanh toán)
+                                        </option>
+
+                                        <!-- Chờ xác nhận -->
+                                        <option value="1" th:selected="${hoaDon.trangThai == 1}" th:disabled="${hoaDon.trangThai != 0 and hoaDon.trangThai != 1}">
+                                            Chờ xác nhận
+                                        </option>
+
+                                        <!-- Đang giao hàng -->
+                                        <option value="2" th:selected="${hoaDon.trangThai == 2}" th:disabled="${hoaDon.trangThai != 1}">
+                                            Đang giao hàng
+                                        </option>
+
+                                        <!-- Thành công -->
+                                        <option value="3" th:selected="${hoaDon.trangThai == 3}" th:disabled="${hoaDon.trangThai != 2}">
+                                            Thành công
+                                        </option>
+
+                                        <!-- Đã hủy -->
+                                        <option value="4" th:selected="${hoaDon.trangThai == 4}" th:disabled="${hoaDon.trangThai == 3 or hoaDon.trangThai == 4}">
+                                            Đã hủy
+                                        </option>
+
+                                    </select>
+
+
+                                    <button type="submit" class="btn btn-primary btn-sm mt-1"
+                                            th:disabled="${hoaDon.trangThai == 3 or hoaDon.trangThai == 4}">
+                                        Cập nhật
+                                    </button>
+
+                                </form>
+
+
+                            </td>                            <td th:text="${#dates.format(hoaDon.tgtt, 'dd/MM/yyyy')}"></td>
+                            <td>
+                                <a th:href="@{'/manager/hoa-don/' + ${hoaDon.mahd}}" class="btn btn-primary btn-sm">Xem Chi Tiết</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<div th:if="${success}" class="alert alert-success">
+    <p th:text="${success}"></p>
+</div>
+
+<div th:if="${error}" class="alert alert-danger">
+    <p th:text="${error}"></p>
+</div>
+
+<div th:if="${message}" id="toast-container" class="toast-container toast-top-right">
+    <div class="toast toast-success" aria-live="polite" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Thành Công</div>
+        <div class="toast-message">Dữ liệu của bạn đã được cập nhật</div>
+    </div>
+</div>
+<div th:if="${tenChatLieuError}" id="warning2" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Tên không được bỏ trống.</div>
+    </div>
+</div>
+<div th:if="${Errormessage}" id="checkMa" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Tên Chất Liệu đã tồn tại.</div>
+    </div>
+</div>
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+<script src="/js/feather.min.js"></script>
+
+<script src="/js/jquery.slimscroll.min.js"></script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<script src="/plugins/select2/js/select2.min.js"></script>
+
+<script src="/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="/plugins/sweetalert/sweetalerts.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
+<script src="/plugins/toastr/toastr.js"></script>
+<script src="/js/script.js"></script>
+<script src="/plugins/alertify/custom-alertify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>

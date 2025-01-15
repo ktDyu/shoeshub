@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="POS - Bootstrap Admin Template">
+    <meta name="keywords"
+          content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Sneaker Shop - Admin</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/img/icon.png">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="/plugins/toastr/toatr.css"/>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Thêm link thư viện Alertify -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/default.min.css"/>
+    <style>
+        .alertify .ajs-message {
+            background-color: black;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của tiêu đề */
+        .alertify .ajs-header {
+            background-color: coral;
+            color: #ffffff;
+        }
+
+        /* Thay đổi màu nền của các nút */
+        .alertify .ajs-buttons .ajs-ok {
+            background-color: #2ecc71;
+            color: #ffffff;
+        }
+        body {
+            background-color: #f8f9fa; /* Màu nền sáng cho toàn trang */
+        }
+        .table thead {
+            background-color: #007bff; /* Màu nền xanh cho header */
+            color: white;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1; /* Màu nền khi hover vào dòng */
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body class="mini-sidebar">
+<div class="main-wrapper">
+    <div class="header">
+
+        <div class="header-left active">
+            <a href="/manage" class="logo">
+                <img src="/images/img/logo.png" alt="">
+            </a>
+            <a href="/manage" class="logo-small">
+                <img src="/images/img/logo-small.png" alt="">
+            </a>
+            <a id="toggle_btn" href="javascript:void(0);">
+
+            </a>
+        </div>
+
+        <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+            <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            </span>
+        </a>
+
+        <ul class="nav user-menu">
+
+            <li class="nav-item dropdown has-arrow flag-nav">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
+                    <i class="flag flag-vn"></i>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                    <img src="/images/img/icons/notification-bing.svg" alt="img"> <span
+                        class="badge rounded-pill"></span>
+                </a>
+                <div class="dropdown-menu notifications">
+                    <div class="topnav-dropdown-header">
+                        <span class="notification-title">Notifications</span>
+                        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                    </div>
+                    <div class="noti-content">
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown has-arrow main-drop">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+                    <span class="user-img"><img alt="">
+                    <span class="status online"></span></span>
+                </a>
+                <div class="dropdown-menu menu-drop-user">
+                    <div class="profilename">
+                        <div class="profileset">
+                            <span class="user-img"><img alt="">
+                            <span class="status online"></span></span>
+                            <div class="profilesets">
+                                <h6></h6>
+                                <h5></h5>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <hr class="m-0">
+                        <a class="dropdown-item logout pb-0" href="/logout"><img
+                                src="/images/img/icons/log-out.svg"
+                                class="me-2" alt="img">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="/manager/thongke" class="active"><img src="/images/img/icons/dashboard.svg"
+                                                        alt="img"><span> Thống Kê</span>
+                        </a>
+                    </li>
+                    <li class="submenu">
+                        <a href="javascript:void(0);"><img src="/images/img/icons/product.svg"
+                                                           alt="img"><span> Quản lý Giày</span>
+                            <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="/manager/san-pham" >Giày</a></li>
+                            <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
+                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/mau-sac">Màu Sắc</a></li>
+                            <li><a href="/manager/size">Size</a></li>
+                            <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/manager/hoa-don"><img src="/images/img/icons/expense1.svg"
+                                                        alt="img"><span> Quản Lý Hóa Đơn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manager/khachhang"><img src="/images/img/icons/users1.svg"
+                                                          alt="img"><span> Quản Lý Khách Hàng</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="container mt-4">
+            <h3 class="text-center">Chi Tiết Hóa Đơn</h3>
+
+            <!-- Thông tin hóa đơn -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Thông Tin Hóa Đơn</h5>
+                    <p><strong>Mã Hóa Đơn:</strong> <span th:text="${hoaDon.mahd}"></span></p>
+                    <p><strong>Tên Hóa Đơn:</strong> <span th:text="${hoaDon.tenhd}"></span></p>
+                    <p><strong>Tổng Tiền:</strong> <span th:text="${hoaDon.tongtien}"></span></p>
+                    <p><strong>Tên người nhận:</strong> <span th:text="${hoaDon.tennguoinhan}"></span></p>
+                    <p><strong>Số điện thoại  người nhận:</strong> <span th:text="${hoaDon.sdtnguoinhan}"></span></p>
+                    <p><strong>Địa chỉ người nhận:</strong> <span th:text="${hoaDon.diachinguoinhan}"></span></p>
+                    <p><strong>Ngày Thanh Toán:</strong> <span th:text="${hoaDon.tgtt != null ? hoaDon.tgtt : 'Chưa có ngày thanh toán'}"></span></p>
+                    <p><strong>Trạng Thái:</strong> <span th:text="${hoaDon.trangThai == 1 ? 'Hoàn thành' : 'Đang xử lý'}"></span></p>
+                    <p><strong>Hình Thức Thanh Toán:</strong> <span th:text="${hoaDon.hinhthucthanhtoan == 1 ? 'Thanh toán online' : 'Thanh toán khi nhận hàng'}"></span></p>
+                </div>
+            </div>
+
+            <!-- Danh sách hóa đơn chi tiết -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Danh Sách Chi Tiết Hóa Đơn</h5>
+                    <table class="table table-bordered">
+                        <thead class="table-striped">
+                        <tr>
+                            <th>Mã CTSP</th>
+                            <th>Tên sản phẩm </th>
+                            <th>Hình ảnh</th>
+                            <th>size giày</th>
+                            <th>màu sắc</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Giá</th>
+                            <th>Trạng Thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="hoaDonChiTiet : ${hoaDonChiTietList}">
+                            <td th:text="${hoaDonChiTiet.chiTietSanPham.mactsp}"></td> <!-- Mã chi tiết sản phẩm -->
+                            <td th:text="${hoaDonChiTiet.chiTietSanPham.sanPham.tensp}"></td> <!-- Số lượng -->
+
+                            <td th:text="${hoaDonChiTiet.chiTietSanPham.hinhAnh.url1}"></td> <!-- Số lượng -->
+                            <td th:text="${hoaDonChiTiet.chiTietSanPham.size.kichthuoc}"></td> <!-- Số lượng -->
+                            <td th:text="${hoaDonChiTiet.chiTietSanPham.mauSac.tenmau}"></td> <!-- Số lượng -->
+
+                            <td th:text="${hoaDonChiTiet.soluong}"></td> <!-- Số lượng -->
+                            <td th:text="${hoaDonChiTiet.dongia}"></td> <!-- Đơn giá -->
+                            <td th:text="${hoaDonChiTiet.trangthai == 1 ? 'Hoàn thành' : 'Đang xử lý'}"></td> <!-- Trạng thái -->
+                        </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+<div th:if="${message}" id="toast-container" class="toast-container toast-top-right">
+    <div class="toast toast-success" aria-live="polite" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Thành Công</div>
+        <div class="toast-message">Dữ liệu của bạn đã được cập nhật</div>
+    </div>
+</div>
+<div th:if="${tenChatLieuError}" id="warning2" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Tên không được bỏ trống.</div>
+    </div>
+</div>
+<div th:if="${Errormessage}" id="checkMa" class="toast-container toast-top-right">
+    <div class="toast toast-error" aria-live="assertive" style="display: block;">
+        <button type="button" class="toast-close-button" role="button"></button>
+        <div class="toast-title">Error!</div>
+        <div class="toast-message">Tên Chất Liệu đã tồn tại.</div>
+    </div>
+</div>
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+<script src="/js/feather.min.js"></script>
+
+<script src="/js/jquery.slimscroll.min.js"></script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<script src="/plugins/select2/js/select2.min.js"></script>
+
+<script src="/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="/plugins/sweetalert/sweetalerts.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
+<script src="/plugins/toastr/toastr.js"></script>
+<script src="/js/script.js"></script>
+<script src="/plugins/alertify/custom-alertify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>
