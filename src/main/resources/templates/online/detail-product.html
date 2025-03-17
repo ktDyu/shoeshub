@@ -179,33 +179,6 @@
                                     <span class="notification-title">Thông báo</span>
                                     <a class="clear-noti"> Xóa sạch </a>
                                 </div>
-                                <div class="vertical-scroll scroll-demo">
-                                    <th:block th:if="${x.trangThai != 3}" th:each="x : ${listThongBao}">
-                                        <a href="#" class="items-noticafitions">
-                                            <div class="items-notica">
-                                        <span class="avatar">
-                                            <img alt="" src="/images/img/blog/blog-1.jpg">
-                                        </span>
-                                                <div class="text-notica">
-                                                    <span class="notica-title" th:text="${fullNameLogin}"></span>
-                                                    <p class="notica-times">1 phút trước</p>
-                                                    <input th:if="x.trangThai == 1" checked class="notica-read"
-                                                           type="radio" name="" id="">
-                                                    <input th:if="x.trangThai == 0">
-                                                </div>
-                                                <p class="notica-status">---------</p>
-                                                <div class="text-contents">
-                                                    <p class="notica-contents" th:text="${x.noiDungTB}"></p>
-                                                </div>
-
-
-                                            </div>
-                                        </a>
-                                    </th:block>
-                                </div>
-                                <div class="topnav-dropdown-footer">
-                                    <a href="activities.html">Xem tất cả thông báo</a>
-                                </div>
                             </div>
 
                         </li>
@@ -288,7 +261,7 @@
                                 <img th:if="${hethang}" style="position: absolute;z-index: 1; height: 200px; width: 320px;"
                                      src="/images/img/soldOut2.png">
                                 <div class="product__details__pic__item">
-                                    <img th:src="@{'/images/imgsProducts//' + ${hinhAnh.url2}}"/>
+                                    <img th:src="@{'/images/imgsProducts/' + ${hinhAnh.url2}}"/>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
@@ -336,7 +309,7 @@
                             <div style="display: flex; margin-left: 215px">
                                 <p th:text="'Chất Liệu : '"></p>
                                 <p style="margin-left: 50px; margin-right: 50px">|</p>
-                                <p th:text="'Danh Mục : ' + ${product.danhmuc.tendanhmuc}"></p>
+                                <p th:text="'Hãng : ' + ${product.danhmuc.tendanhmuc}"></p>
                             </div>
 
                             <span>Phân loại hàng :</span>

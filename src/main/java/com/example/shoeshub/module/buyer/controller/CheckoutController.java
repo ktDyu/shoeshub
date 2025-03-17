@@ -62,7 +62,7 @@ public class CheckoutController {
         //hoa don
         Date date = new Date();
         HoaDon hoaDon = new HoaDon();
-        String tenhd = "HD_" + khachHang.getIdkh() + "_" + date.getDate() + generateRandomNumbers();
+        String tenhd = "HD100_" + khachHang.getIdkh() + "_" + date.getDate() + generateRandomNumbers();
         hoaDon.setTenhd(tenhd);
         hoaDon.setKhachHang(khachHang);
         hoaDon.setTgtt(date);
@@ -125,7 +125,7 @@ public class CheckoutController {
 
         //
         if (diaChiDefault != null) {
-            Double shippingFee = 25000.0;
+            Double shippingFee = 0.0;
             hoaDon.setTongtien(total + shippingFee);
             hoaDonService.save(hoaDon);
             model.addAttribute("shippingFee", shippingFee);
@@ -203,7 +203,7 @@ public class CheckoutController {
                 .sum();
 
 
-        Double shippingFee = 25000.0;
+        Double shippingFee = 00.0;
         hoaDon.setTongtien(total + shippingFee);
         hoaDonService.save(hoaDon);
 
@@ -257,7 +257,7 @@ public class CheckoutController {
         hoaDon.setDiachinguoinhan(diaChiKHChange.getDiachichitiet());
         hoaDonService.save(hoaDon);
 
-        Double shippingFee = 25000.0;
+        Double shippingFee = 00.0;
         hoaDon.setTongtien(total + shippingFee);
         hoaDonService.save(hoaDon);
 
@@ -292,7 +292,7 @@ public class CheckoutController {
 
         String hinhThucThanhToan = request.getParameter("hinhThucThanhToan");
 
-        Double shippingFee = 25000.0;
+        Double shippingFee = 000.0;
 
         hoaDon.setTienship(shippingFee);
         hoaDon.getTongtien();

@@ -285,7 +285,7 @@
                         <ul>
                             <li><a href="/manager/san-pham" >Giày</a></li>
                             <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
-                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/danh-muc">Hãng</a></li>
                             <li><a href="/manager/mau-sac">Màu Sắc</a></li>
                             <li><a href="/manager/size">Size</a></li>
                             <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
@@ -358,9 +358,13 @@
                                         <span th:text="${customer.trangthai == 1 ? 'Kích hoạt' : 'Ngừng hoạt động'}"></span>
                                     </button>
                                 </a>
-                                <a th:href="@{/manager/khachhang/edit/{id}(id=${customer.makh})}">
-                                    <button class="btn btn-primary">Cập nhật thông tin</button>
-                                </a>
+<!--                                <a-->
+<!--                                        th:href="@{'/manager/san-pham/viewUpdate/' + ${items.masp}}">-->
+<!--                                    <img src="/images/img/icons/edit.svg" alt="img"/>-->
+<!--                                </a>-->
+<!--                                <a th:href="@{/manager/khachhang/edit/{id}(id=${customer.makh})}">-->
+<!--                                    <button class="btn btn-primary">Cập nhật thông tin</button>-->
+<!--                                </a>-->
 
                                 </a>
                             </td>

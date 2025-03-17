@@ -143,7 +143,7 @@
                         <ul>
                             <li><a href="/manager/san-pham" >Giày</a></li>
                             <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
-                            <li><a href="/manager/danh-muc" class="active">Danh Mục</a></li>
+                            <li><a href="/manager/danh-muc" class="active">Hãng</a></li>
                             <li><a href="/manager/mau-sac">Màu Sắc</a></li>
                             <li><a href="/manager/size">Size</a></li>
                             <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
@@ -171,8 +171,8 @@
         <div class="content">
             <div class="page-header">
                 <div class="page-title">
-                    <h4>Update Danh Mục </h4>
-                    <h6>Quản Lý Danh Mục</h6>
+                    <h4>Update Hãng </h4>
+                    <h6>Quản Lý Hãng</h6>
                 </div>
             </div>
             <div class="card">
@@ -180,7 +180,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label>Tên Danh Mục</label>
+                                <label>Tên Hãng</label>
                                 <input type="text" th:field="*{tendanhmuc}" >
                             </div>
                         </div>
@@ -216,14 +216,14 @@
     <div class="toast toast-error" aria-live="assertive" style="display: block;">
         <button type="button" class="toast-close-button" role="button"></button>
         <div class="toast-title">Error!</div>
-        <div class="toast-message">Tên danh mục không được bỏ trống.</div>
+        <div class="toast-message">Tên Hãng không được bỏ trống.</div>
     </div>
 </div>
 <div th:if="${Errormessage}" id="checkMa" class="toast-container toast-top-right">
     <div class="toast toast-error" aria-live="assertive" style="display: block;">
         <button type="button" class="toast-close-button" role="button"></button>
         <div class="toast-title">Error!</div>
-        <div class="toast-message">Tên danh mục đã tồn tại.</div>
+        <div class="toast-message">Tên Hãng đã tồn tại.</div>
     </div>
 </div>
 <script src="/js/jquery-3.6.0.min.js"></script>
@@ -298,7 +298,7 @@
 
 
         if (tenHang === "") {
-            showAlert("Vui lòng nhập Tên Danh Mục");
+            showAlert("Vui lòng nhập Tên Hãng");
             return false;
         }
 

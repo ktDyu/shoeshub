@@ -475,20 +475,21 @@ public class UserController {
         KhachHang khachHang = (KhachHang) session.getAttribute("KhachHangLogin");
 
         String hinhThucThayDoi = request.getParameter("paymentMethod");
+        HoaDon hoaDon1 = hoaDonService.findById(mahd);
 
         if (hinhThucThayDoi.equals("qrCodeBanking")) {
             UserForm(model, khachHang);
-            hoaDon.setHinhthucthanhtoan(1);
-            hoaDon.setTrangThai(0);
-            hoaDonService.save(hoaDon);
+            hoaDon1.setHinhthucthanhtoan(1);
+            hoaDon1.setTrangThai(0);
+            hoaDonService.save(hoaDon1);
 
             return "redirect:/buyer/purchase/pay";
         } else {
             UserForm(model, khachHang);
 
-            hoaDon.setHinhthucthanhtoan(0);
-            hoaDon.setTrangThai(1);
-            hoaDonService.save(hoaDon);
+            hoaDon1.setHinhthucthanhtoan(0);
+            hoaDon1.setTrangThai(1);
+            hoaDonService.save(hoaDon1);
 
             return "redirect:/buyer/purchase/ship";
         }

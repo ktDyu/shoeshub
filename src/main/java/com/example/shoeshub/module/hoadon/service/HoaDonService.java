@@ -25,4 +25,6 @@ public interface HoaDonService {
     List<HoaDon> searchHoaDons(String keyword);
 
     List<HoaDon> getHoaDonByTrangThai(Integer trangThai);
+
+    List<HoaDon> finALLL();
 }
