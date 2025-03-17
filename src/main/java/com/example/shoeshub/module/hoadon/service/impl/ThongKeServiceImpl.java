@@ -1,6 +1,6 @@
 package com.example.shoeshub.module.hoadon.service.impl;
 
-import com.example.shoeshub.module.hoadon.DTO.TopNguoiMuaHangDTO;
+import com.example.shoeshub.module.hoadon.response.TopNguoiMuaHangDTO;
 import com.example.shoeshub.module.hoadon.entity.HoaDon;
 import com.example.shoeshub.module.hoadon.repository.HoaDonChiTietRepository;
 import com.example.shoeshub.module.hoadon.repository.HoaDonRepository;

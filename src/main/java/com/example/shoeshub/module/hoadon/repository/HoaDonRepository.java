@@ -1,6 +1,6 @@
 package com.example.shoeshub.module.hoadon.repository;
 
-import com.example.shoeshub.module.hoadon.DTO.TopNguoiMuaHangDTO;
+import com.example.shoeshub.module.hoadon.response.TopNguoiMuaHangDTO;
 import com.example.shoeshub.module.hoadon.entity.HoaDon;
 import com.example.shoeshub.module.khachhang.entity.KhachHang;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -44,7 +44,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon,Integer> {
 
 
     @Query("""
-    SELECT new com.example.shoeshub.module.hoadon.DTO.TopNguoiMuaHangDTO(kh.tenkh, SUM(hd.tongtien))
+    SELECT new com.example.shoeshub.module.hoadon.response.TopNguoiMuaHangDTO(kh.tenkh, SUM(hd.tongtien))
     FROM HoaDon hd
     JOIN hd.khachHang kh
     WHERE hd.trangThai = 3

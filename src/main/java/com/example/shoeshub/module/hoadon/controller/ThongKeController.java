@@ -2,7 +2,7 @@
 package com.example.shoeshub.module.hoadon.controller;
 
 
-import com.example.shoeshub.module.hoadon.DTO.TopNguoiMuaHangDTO;
+import com.example.shoeshub.module.hoadon.response.TopNguoiMuaHangDTO;
 import com.example.shoeshub.module.hoadon.service.ThongKeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

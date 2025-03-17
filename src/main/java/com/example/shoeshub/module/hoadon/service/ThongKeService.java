@@ -1,9 +1,7 @@
 package com.example.shoeshub.module.hoadon.service;
 
-import com.example.shoeshub.module.hoadon.DTO.TopNguoiMuaHangDTO;
+import com.example.shoeshub.module.hoadon.response.TopNguoiMuaHangDTO;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
