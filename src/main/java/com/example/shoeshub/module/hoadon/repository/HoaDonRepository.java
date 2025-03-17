@@ -20,7 +20,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon,Integer> {
 
     @Query("SELECT h FROM HoaDon h WHERE " +
             "(:keyword IS NULL OR h.tenhd LIKE %:keyword% OR h.tennguoinhan LIKE %:keyword% OR h.diachinguoinhan LIKE %:keyword%) " +
-            "ORDER BY h.tgtt ASC")
+            "ORDER BY h.tgtt desc ")
     List<HoaDon> findByKeyword(@Param("keyword") String keyword);
 
     @Query("SELECT SUM(h.tongtien) FROM HoaDon h WHERE DATE(h.tgtt) = :date")
@@ -60,5 +60,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDon,Integer> {
     long countByTrangThai(int trangThai);
 
     List<HoaDon> findByTrangThai(Integer trangThai);
+
+//    @Query("SELECT h.mahd, h.tongsp, h.tongtien, h.hinhthucthanhtoan,h.tgtt,h. FROM HoaDon h " +
+//            "ORDER BY h.tgtt desc ")
+//    List<HoaDon> finALLL();
+
 
 }

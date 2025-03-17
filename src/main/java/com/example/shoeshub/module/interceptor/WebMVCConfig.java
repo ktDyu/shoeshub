@@ -37,9 +37,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
         registry.addInterceptor(buyerLoginInterceptor)
                 .addPathPatterns("/buyer/cart/**", "/buyer/checkout/**", "/buyer/addresses/**", "/buyer/setting/**", "/buyer/purchase/**", "/buyer/shop/addProductCart/**", "/buyer/shop/buyNowButton/**")
                 .excludePathPatterns("/buyer/login/**", "/buyer/register/**");
-//        registry.addInterceptor(manageLoginInterceptor)
-//                .addPathPatterns("/manager/hoa-don/**","/manager/thongke/**", "/manager/khachhang/**", "/manager/san-pham/**", "/manager/chat-lieu/**", "/manager/danh-muc/**", "/manager/mau-sac/**", "/manager/size/**", "/manager/hinh-anh/**")
-//                .excludePathPatterns("/manager/login/**");
+        registry.addInterceptor(manageLoginInterceptor)
+                .addPathPatterns("/manager/hoa-don/**","/manager/thongke/**", "/manager/khachhang/**", "/manager/san-pham/**", "/manager/chat-lieu/**", "/manager/danh-muc/**", "/manager/mau-sac/**", "/manager/size/**", "/manager/hinh-anh/**")
+                .excludePathPatterns("/manager/login/**");
     }
 
     @Bean("messageSource")

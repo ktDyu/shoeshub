@@ -162,7 +162,7 @@
                         <ul>
                             <li><a href="/manager/san-pham" class="active">Giày</a></li>
                             <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
-                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/danh-muc">Hãng</a></li>
                             <li><a href="/manager/mau-sac">Màu Sắc</a></li>
                             <li><a href="/manager/size">Size</a></li>
                             <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
@@ -417,9 +417,9 @@
                                 </div>
                                 <div class="col-lg-10 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Danh Mục</label>
+                                        <label>Hãng</label>
                                         <select class="select" th:field="*{danhmuc}" id="loc" name="loc">
-                                            <option value="">- - Chọn danh mục - -</option>
+                                            <option value="">- - Chọn Hãng - -</option>
                                             <option th:each="loc : ${danhmuc}" th:value="${loc.madm}"
                                                     th:text="${loc.tendanhmuc}"></option>
                                         </select>
@@ -660,7 +660,7 @@
     <div class="toast toast-error" aria-live="assertive" style="display: block;">
         <button type="button" class="toast-close-button" role="button"></button>
         <div class="toast-title">Error!</div>
-        <div class="toast-message">Hãy chọn trường Danh Mục.</div>
+        <div class="toast-message">Hãy chọn trường Hãng.</div>
     </div>
 </div>
 
@@ -1317,7 +1317,7 @@
         }
 
         if (danhMuc === "") {
-            showAlert("Vui lòng chọn Danh Mục");
+            showAlert("Vui lòng chọn Hãng");
             return false;
         }
         return true;

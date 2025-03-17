@@ -241,13 +241,13 @@
                             </div>
                             <div class="card">
                                 <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseTwo"> Danh Mục</a>
+                                    <a data-toggle="collapse" data-target="#collapseTwo"> Hãng</a>
                                 </div>
                                 <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__brand">
                                             <ul>
-                                                <li class="active" data-filter="*"><a href="/buyer/shop">Tất cả danh mục</a>
+                                                <li class="active" data-filter="*"><a href="/buyer/shop">Tất cả Hãng</a>
                                                 </li>
                                                 <th:block th:each="a : ${listDanhMuc}">
                                                     <li><a th:href="@{'/buyer/shop/brand/' + ${a.madm}}"

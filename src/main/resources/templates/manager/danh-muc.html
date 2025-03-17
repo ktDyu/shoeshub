@@ -141,7 +141,7 @@
                         <ul>
                             <li><a href="/manager/san-pham" >Giày</a></li>
                             <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
-                            <li><a href="/manager/danh-muc" class="active">Danh Mục</a></li>
+                            <li><a href="/manager/danh-muc" class="active">Hãng</a></li>
                             <li><a href="/manager/mau-sac">Màu Sắc</a></li>
                             <li><a href="/manager/size">Size</a></li>
                             <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
@@ -167,12 +167,12 @@
         <div class="content">
             <div class="page-header">
                 <div class="page-title">
-                    <h4>Danh Sách Danh Mục</h4>
+                    <h4>Danh Sách Hãng</h4>
                     <h6>Quản Lý Giày</h6>
                 </div>
                 <div class="page-btn">
                     <button class="btn btn-added" id="show-form-button">
-                        <img src="/images/img/icons/plus.svg" class="me-1" alt="img">Thêm Danh Mục
+                        <img src="/images/img/icons/plus.svg" class="me-1" alt="img">Thêm Hãng
                     </button>
                 </div>
             </div>
@@ -185,7 +185,7 @@
                             <div class="row">
                                 <div class="col-lg-2 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Tên Danh Mục</label>
+                                        <label>Tên Hãng</label>
                                         <input type="text" th:field="*{tendanhmuc}">
                                         <br><br>
                                         <strong th:if="${#fields.hasErrors('tendanhmuc')}"
@@ -226,8 +226,8 @@
                         <table class="table datanew" id="data-table">
                             <thead>
                             <tr>
-                                <th>Mã Danh Mục</th>
-                                <th>Tên Danh Mục</th>
+                                <th>Mã Hãng</th>
+                                <th>Tên Hãng</th>
                                 <th>Trạng Thái</th>
                                 <th>Action</th>
 
@@ -273,14 +273,14 @@
     <div class="toast toast-error" aria-live="assertive" style="display: block;">
         <button type="button" class="toast-close-button" role="button"></button>
         <div class="toast-title">Error!</div>
-        <div class="toast-message">Tên danh mục không được bỏ trống.</div>
+        <div class="toast-message">Tên Hãng không được bỏ trống.</div>
     </div>
 </div>
 <div th:if="${Errormessage}" id="checkMa" class="toast-container toast-top-right">
     <div class="toast toast-error" aria-live="assertive" style="display: block;">
         <button type="button" class="toast-close-button" role="button"></button>
         <div class="toast-title">Error!</div>
-        <div class="toast-message">Mã danh mục đã tồn tại.</div>
+        <div class="toast-message">Mã Hãng đã tồn tại.</div>
     </div>
 </div>
 <script src="/js/jquery-3.6.0.min.js"></script>
@@ -479,7 +479,7 @@
 
 
         if (tenDanhMuc === "") {
-            showAlert("Vui lòng nhập Tên Danh Mục");
+            showAlert("Vui lòng nhập Tên Hãng");
             return false;
         }
 

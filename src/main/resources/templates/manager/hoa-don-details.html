@@ -46,27 +46,34 @@
             background-color: #2ecc71;
             color: #ffffff;
         }
+
         body {
             background-color: #f8f9fa; /* Màu nền sáng cho toàn trang */
         }
+
         .table thead {
             background-color: #007bff; /* Màu nền xanh cho header */
             color: white;
         }
+
         .table-hover tbody tr:hover {
             background-color: #f1f1f1; /* Màu nền khi hover vào dòng */
         }
+
         .btn-info {
             background-color: #17a2b8;
             border-color: #17a2b8;
         }
+
         .btn-info:hover {
             background-color: #138496;
             border-color: #117a8b;
         }
+
         .container {
             margin-top: 50px;
         }
+
         h2 {
             color: #007bff;
         }
@@ -152,7 +159,7 @@
                 <ul>
                     <li>
                         <a href="/manager/thongke" class="active"><img src="/images/img/icons/dashboard.svg"
-                                                        alt="img"><span> Thống Kê</span>
+                                                                       alt="img"><span> Thống Kê</span>
                         </a>
                     </li>
                     <li class="submenu">
@@ -160,9 +167,9 @@
                                                            alt="img"><span> Quản lý Giày</span>
                             <span class="menu-arrow"></span></a>
                         <ul>
-                            <li><a href="/manager/san-pham" >Giày</a></li>
-                            <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
-                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/san-pham">Giày</a></li>
+                            <li><a href="/manager/chat-lieu">Chất Liệu</a></li>
+                            <li><a href="/manager/danh-muc">Hãng</a></li>
                             <li><a href="/manager/mau-sac">Màu Sắc</a></li>
                             <li><a href="/manager/size">Size</a></li>
                             <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
@@ -192,15 +199,27 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Thông Tin Hóa Đơn</h5>
-                    <p><strong>Mã Hóa Đơn:</strong> <span th:text="${hoaDon.mahd}"></span></p>
                     <p><strong>Tên Hóa Đơn:</strong> <span th:text="${hoaDon.tenhd}"></span></p>
                     <p><strong>Tổng Tiền:</strong> <span th:text="${hoaDon.tongtien}"></span></p>
                     <p><strong>Tên người nhận:</strong> <span th:text="${hoaDon.tennguoinhan}"></span></p>
-                    <p><strong>Số điện thoại  người nhận:</strong> <span th:text="${hoaDon.sdtnguoinhan}"></span></p>
+                    <p><strong>Số điện thoại người nhận:</strong> <span th:text="${hoaDon.sdtnguoinhan}"></span></p>
                     <p><strong>Địa chỉ người nhận:</strong> <span th:text="${hoaDon.diachinguoinhan}"></span></p>
-                    <p><strong>Ngày Thanh Toán:</strong> <span th:text="${hoaDon.tgtt != null ? hoaDon.tgtt : 'Chưa có ngày thanh toán'}"></span></p>
-                    <p><strong>Trạng Thái:</strong> <span th:text="${hoaDon.trangThai == 1 ? 'Hoàn thành' : 'Đang xử lý'}"></span></p>
-                    <p><strong>Hình Thức Thanh Toán:</strong> <span th:text="${hoaDon.hinhthucthanhtoan == 1 ? 'Thanh toán online' : 'Thanh toán khi nhận hàng'}"></span></p>
+                    <p><strong>Ngày Thanh Toán:</strong> <span
+                            th:text="${hoaDon.tgtt != null ? hoaDon.tgtt : 'Chưa có ngày thanh toán'}"></span></p>
+                    <p><strong>Hình Thức Thanh Toán:</strong> <span
+                            th:text="${hoaDon.hinhthucthanhtoan == 1 ? 'Thanh toán online' : 'Thanh toán khi nhận hàng'}"></span>
+                    </p>
+                    <p>
+                        <strong>Trạng Thái:</strong>
+                        <span th:switch="${hoaDon.trangThai}">
+                            <span th:case="0">Hóa đơn chờ (Chưa thanh toán)</span>
+                            <span th:case="1">Chờ xác nhận</span>
+                            <span th:case="2">Đang giao hàng</span>
+                            <span th:case="3">Thành công</span>
+                            <span th:case="4">Đã hủy</span>
+                            <span th:case="*">Trạng thái không xác định</span>
+                        </span>
+                    </p>
                 </div>
             </div>
 
@@ -212,13 +231,12 @@
                         <thead class="table-striped">
                         <tr>
                             <th>Mã CTSP</th>
-                            <th>Tên sản phẩm </th>
+                            <th>Tên sản phẩm</th>
                             <th>Hình ảnh</th>
                             <th>size giày</th>
                             <th>màu sắc</th>
                             <th>Số Lượng</th>
                             <th>Đơn Giá</th>
-                            <th>Trạng Thái</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -232,10 +250,7 @@
 
                             <td th:text="${hoaDonChiTiet.soluong}"></td> <!-- Số lượng -->
                             <td th:text="${hoaDonChiTiet.dongia}"></td> <!-- Đơn giá -->
-                            <td th:text="${hoaDonChiTiet.trangthai == 1 ? 'Hoàn thành' : 'Đang xử lý'}"></td> <!-- Trạng thái -->
                         </tr>
-
-
 
 
                         </tbody>

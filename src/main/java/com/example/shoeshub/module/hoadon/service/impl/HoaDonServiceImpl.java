@@ -68,5 +68,10 @@ public class HoaDonServiceImpl implements HoaDonService {
         return hoaDonRepository.findByTrangThai(trangThai);
     }
 
+    @Override
+    public List<HoaDon> finALLL() {
+        return finALLL();
+    }
+
 }
 

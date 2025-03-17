@@ -35,25 +35,14 @@ public class loginmanagercontroller {
                                Model model, HttpSession session) {
 
         // Email được cấp quyền đăng nhập
-        String authorizedEmail = "thuandepzai12122004@gmail.com";
-
-        // Kiểm tra email có phải là email được cấp quyền không
-        if (!username.equals(authorizedEmail)) {
-            model.addAttribute("messageLogin", "Bạn không có quyền truy cập.");
-            return "manager/login";
-        }
-
-        // Kiểm tra định dạng email
-        if (!isValidEmail(username)) {
-            model.addAttribute("messageLogin", "Định dạng email không hợp lệ");
-            return "manager/login";
-        }
+        String adminUsername = "admin";
+        String passwordAdmin = "1";
 
         // Xác thực tài khoản và mật khẩu
-        KhachHang kh = khachHangServiceImpl.checkLoginEmailAndPassword(username, password);
-        if (kh != null) {
-            session.setAttribute("ManagerLogin", kh);
-            model.addAttribute("fullNameLogin", kh.getTenkh());
+        if (username.equals(adminUsername) && password.equals(passwordAdmin)) {
+            session.setAttribute("ManagerLogin", adminUsername);
+            model.addAttribute("fullNameLogin", "Quản trị viên");
+
             return "redirect:/manager/hoa-don";
         } else {
             model.addAttribute("messageLogin", "Tài khoản hoặc mật khẩu không chính xác");

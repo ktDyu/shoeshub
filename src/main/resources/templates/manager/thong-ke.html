@@ -309,7 +309,7 @@
                         <ul>
                             <li><a href="/manager/san-pham" >Giày</a></li>
                             <li><a href="/manager/chat-lieu" >Chất Liệu</a></li>
-                            <li><a href="/manager/danh-muc">Danh Mục</a></li>
+                            <li><a href="/manager/danh-muc">Hãng</a></li>
                             <li><a href="/manager/mau-sac">Màu Sắc</a></li>
                             <li><a href="/manager/size">Size</a></li>
                             <li><a href="/manager/hinh-anh">Hình Ảnh</a></li>
@@ -336,24 +336,40 @@
         <div class="container mt-5">
 
             <!-- Tiêu đề -->
-            <h3 class="text-center mb-4">Thống kê doanh thu năm <span th:text="${year}"></span></h3>
+            <div class="text-center mb-4">
+                <h3 class="h4">Thống kê doanh thu năm <span th:text="${year}"></span></h3>
+            </div>
 
-            <!-- Form chọn năm -->
-            <form method="get" action="/manager/thongke" class="mb-4">
-                <div class="form-group">
-                    <label for="year">Year</label>
-                    <input type="number" id="year" name="year" min="2000" max="2100" class="form-control"
-                           th:value="${year}" required oninput="validateYear(this)">
+            <!-- Form chọn năm và kết quả thống kê -->
+            <div class="statistics-section mb-4">
+                <form method="get" action="/manager/thongke" class="p-3 border rounded shadow-sm bg-light small-form">
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Chọn năm:</label>
+                        <input type="number" id="year" name="year" min="2000" max="2100" class="form-control form-control-sm"
+                               th:value="${year}" required oninput="validateYear(this)">
+                    </div>
+
+                    <!-- Hiển thị lỗi -->
+                    <div id="year-error" class="text-danger small" style="display: none;">
+                        <span id="error-negative" style="display: none;">Không được nhập số âm.</span><br>
+                        <span id="error-special" style="display: none;">Không được chứa ký tự đặc biệt.</span><br>
+                        <span id="error-general" style="display: none;">Vui lòng nhập một số hợp lệ.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm w-50 mt-3">Xem thống kê</button>
+                </form>
+
+                <!-- Kết quả thống kê -->
+                <div class="mt-4 p-3 border rounded shadow-sm bg-light small-result">
+                    <h5 class="h6 mb-3">Thống kê năm: <span th:text="${year}"></span></h5>
+                    <p class="mb-1"><strong>Số lượng đơn hàng:</strong> <span th:text="${soLuongDonHang}"></span></p>
+                    <p><strong>Tổng doanh thu:</strong> <span th:text="${tongDoanhThu}"></span></p>
                 </div>
-                <div id="year-error" style="color: red; display: none;">
-                    <span id="error-negative" style="display: none;">Không được nhập số âm.</span><br>
-                    <span id="error-special" style="display: none;">Không được chứa ký tự đặc biệt.</span><br>
-                    <span id="error-general" style="display: none;">Vui lòng nhập một số hợp lệ.</span>
-                </div>
-            </form>
+            </div>
+
 
             <!-- Top người mua hàng -->
-            <div class="card mb-5">
+            <div class="card mb-5 top-buyers">
                 <div class="card-header">
                     <h3>Top Người Mua Hàng</h3>
                 </div>
@@ -374,16 +390,15 @@
                     </table>
                 </div>
             </div>
-
             <!-- Biểu đồ thống kê -->
             <div class="statistics-charts">
 
-                <!-- Biểu đồ tròn - Top trạng thái (ở tay phải trên) -->
+                <!-- Biểu đồ tròn - Top trạng thái -->
                 <div class="pie-chart-container mb-5">
                     <canvas id="spchart" class="small-chart"></canvas>
                 </div>
 
-                <!-- Biểu đồ doanh thu (ở dưới) -->
+                <!-- Biểu đồ doanh thu -->
                 <div class="bar-chart-container mb-5">
                     <canvas id="doanhThuChart" width="600" height="400"></canvas>
                 </div>
