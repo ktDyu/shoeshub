@@ -1,6 +1,4 @@
-package com.example.shoeshub.module.hoadon.DTO;
-
-import java.math.BigDecimal;
+package com.example.shoeshub.module.hoadon.response;
 
 public class TopNguoiMuaHangDTO {
     private String tenkh;
